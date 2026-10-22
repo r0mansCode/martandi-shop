@@ -1,0 +1,266 @@
+@use "@/styles/mixins" as *;
+
+// Shared admin UI: utilitarian tables and forms on the storefront tokens.
+
+.pageHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2rem;
+}
+
+.muted {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+// Filters
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+
+  input[type="search"] {
+    flex: 1 1 16rem;
+  }
+}
+
+// Tables
+
+.tableWrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+
+  th,
+  td {
+    padding: 0.625rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    font-weight: 500;
+    color: var(--color-muted);
+    white-space: nowrap;
+  }
+
+  tr:last-child td {
+    border-bottom: 0;
+  }
+
+  a {
+    color: inherit;
+  }
+}
+
+.thumb {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  background: var(--color-tile);
+  border-radius: var(--radius);
+}
+
+.status {
+  display: inline-block;
+  padding: 0.125rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  background: var(--color-panel);
+}
+
+.statusDraft {
+  background: var(--color-line);
+  color: var(--color-muted);
+}
+
+// Forms
+
+.form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 48rem;
+}
+
+.section {
+  display: grid;
+  gap: 1rem;
+  padding: 1.25rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+
+  > h2 {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+}
+
+.row {
+  display: grid;
+  gap: 1rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  }
+}
+
+.field {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+
+  > span:first-child {
+    font-weight: 500;
+  }
+}
+
+.input,
+.filters input,
+.filters select {
+  width: 100%;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font: inherit;
+}
+
+.filters input,
+.filters select {
+  width: auto;
+}
+
+textarea.input {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+.invalid {
+  border-color: var(--color-accent);
+}
+
+.error {
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+}
+
+.hint {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.variants {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.variant {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+// Lines the checkbox and remove button up with the inputs (below their labels).
+.variantControl {
+  margin-top: 1.875rem;
+}
+
+.actions {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-line);
+}
+
+.button,
+.buttonSecondary {
+  padding: 0.625rem 1.25rem;
+  border: 1px solid var(--color-fg);
+  border-radius: var(--radius);
+  font: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.button {
+  background: var(--color-fg);
+  color: #fff;
+}
+
+.buttonSecondary {
+  background: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.linkButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+  font: inherit;
+  font-size: 0.8125rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.saved {
+  color: var(--color-success);
+}
+
+.images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: contain;
+    background: var(--color-tile);
+    border-radius: var(--radius);
+  }
+}
