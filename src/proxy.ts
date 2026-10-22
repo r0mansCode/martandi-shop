@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { site } from "@/config/site";
 import {
   ADMIN_PATH,
   COOKIE,
@@ -35,7 +36,8 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  const login = new URL("/api/auth/login", request.url);
+  // Public site URL, not request.url: behind Amplify's proxy that is the internal localhost address.
+  const login = new URL("/api/auth/login", site.url);
   login.searchParams.set("next", request.nextUrl.pathname + request.nextUrl.search);
   return NextResponse.redirect(login);
 }

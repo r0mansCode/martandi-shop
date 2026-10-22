@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { site } from "@/config/site";
 import {
   ADMIN_PATH,
   CALLBACK_PATH,
@@ -34,7 +35,8 @@ export async function GET(request: NextRequest) {
     return plain(403, "Šim lietotājam nav piekļuves administrācijai.");
   }
 
-  const response = NextResponse.redirect(new URL(safeNext(saved.next), request.url));
+  // Built from the public site URL: behind Amplify's proxy, request.url is the internal localhost address.
+  const response = NextResponse.redirect(new URL(safeNext(saved.next), site.url));
   response.cookies.delete({ name: COOKIE.oauth, path: CALLBACK_PATH });
   const cookie = { httpOnly: true, secure: secureCookies, sameSite: "lax", path: ADMIN_PATH } as const;
   response.cookies.set(COOKIE.access, tokens.access_token, { ...cookie, maxAge: tokens.expires_in });
