@@ -1,5 +1,7 @@
 import "server-only";
+import { constants } from "node:fs";
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import type { Category, Order, Product } from "@/lib/types";
 import type { Db } from "./types";
@@ -14,9 +16,30 @@ type MockData = {
   counters: Record<string, number>;
 };
 
-const DATA_DIR = path.join(process.cwd(), ".data");
-const DB_FILE = path.join(DATA_DIR, "db.json");
 const SEED_DIR = path.join(process.cwd(), "data", "seed");
+
+// Amplify compute has a read-only project dir; fall back to the per-instance temp dir there.
+// Data in the temp dir is lost whenever the instance is recycled — fine for a preview deploy.
+let dataDir: Promise<string> | null = null;
+function resolveDataDir() {
+  dataDir ??= (async () => {
+    const local = path.join(process.cwd(), ".data");
+    try {
+      await fs.mkdir(local, { recursive: true });
+      await fs.access(local, constants.W_OK);
+      return local;
+    } catch {
+      const tmp = path.join(os.tmpdir(), "martand-shop");
+      await fs.mkdir(tmp, { recursive: true });
+      return tmp;
+    }
+  })();
+  return dataDir;
+}
+
+async function dbFile() {
+  return path.join(await resolveDataDir(), "db.json");
+}
 
 async function readSeed(): Promise<MockData> {
   const [categories, products] = await Promise.all([
@@ -33,21 +56,21 @@ async function readSeed(): Promise<MockData> {
 
 let seeded: Promise<void> | null = null;
 function ensureSeeded() {
-  seeded ??= fs.access(DB_FILE).catch(async () => save(await readSeed()));
+  seeded ??= dbFile().then((file) => fs.access(file).catch(async () => save(await readSeed())));
   return seeded;
 }
 
 async function load(): Promise<MockData> {
   await ensureSeeded();
-  return JSON.parse(await fs.readFile(DB_FILE, "utf8"));
+  return JSON.parse(await fs.readFile(await dbFile(), "utf8"));
 }
 
 async function save(data: MockData) {
-  await fs.mkdir(DATA_DIR, { recursive: true });
+  const file = await dbFile();
   // Unique temp name: build workers run in parallel processes.
-  const tmp = `${DB_FILE}.${process.pid}.${crypto.randomUUID()}.tmp`;
+  const tmp = `${file}.${process.pid}.${crypto.randomUUID()}.tmp`;
   await fs.writeFile(tmp, JSON.stringify(data, null, 2));
-  await fs.rename(tmp, DB_FILE);
+  await fs.rename(tmp, file);
 }
 
 // Serialize writes within this process so read-modify-write cycles don't interleave.
