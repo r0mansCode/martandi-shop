@@ -1,0 +1,22 @@
+@use "@/styles/mixins" as *;
+
+.root {
+  @include container;
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding-block: 4rem;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+.button {
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--color-fg);
+  color: #fff;
+}

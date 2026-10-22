@@ -1,0 +1,73 @@
+@use "@/styles/mixins" as *;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem 1rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include up(lg) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.card {
+  display: block;
+
+  &:hover .name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.tile {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-tile);
+  overflow: hidden;
+}
+
+.image {
+  object-fit: contain;
+  padding: 1.25rem;
+  mix-blend-mode: multiply;
+  transition: transform 0.3s ease;
+
+  .card:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 0.625rem;
+  left: 0.625rem;
+  padding: 0.25rem 0.5rem;
+  background: var(--color-bg);
+  border-radius: var(--radius);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.price {
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+
+.from {
+  font-weight: 400;
+}
+
+.name {
+  @include line-clamp(2);
+  margin-top: 0.125rem;
+}
+
+.meta {
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}

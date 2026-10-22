@@ -1,0 +1,93 @@
+[
+  {
+    "id": "c01",
+    "slug": "sarkanvins",
+    "name": "Sarkanvīns",
+    "description": "Sarkanvīni no Spānijas, Čīles, Austrālijas un citām vīna zemēm.",
+    "sortOrder": 1
+  },
+  {
+    "id": "c02",
+    "slug": "baltvins",
+    "name": "Baltvīns",
+    "description": "Svaigi un aromātiski baltvīni ikdienai un svētkiem.",
+    "sortOrder": 2
+  },
+  {
+    "id": "c03",
+    "slug": "roza-vins",
+    "name": "Rozā vīns",
+    "description": "Viegli, augļaini rozā vīni siltajiem vakariem.",
+    "sortOrder": 3
+  },
+  {
+    "id": "c04",
+    "slug": "dzirkstosie-vini",
+    "name": "Dzirkstošie vīni",
+    "description": "Šampanietis, prosecco, cava un crémant.",
+    "sortOrder": 4
+  },
+  {
+    "id": "c05",
+    "slug": "viskijs",
+    "name": "Viskijs",
+    "description": "Skotu single malt un amerikāņu viskiji.",
+    "sortOrder": 5
+  },
+  {
+    "id": "c06",
+    "slug": "konjaks-un-brendijs",
+    "name": "Konjaks un brendijs",
+    "description": "Konjaks, kalvadoss un brendijs.",
+    "sortOrder": 6
+  },
+  {
+    "id": "c07",
+    "slug": "dzins",
+    "name": "Džins",
+    "description": "Amatnieku un klasiskie džini.",
+    "sortOrder": 7
+  },
+  {
+    "id": "c08",
+    "slug": "tekila-un-mezcal",
+    "name": "Tekila un mezcal",
+    "description": "100% agaves tekila un mezcal no Meksikas.",
+    "sortOrder": 8
+  },
+  {
+    "id": "c09",
+    "slug": "rums",
+    "name": "Rums",
+    "description": "Gaišais un nogatinātais rums, kašasa.",
+    "sortOrder": 9
+  },
+  {
+    "id": "c10",
+    "slug": "degvins",
+    "name": "Degvīns",
+    "description": "Tīrs un aromatizēts degvīns.",
+    "sortOrder": 10
+  },
+  {
+    "id": "c11",
+    "slug": "likieri",
+    "name": "Liķieri",
+    "description": "Augļu, riekstu, kafijas un garšaugu liķieri.",
+    "sortOrder": 11
+  },
+  {
+    "id": "c12",
+    "slug": "vermuts-un-aperitivi",
+    "name": "Vermuts un aperitīvi",
+    "description": "Itāļu vermuts un aperitīvi kokteiļiem.",
+    "sortOrder": 12
+  },
+  {
+    "id": "c13",
+    "slug": "bezalkoholiskie",
+    "name": "Bezalkoholiskie",
+    "description": "Toniki, limonādes un bezalkoholiskie vīni.",
+    "sortOrder": 13
+  }
+]

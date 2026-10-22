@@ -1,0 +1,3979 @@
+[
+  {
+    "id": "p001",
+    "slug": "espiritu-de-chile-viajero-carmenere",
+    "name": "Espíritu de Chile Viajero Carmenère",
+    "description": "Espíritu de Chile Viajero Carmenère – carmenère no Espíritu de Chile (Čīle). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-viajero-carmenere.jpg",
+        "alt": "Espíritu de Chile Viajero Carmenère"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p001-v1",
+        "label": "0,75 l",
+        "priceCents": 749,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T10:00:00.000Z",
+    "updatedAt": "2026-09-01T10:00:00.000Z"
+  },
+  {
+    "id": "p002",
+    "slug": "espiritu-de-chile-viajero-merlot",
+    "name": "Espíritu de Chile Viajero Merlot",
+    "description": "Espíritu de Chile Viajero Merlot – merlot no Espíritu de Chile (Čīle). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-viajero-merlot.jpg",
+        "alt": "Espíritu de Chile Viajero Merlot"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p002-v1",
+        "label": "0,75 l",
+        "priceCents": 749,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T11:00:00.000Z",
+    "updatedAt": "2026-09-01T11:00:00.000Z"
+  },
+  {
+    "id": "p003",
+    "slug": "espiritu-de-chile-viajero-cabernet-sauvignon",
+    "name": "Espíritu de Chile Viajero Cabernet Sauvignon",
+    "description": "Espíritu de Chile Viajero Cabernet Sauvignon – cabernet sauvignon no Espíritu de Chile (Čīle). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-viajero-cabernet-sauvignon.jpg",
+        "alt": "Espíritu de Chile Viajero Cabernet Sauvignon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p003-v1",
+        "label": "0,75 l",
+        "priceCents": 749,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T12:00:00.000Z",
+    "updatedAt": "2026-09-01T12:00:00.000Z"
+  },
+  {
+    "id": "p004",
+    "slug": "espiritu-de-chile-intrepido-carmenere-reserva",
+    "name": "Espíritu de Chile Intrépido Carmenère Reserva",
+    "description": "Espíritu de Chile Intrépido Carmenère Reserva – carmenère reserva no Espíritu de Chile (Čīle). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-intrepido-carmenere-reserva.jpg",
+        "alt": "Espíritu de Chile Intrépido Carmenère Reserva"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 13.5,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p004-v1",
+        "label": "0,75 l",
+        "priceCents": 999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T13:00:00.000Z",
+    "updatedAt": "2026-09-01T13:00:00.000Z"
+  },
+  {
+    "id": "p005",
+    "slug": "espiritu-de-chile-cabernet-sauvignon-pussaldais",
+    "name": "Espíritu de Chile Cabernet Sauvignon pussaldais",
+    "description": "Espíritu de Chile Cabernet Sauvignon pussaldais – pussaldais cabernet sauvignon no Espíritu de Chile (Čīle). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-cabernet-sauvignon-pussaldais.png",
+        "alt": "Espíritu de Chile Cabernet Sauvignon pussaldais"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p005-v1",
+        "label": "0,75 l",
+        "priceCents": 699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T14:00:00.000Z",
+    "updatedAt": "2026-09-01T14:00:00.000Z"
+  },
+  {
+    "id": "p006",
+    "slug": "espiritu-de-chile-cabernet-carmenere-bib",
+    "name": "Espíritu de Chile Cabernet Carmenère BIB",
+    "description": "Espíritu de Chile Cabernet Carmenère BIB – cabernet un carmenère no Espíritu de Chile (Čīle). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-cabernet-carmenere-bib.jpg",
+        "alt": "Espíritu de Chile Cabernet Carmenère BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p006-v1",
+        "label": "3 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T15:00:00.000Z",
+    "updatedAt": "2026-09-01T15:00:00.000Z"
+  },
+  {
+    "id": "p007",
+    "slug": "vina-amaia-cabernet-sauvignon-bib",
+    "name": "Viña Amaia Cabernet Sauvignon BIB",
+    "description": "Viña Amaia Cabernet Sauvignon BIB – cabernet sauvignon no Viña Amaia (Spānija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/vina-amaia-cabernet-sauvignon-bib.jpg",
+        "alt": "Viña Amaia Cabernet Sauvignon BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Spānija",
+    "producer": "Viña Amaia",
+    "variants": [
+      {
+        "id": "p007-v1",
+        "label": "3 l",
+        "priceCents": 1899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T16:00:00.000Z",
+    "updatedAt": "2026-09-01T16:00:00.000Z"
+  },
+  {
+    "id": "p008",
+    "slug": "detunda-red-bib",
+    "name": "Detunda Red BIB",
+    "description": "Detunda Red BIB – tempranillo no Detunda (Spānija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/detunda-red-bib.jpg",
+        "alt": "Detunda Red BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Spānija",
+    "producer": "Detunda",
+    "variants": [
+      {
+        "id": "p008-v1",
+        "label": "3 l",
+        "priceCents": 1799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T17:00:00.000Z",
+    "updatedAt": "2026-09-01T17:00:00.000Z"
+  },
+  {
+    "id": "p009",
+    "slug": "detunda-organic-red-bib",
+    "name": "Detunda Organic Red BIB",
+    "description": "Detunda Organic Red BIB – bioloģiskais tempranillo no Detunda (Spānija). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/detunda-organic-red-bib.jpg",
+        "alt": "Detunda Organic Red BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 13,
+    "country": "Spānija",
+    "producer": "Detunda",
+    "variants": [
+      {
+        "id": "p009-v1",
+        "label": "3 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T18:00:00.000Z",
+    "updatedAt": "2026-09-01T18:00:00.000Z"
+  },
+  {
+    "id": "p010",
+    "slug": "ramon-bilbao-crianza",
+    "name": "Ramón Bilbao Crianza",
+    "description": "Ramón Bilbao Crianza – rioja crianza no Ramón Bilbao (Spānija). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-crianza.png",
+        "alt": "Ramón Bilbao Crianza"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 14,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p010-v1",
+        "label": "0,75 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T19:00:00.000Z",
+    "updatedAt": "2026-09-01T19:00:00.000Z"
+  },
+  {
+    "id": "p011",
+    "slug": "ramon-bilbao-reserva",
+    "name": "Ramón Bilbao Reserva",
+    "description": "Ramón Bilbao Reserva – rioja reserva no Ramón Bilbao (Spānija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-reserva.png",
+        "alt": "Ramón Bilbao Reserva"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p011-v1",
+        "label": "0,75 l",
+        "priceCents": 1899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T20:00:00.000Z",
+    "updatedAt": "2026-09-01T20:00:00.000Z"
+  },
+  {
+    "id": "p012",
+    "slug": "ramon-bilbao-gran-reserva",
+    "name": "Ramón Bilbao Gran Reserva",
+    "description": "Ramón Bilbao Gran Reserva – rioja gran reserva no Ramón Bilbao (Spānija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-gran-reserva.png",
+        "alt": "Ramón Bilbao Gran Reserva"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p012-v1",
+        "label": "0,75 l",
+        "priceCents": 2799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T21:00:00.000Z",
+    "updatedAt": "2026-09-01T21:00:00.000Z"
+  },
+  {
+    "id": "p013",
+    "slug": "ramon-bilbao-edicion-limitada",
+    "name": "Ramón Bilbao Edición Limitada",
+    "description": "Ramón Bilbao Edición Limitada – rioja no Ramón Bilbao (Spānija). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-edicion-limitada.jpg",
+        "alt": "Ramón Bilbao Edición Limitada"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14.5,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p013-v1",
+        "label": "0,75 l",
+        "priceCents": 2499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T22:00:00.000Z",
+    "updatedAt": "2026-09-01T22:00:00.000Z"
+  },
+  {
+    "id": "p014",
+    "slug": "ramon-roqueta-tempranillo",
+    "name": "Ramon Roqueta Tempranillo",
+    "description": "Ramon Roqueta Tempranillo – tempranillo no Ramon Roqueta (Spānija). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-roqueta-tempranillo.jpg",
+        "alt": "Ramon Roqueta Tempranillo"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Spānija",
+    "producer": "Ramon Roqueta",
+    "variants": [
+      {
+        "id": "p014-v1",
+        "label": "0,75 l",
+        "priceCents": 799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-01T23:00:00.000Z",
+    "updatedAt": "2026-09-01T23:00:00.000Z"
+  },
+  {
+    "id": "p015",
+    "slug": "ramon-roqueta-crianza",
+    "name": "Ramon Roqueta Crianza",
+    "description": "Ramon Roqueta Crianza – crianza no Ramon Roqueta (Spānija). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-roqueta-crianza.jpg",
+        "alt": "Ramon Roqueta Crianza"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Spānija",
+    "producer": "Ramon Roqueta",
+    "variants": [
+      {
+        "id": "p015-v1",
+        "label": "0,75 l",
+        "priceCents": 949,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T00:00:00.000Z",
+    "updatedAt": "2026-09-02T00:00:00.000Z"
+  },
+  {
+    "id": "p016",
+    "slug": "ramon-roqueta-reserva",
+    "name": "Ramon Roqueta Reserva",
+    "description": "Ramon Roqueta Reserva – reserva no Ramon Roqueta (Spānija). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv makaroniem ar tomātu mērci.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/ramon-roqueta-reserva.jpg",
+        "alt": "Ramon Roqueta Reserva"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Spānija",
+    "producer": "Ramon Roqueta",
+    "variants": [
+      {
+        "id": "p016-v1",
+        "label": "0,75 l",
+        "priceCents": 1199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T01:00:00.000Z",
+    "updatedAt": "2026-09-02T01:00:00.000Z"
+  },
+  {
+    "id": "p017",
+    "slug": "peter-lehmann-8-songs-shiraz",
+    "name": "Peter Lehmann 8 Songs Shiraz",
+    "description": "Peter Lehmann 8 Songs Shiraz – barossa shiraz no Peter Lehmann (Austrālija). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/peter-lehmann-8-songs-shiraz.jpg",
+        "alt": "Peter Lehmann 8 Songs Shiraz"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14.5,
+    "country": "Austrālija",
+    "producer": "Peter Lehmann",
+    "variants": [
+      {
+        "id": "p017-v1",
+        "label": "0,75 l",
+        "priceCents": 3499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T02:00:00.000Z",
+    "updatedAt": "2026-09-02T02:00:00.000Z"
+  },
+  {
+    "id": "p018",
+    "slug": "peter-lehmann-cabernet-sauvignon",
+    "name": "Peter Lehmann Cabernet Sauvignon",
+    "description": "Peter Lehmann Cabernet Sauvignon – cabernet sauvignon no Peter Lehmann (Austrālija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/peter-lehmann-cabernet-sauvignon.png",
+        "alt": "Peter Lehmann Cabernet Sauvignon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14,
+    "country": "Austrālija",
+    "producer": "Peter Lehmann",
+    "variants": [
+      {
+        "id": "p018-v1",
+        "label": "0,75 l",
+        "priceCents": 1499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T03:00:00.000Z",
+    "updatedAt": "2026-09-02T03:00:00.000Z"
+  },
+  {
+    "id": "p019",
+    "slug": "peter-lehmann-weighbridge-shiraz",
+    "name": "Peter Lehmann Weighbridge Shiraz",
+    "description": "Peter Lehmann Weighbridge Shiraz – shiraz no Peter Lehmann (Austrālija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv makaroniem ar tomātu mērci.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/peter-lehmann-weighbridge-shiraz.png",
+        "alt": "Peter Lehmann Weighbridge Shiraz"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14,
+    "country": "Austrālija",
+    "producer": "Peter Lehmann",
+    "variants": [
+      {
+        "id": "p019-v1",
+        "label": "0,75 l",
+        "priceCents": 1099,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T04:00:00.000Z",
+    "updatedAt": "2026-09-02T04:00:00.000Z"
+  },
+  {
+    "id": "p020",
+    "slug": "yellow-tail-shiraz",
+    "name": "Yellow Tail Shiraz",
+    "description": "Yellow Tail Shiraz – shiraz no Casella Family (Austrālija). Aromātā upeņu un melno piparu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv makaroniem ar tomātu mērci.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/yellow-tail-shiraz.jpg",
+        "alt": "Yellow Tail Shiraz"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Austrālija",
+    "producer": "Casella Family",
+    "variants": [
+      {
+        "id": "p020-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T05:00:00.000Z",
+    "updatedAt": "2026-09-02T05:00:00.000Z"
+  },
+  {
+    "id": "p021",
+    "slug": "yellow-tail-cabernet-sauvignon",
+    "name": "Yellow Tail Cabernet Sauvignon",
+    "description": "Yellow Tail Cabernet Sauvignon – cabernet sauvignon no Casella Family (Austrālija). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/yellow-tail-cabernet-sauvignon.jpg",
+        "alt": "Yellow Tail Cabernet Sauvignon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Austrālija",
+    "producer": "Casella Family",
+    "variants": [
+      {
+        "id": "p021-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T06:00:00.000Z",
+    "updatedAt": "2026-09-02T06:00:00.000Z"
+  },
+  {
+    "id": "p022",
+    "slug": "yellow-tail-merlot",
+    "name": "Yellow Tail Merlot",
+    "description": "Yellow Tail Merlot – merlot no Casella Family (Austrālija). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/yellow-tail-merlot.jpg",
+        "alt": "Yellow Tail Merlot"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Austrālija",
+    "producer": "Casella Family",
+    "variants": [
+      {
+        "id": "p022-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T07:00:00.000Z",
+    "updatedAt": "2026-09-02T07:00:00.000Z"
+  },
+  {
+    "id": "p023",
+    "slug": "kwv-classic-cabernet-sauvignon",
+    "name": "KWV Classic Cabernet Sauvignon",
+    "description": "KWV Classic Cabernet Sauvignon – cabernet sauvignon no KWV (Dienvidāfrika). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv grilētai gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/kwv-classic-cabernet-sauvignon.png",
+        "alt": "KWV Classic Cabernet Sauvignon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p023-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T08:00:00.000Z",
+    "updatedAt": "2026-09-02T08:00:00.000Z"
+  },
+  {
+    "id": "p024",
+    "slug": "kwv-classic-merlot",
+    "name": "KWV Classic Merlot",
+    "description": "KWV Classic Merlot – merlot no KWV (Dienvidāfrika). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv makaroniem ar tomātu mērci.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/kwv-classic-merlot.png",
+        "alt": "KWV Classic Merlot"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p024-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T09:00:00.000Z",
+    "updatedAt": "2026-09-02T09:00:00.000Z"
+  },
+  {
+    "id": "p025",
+    "slug": "kwv-classic-pinotage",
+    "name": "KWV Classic Pinotage",
+    "description": "KWV Classic Pinotage – pinotage no KWV (Dienvidāfrika). Aromātā tumšo ogu un ozolkoka notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/kwv-classic-pinotage.png",
+        "alt": "KWV Classic Pinotage"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p025-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T10:00:00.000Z",
+    "updatedAt": "2026-09-02T10:00:00.000Z"
+  },
+  {
+    "id": "p026",
+    "slug": "eagle-creek-zinfandel",
+    "name": "Eagle Creek Zinfandel",
+    "description": "Eagle Creek Zinfandel – zinfandel no Eagle Creek (ASV). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/eagle-creek-zinfandel.jpg",
+        "alt": "Eagle Creek Zinfandel"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "ASV",
+    "producer": "Eagle Creek",
+    "variants": [
+      {
+        "id": "p026-v1",
+        "label": "0,75 l",
+        "priceCents": 949,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T11:00:00.000Z",
+    "updatedAt": "2026-09-02T11:00:00.000Z"
+  },
+  {
+    "id": "p027",
+    "slug": "elettra-primitivo-negroamaro",
+    "name": "Elettra Primitivo Negroamaro",
+    "description": "Elettra Primitivo Negroamaro – primitivo un negroamaro no Elettra (Itālija). Aromātā nobriedušu ķiršu un plūmju notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv cietajiem sieriem.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/elettra-primitivo-negroamaro.jpg",
+        "alt": "Elettra Primitivo Negroamaro"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13.5,
+    "country": "Itālija",
+    "producer": "Elettra",
+    "variants": [
+      {
+        "id": "p027-v1",
+        "label": "0,75 l",
+        "priceCents": 999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T12:00:00.000Z",
+    "updatedAt": "2026-09-02T12:00:00.000Z"
+  },
+  {
+    "id": "p028",
+    "slug": "red-fire-primitivo",
+    "name": "Red Fire Primitivo",
+    "description": "Red Fire Primitivo – primitivo no Red Fire (Itālija). Aromātā meža ogu un vaniļas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv jēra gaļai.",
+    "categoryId": "c01",
+    "images": [
+      {
+        "url": "/products/red-fire-primitivo.jpg",
+        "alt": "Red Fire Primitivo"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 14,
+    "country": "Itālija",
+    "producer": "Red Fire",
+    "variants": [
+      {
+        "id": "p028-v1",
+        "label": "0,75 l",
+        "priceCents": 1149,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T13:00:00.000Z",
+    "updatedAt": "2026-09-02T13:00:00.000Z"
+  },
+  {
+    "id": "p029",
+    "slug": "espiritu-de-chile-viajero-sauvignon-blanc",
+    "name": "Espíritu de Chile Viajero Sauvignon Blanc",
+    "description": "Espíritu de Chile Viajero Sauvignon Blanc – sauvignon blanc no Espíritu de Chile (Čīle). Aromātā citrona un minerālu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv zivīm un jūras veltēm.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-viajero-sauvignon-blanc.jpg",
+        "alt": "Espíritu de Chile Viajero Sauvignon Blanc"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p029-v1",
+        "label": "0,75 l",
+        "priceCents": 749,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T14:00:00.000Z",
+    "updatedAt": "2026-09-02T14:00:00.000Z"
+  },
+  {
+    "id": "p030",
+    "slug": "espiritu-de-chile-viajero-chardonnay",
+    "name": "Espíritu de Chile Viajero Chardonnay",
+    "description": "Espíritu de Chile Viajero Chardonnay – chardonnay no Espíritu de Chile (Čīle). Aromātā citrona un minerālu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-viajero-chardonnay.jpg",
+        "alt": "Espíritu de Chile Viajero Chardonnay"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p030-v1",
+        "label": "0,75 l",
+        "priceCents": 749,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T15:00:00.000Z",
+    "updatedAt": "2026-09-02T15:00:00.000Z"
+  },
+  {
+    "id": "p031",
+    "slug": "espiritu-de-chile-intrepido-sauvignon-blanc",
+    "name": "Espíritu de Chile Intrépido Sauvignon Blanc",
+    "description": "Espíritu de Chile Intrépido Sauvignon Blanc – sauvignon blanc reserva no Espíritu de Chile (Čīle). Aromātā persiku un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv salātiem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-intrepido-sauvignon-blanc.jpg",
+        "alt": "Espíritu de Chile Intrépido Sauvignon Blanc"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p031-v1",
+        "label": "0,75 l",
+        "priceCents": 999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T16:00:00.000Z",
+    "updatedAt": "2026-09-02T16:00:00.000Z"
+  },
+  {
+    "id": "p032",
+    "slug": "espiritu-de-chile-sauvignon-blanc-pussaldais",
+    "name": "Espíritu de Chile Sauvignon Blanc pussaldais",
+    "description": "Espíritu de Chile Sauvignon Blanc pussaldais – pussaldais sauvignon blanc no Espíritu de Chile (Čīle). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-sauvignon-blanc-pussaldais.png",
+        "alt": "Espíritu de Chile Sauvignon Blanc pussaldais"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p032-v1",
+        "label": "0,75 l",
+        "priceCents": 699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T17:00:00.000Z",
+    "updatedAt": "2026-09-02T17:00:00.000Z"
+  },
+  {
+    "id": "p033",
+    "slug": "espiritu-de-chile-gewurztraminer-semillon-bib",
+    "name": "Espíritu de Chile Gewürztraminer Semillon BIB",
+    "description": "Espíritu de Chile Gewürztraminer Semillon BIB – gewürztraminer un semillon no Espíritu de Chile (Čīle). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/espiritu-de-chile-gewurztraminer-semillon-bib.png",
+        "alt": "Espíritu de Chile Gewürztraminer Semillon BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Čīle",
+    "producer": "Espíritu de Chile",
+    "variants": [
+      {
+        "id": "p033-v1",
+        "label": "3 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T18:00:00.000Z",
+    "updatedAt": "2026-09-02T18:00:00.000Z"
+  },
+  {
+    "id": "p034",
+    "slug": "vina-amaia-chardonnay-bib",
+    "name": "Viña Amaia Chardonnay BIB",
+    "description": "Viña Amaia Chardonnay BIB – chardonnay no Viña Amaia (Spānija). Aromātā citrona un minerālu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv salātiem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/vina-amaia-chardonnay-bib.jpg",
+        "alt": "Viña Amaia Chardonnay BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Spānija",
+    "producer": "Viña Amaia",
+    "variants": [
+      {
+        "id": "p034-v1",
+        "label": "3 l",
+        "priceCents": 1899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T19:00:00.000Z",
+    "updatedAt": "2026-09-02T19:00:00.000Z"
+  },
+  {
+    "id": "p035",
+    "slug": "detunda-white-bib",
+    "name": "Detunda White BIB",
+    "description": "Detunda White BIB – airén un macabeo no Detunda (Spānija). Aromātā tropisko augļu un medus notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv salātiem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/detunda-white-bib.jpg",
+        "alt": "Detunda White BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Spānija",
+    "producer": "Detunda",
+    "variants": [
+      {
+        "id": "p035-v1",
+        "label": "3 l",
+        "priceCents": 1799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T20:00:00.000Z",
+    "updatedAt": "2026-09-02T20:00:00.000Z"
+  },
+  {
+    "id": "p036",
+    "slug": "detunda-organic-white-bib",
+    "name": "Detunda Organic White BIB",
+    "description": "Detunda Organic White BIB – bioloģiskais verdejo no Detunda (Spānija). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/detunda-organic-white-bib.jpg",
+        "alt": "Detunda Organic White BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Spānija",
+    "producer": "Detunda",
+    "variants": [
+      {
+        "id": "p036-v1",
+        "label": "3 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T21:00:00.000Z",
+    "updatedAt": "2026-09-02T21:00:00.000Z"
+  },
+  {
+    "id": "p037",
+    "slug": "ramon-bilbao-verdejo",
+    "name": "Ramón Bilbao Verdejo",
+    "description": "Ramón Bilbao Verdejo – rueda verdejo no Ramón Bilbao (Spānija). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv zivīm un jūras veltēm.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-verdejo.png",
+        "alt": "Ramón Bilbao Verdejo"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p037-v1",
+        "label": "0,75 l",
+        "priceCents": 1199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T22:00:00.000Z",
+    "updatedAt": "2026-09-02T22:00:00.000Z"
+  },
+  {
+    "id": "p038",
+    "slug": "mar-de-frades-albarino",
+    "name": "Mar de Frades Albariño",
+    "description": "Mar de Frades Albariño – rías baixas albariño no Mar de Frades (Spānija). Aromātā tropisko augļu un medus notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/mar-de-frades-albarino.jpg",
+        "alt": "Mar de Frades Albariño"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 12.5,
+    "country": "Spānija",
+    "producer": "Mar de Frades",
+    "variants": [
+      {
+        "id": "p038-v1",
+        "label": "0,75 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-02T23:00:00.000Z",
+    "updatedAt": "2026-09-02T23:00:00.000Z"
+  },
+  {
+    "id": "p039",
+    "slug": "peter-lehmann-portrait-riesling",
+    "name": "Peter Lehmann Portrait Riesling",
+    "description": "Peter Lehmann Portrait Riesling – riesling no Peter Lehmann (Austrālija). Aromātā persiku un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv zivīm un jūras veltēm.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/peter-lehmann-portrait-riesling.png",
+        "alt": "Peter Lehmann Portrait Riesling"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Austrālija",
+    "producer": "Peter Lehmann",
+    "variants": [
+      {
+        "id": "p039-v1",
+        "label": "0,75 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T00:00:00.000Z",
+    "updatedAt": "2026-09-03T00:00:00.000Z"
+  },
+  {
+    "id": "p040",
+    "slug": "peter-lehmann-wigan-riesling",
+    "name": "Peter Lehmann Wigan Riesling",
+    "description": "Peter Lehmann Wigan Riesling – eden valley riesling no Peter Lehmann (Austrālija). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/peter-lehmann-wigan-riesling.jpg",
+        "alt": "Peter Lehmann Wigan Riesling"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11,
+    "country": "Austrālija",
+    "producer": "Peter Lehmann",
+    "variants": [
+      {
+        "id": "p040-v1",
+        "label": "0,75 l",
+        "priceCents": 2999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T01:00:00.000Z",
+    "updatedAt": "2026-09-03T01:00:00.000Z"
+  },
+  {
+    "id": "p041",
+    "slug": "yellow-tail-chardonnay",
+    "name": "Yellow Tail Chardonnay",
+    "description": "Yellow Tail Chardonnay – chardonnay no Casella Family (Austrālija). Aromātā citrona un minerālu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/yellow-tail-chardonnay.jpg",
+        "alt": "Yellow Tail Chardonnay"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Austrālija",
+    "producer": "Casella Family",
+    "variants": [
+      {
+        "id": "p041-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T02:00:00.000Z",
+    "updatedAt": "2026-09-03T02:00:00.000Z"
+  },
+  {
+    "id": "p042",
+    "slug": "yellow-tail-pinot-grigio",
+    "name": "Yellow Tail Pinot Grigio",
+    "description": "Yellow Tail Pinot Grigio – pinot grigio no Casella Family (Austrālija). Aromātā tropisko augļu un medus notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/yellow-tail-pinot-grigio.jpg",
+        "alt": "Yellow Tail Pinot Grigio"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Austrālija",
+    "producer": "Casella Family",
+    "variants": [
+      {
+        "id": "p042-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T03:00:00.000Z",
+    "updatedAt": "2026-09-03T03:00:00.000Z"
+  },
+  {
+    "id": "p043",
+    "slug": "kwv-classic-chenin-blanc",
+    "name": "KWV Classic Chenin Blanc",
+    "description": "KWV Classic Chenin Blanc – chenin blanc no KWV (Dienvidāfrika). Aromātā persiku un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv zivīm un jūras veltēm.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/kwv-classic-chenin-blanc.png",
+        "alt": "KWV Classic Chenin Blanc"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p043-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T04:00:00.000Z",
+    "updatedAt": "2026-09-03T04:00:00.000Z"
+  },
+  {
+    "id": "p044",
+    "slug": "kwv-classic-sauvignon-blanc",
+    "name": "KWV Classic Sauvignon Blanc",
+    "description": "KWV Classic Sauvignon Blanc – sauvignon blanc no KWV (Dienvidāfrika). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/kwv-classic-sauvignon-blanc.png",
+        "alt": "KWV Classic Sauvignon Blanc"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p044-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T05:00:00.000Z",
+    "updatedAt": "2026-09-03T05:00:00.000Z"
+  },
+  {
+    "id": "p045",
+    "slug": "kwv-classic-chardonnay",
+    "name": "KWV Classic Chardonnay",
+    "description": "KWV Classic Chardonnay – chardonnay no KWV (Dienvidāfrika). Aromātā tropisko augļu un medus notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/kwv-classic-chardonnay.png",
+        "alt": "KWV Classic Chardonnay"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p045-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T06:00:00.000Z",
+    "updatedAt": "2026-09-03T06:00:00.000Z"
+  },
+  {
+    "id": "p046",
+    "slug": "eagle-creek-chardonnay",
+    "name": "Eagle Creek Chardonnay",
+    "description": "Eagle Creek Chardonnay – chardonnay no Eagle Creek (ASV). Aromātā persiku un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vistas gaļai.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/eagle-creek-chardonnay.jpg",
+        "alt": "Eagle Creek Chardonnay"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 13,
+    "country": "ASV",
+    "producer": "Eagle Creek",
+    "variants": [
+      {
+        "id": "p046-v1",
+        "label": "0,75 l",
+        "priceCents": 949,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T07:00:00.000Z",
+    "updatedAt": "2026-09-03T07:00:00.000Z"
+  },
+  {
+    "id": "p047",
+    "slug": "conde-villar-vinho-verde",
+    "name": "Conde Villar Vinho Verde",
+    "description": "Conde Villar Vinho Verde – vinho verde no Quinta das Arcas (Portugāle). Aromātā persiku un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv zivīm un jūras veltēm.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/conde-villar-vinho-verde.jpg",
+        "alt": "Conde Villar Vinho Verde"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 10,
+    "country": "Portugāle",
+    "producer": "Quinta das Arcas",
+    "variants": [
+      {
+        "id": "p047-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T08:00:00.000Z",
+    "updatedAt": "2026-09-03T08:00:00.000Z"
+  },
+  {
+    "id": "p048",
+    "slug": "zap-vinho-verde",
+    "name": "ZAP Vinho Verde",
+    "description": "ZAP Vinho Verde – vinho verde no ZAP (Portugāle). Aromātā zaļā ābola un citrusu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/zap-vinho-verde.png",
+        "alt": "ZAP Vinho Verde"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 9.5,
+    "country": "Portugāle",
+    "producer": "ZAP",
+    "variants": [
+      {
+        "id": "p048-v1",
+        "label": "0,75 l",
+        "priceCents": 799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T09:00:00.000Z",
+    "updatedAt": "2026-09-03T09:00:00.000Z"
+  },
+  {
+    "id": "p049",
+    "slug": "rabbit-island-sauvignon-blanc",
+    "name": "Rabbit Island Sauvignon Blanc",
+    "description": "Rabbit Island Sauvignon Blanc – marlborough sauvignon blanc no Rabbit Island (Jaunzēlande). Aromātā citrona un minerālu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv mīkstajiem sieriem.",
+    "categoryId": "c02",
+    "images": [
+      {
+        "url": "/products/rabbit-island-sauvignon-blanc.png",
+        "alt": "Rabbit Island Sauvignon Blanc"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 12.5,
+    "country": "Jaunzēlande",
+    "producer": "Rabbit Island",
+    "variants": [
+      {
+        "id": "p049-v1",
+        "label": "0,75 l",
+        "priceCents": 1299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T10:00:00.000Z",
+    "updatedAt": "2026-09-03T10:00:00.000Z"
+  },
+  {
+    "id": "p050",
+    "slug": "ramon-bilbao-rosado",
+    "name": "Ramón Bilbao Rosado",
+    "description": "Ramón Bilbao Rosado – garnacha rosado no Ramón Bilbao (Spānija). Aromātā zemeņu un aveņu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c03",
+    "images": [
+      {
+        "url": "/products/ramon-bilbao-rosado.png",
+        "alt": "Ramón Bilbao Rosado"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12.5,
+    "country": "Spānija",
+    "producer": "Ramón Bilbao",
+    "variants": [
+      {
+        "id": "p050-v1",
+        "label": "0,75 l",
+        "priceCents": 1199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T11:00:00.000Z",
+    "updatedAt": "2026-09-03T11:00:00.000Z"
+  },
+  {
+    "id": "p051",
+    "slug": "kwv-classic-rose",
+    "name": "KWV Classic Rosé",
+    "description": "KWV Classic Rosé – rosé no KWV (Dienvidāfrika). Aromātā zemeņu un aveņu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c03",
+    "images": [
+      {
+        "url": "/products/kwv-classic-rose.png",
+        "alt": "KWV Classic Rosé"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Dienvidāfrika",
+    "producer": "KWV",
+    "variants": [
+      {
+        "id": "p051-v1",
+        "label": "0,75 l",
+        "priceCents": 849,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T12:00:00.000Z",
+    "updatedAt": "2026-09-03T12:00:00.000Z"
+  },
+  {
+    "id": "p052",
+    "slug": "detunda-rose-bib",
+    "name": "Detunda Rosé BIB",
+    "description": "Detunda Rosé BIB – garnacha rosé no Detunda (Spānija). Aromātā arbūza un rožu ziedlapu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv lasim.",
+    "categoryId": "c03",
+    "images": [
+      {
+        "url": "/products/detunda-rose-bib.jpg",
+        "alt": "Detunda Rosé BIB"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Spānija",
+    "producer": "Detunda",
+    "variants": [
+      {
+        "id": "p052-v1",
+        "label": "3 l",
+        "priceCents": 1799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T13:00:00.000Z",
+    "updatedAt": "2026-09-03T13:00:00.000Z"
+  },
+  {
+    "id": "p053",
+    "slug": "conde-villar-vinho-verde-rose",
+    "name": "Conde Villar Vinho Verde Rosé",
+    "description": "Conde Villar Vinho Verde Rosé – vinho verde rosé no Quinta das Arcas (Portugāle). Aromātā zemeņu un aveņu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vasaras salātiem.",
+    "categoryId": "c03",
+    "images": [
+      {
+        "url": "/products/conde-villar-vinho-verde-rose.jpg",
+        "alt": "Conde Villar Vinho Verde Rosé"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 10,
+    "country": "Portugāle",
+    "producer": "Quinta das Arcas",
+    "variants": [
+      {
+        "id": "p053-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T14:00:00.000Z",
+    "updatedAt": "2026-09-03T14:00:00.000Z"
+  },
+  {
+    "id": "p054",
+    "slug": "eagle-creek-zinfandel-rose",
+    "name": "Eagle Creek Zinfandel Rosé",
+    "description": "Eagle Creek Zinfandel Rosé – zinfandel rosé no Eagle Creek (ASV). Aromātā greipfrūta un sarkano ogu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv vasaras salātiem.",
+    "categoryId": "c03",
+    "images": [
+      {
+        "url": "/products/eagle-creek-zinfandel-rose.jpg",
+        "alt": "Eagle Creek Zinfandel Rosé"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11,
+    "country": "ASV",
+    "producer": "Eagle Creek",
+    "variants": [
+      {
+        "id": "p054-v1",
+        "label": "0,75 l",
+        "priceCents": 949,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T15:00:00.000Z",
+    "updatedAt": "2026-09-03T15:00:00.000Z"
+  },
+  {
+    "id": "p055",
+    "slug": "champagne-epc-brut",
+    "name": "Champagne EPC Brut",
+    "description": "Champagne EPC Brut – šampanietis brut no EPC (Francija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv svētku brīžiem.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/champagne-epc-brut.jpg",
+        "alt": "Champagne EPC Brut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 12,
+    "country": "Francija",
+    "producer": "EPC",
+    "variants": [
+      {
+        "id": "p055-v1",
+        "label": "0,75 l",
+        "priceCents": 3999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T16:00:00.000Z",
+    "updatedAt": "2026-09-03T16:00:00.000Z"
+  },
+  {
+    "id": "p056",
+    "slug": "champagne-epc-blanc-de-blancs",
+    "name": "Champagne EPC Blanc de Blancs",
+    "description": "Champagne EPC Blanc de Blancs – šampanietis blanc de blancs no EPC (Francija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv austerēm.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/champagne-epc-blanc-de-blancs.jpg",
+        "alt": "Champagne EPC Blanc de Blancs"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Francija",
+    "producer": "EPC",
+    "variants": [
+      {
+        "id": "p056-v1",
+        "label": "0,75 l",
+        "priceCents": 4999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T17:00:00.000Z",
+    "updatedAt": "2026-09-03T17:00:00.000Z"
+  },
+  {
+    "id": "p057",
+    "slug": "bottega-poeti-prosecco-doc",
+    "name": "Bottega Poeti Prosecco DOC",
+    "description": "Bottega Poeti Prosecco DOC – prosecco no Bottega (Itālija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv svētku brīžiem.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bottega-poeti-prosecco-doc.jpg",
+        "alt": "Bottega Poeti Prosecco DOC"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11,
+    "country": "Itālija",
+    "producer": "Bottega",
+    "variants": [
+      {
+        "id": "p057-v1",
+        "label": "0,75 l",
+        "priceCents": 1199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T18:00:00.000Z",
+    "updatedAt": "2026-09-03T18:00:00.000Z"
+  },
+  {
+    "id": "p058",
+    "slug": "bottega-gold-prosecco",
+    "name": "Bottega Gold Prosecco",
+    "description": "Bottega Gold Prosecco – prosecco brut no Bottega (Itālija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bottega-gold-prosecco.png",
+        "alt": "Bottega Gold Prosecco"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11,
+    "country": "Itālija",
+    "producer": "Bottega",
+    "variants": [
+      {
+        "id": "p058-v1",
+        "label": "0,75 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T19:00:00.000Z",
+    "updatedAt": "2026-09-03T19:00:00.000Z"
+  },
+  {
+    "id": "p059",
+    "slug": "bottega-rose-gold-brut",
+    "name": "Bottega Rose Gold Brut",
+    "description": "Bottega Rose Gold Brut – rozā brut no Bottega (Itālija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv austerēm.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bottega-rose-gold-brut.jpg",
+        "alt": "Bottega Rose Gold Brut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Itālija",
+    "producer": "Bottega",
+    "variants": [
+      {
+        "id": "p059-v1",
+        "label": "0,75 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T20:00:00.000Z",
+    "updatedAt": "2026-09-03T20:00:00.000Z"
+  },
+  {
+    "id": "p060",
+    "slug": "bottega-white-gold-brut",
+    "name": "Bottega White Gold Brut",
+    "description": "Bottega White Gold Brut – brut no Bottega (Itālija). Aromātā zaļā ābola un briošas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv austerēm.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bottega-white-gold-brut.jpg",
+        "alt": "Bottega White Gold Brut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Itālija",
+    "producer": "Bottega",
+    "variants": [
+      {
+        "id": "p060-v1",
+        "label": "0,75 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T21:00:00.000Z",
+    "updatedAt": "2026-09-03T21:00:00.000Z"
+  },
+  {
+    "id": "p061",
+    "slug": "bonaval-cava-brut",
+    "name": "Bonaval Cava Brut",
+    "description": "Bonaval Cava Brut – cava brut no Bonaval (Spānija). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bonaval-cava-brut.jpg",
+        "alt": "Bonaval Cava Brut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Spānija",
+    "producer": "Bonaval",
+    "variants": [
+      {
+        "id": "p061-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T22:00:00.000Z",
+    "updatedAt": "2026-09-03T22:00:00.000Z"
+  },
+  {
+    "id": "p062",
+    "slug": "bonaval-cava-semiseco",
+    "name": "Bonaval Cava Semiseco",
+    "description": "Bonaval Cava Semiseco – pussausa cava no Bonaval (Spānija). Aromātā zaļā ābola un briošas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/bonaval-cava-semiseco.jpg",
+        "alt": "Bonaval Cava Semiseco"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Spānija",
+    "producer": "Bonaval",
+    "variants": [
+      {
+        "id": "p062-v1",
+        "label": "0,75 l",
+        "priceCents": 899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-03T23:00:00.000Z",
+    "updatedAt": "2026-09-03T23:00:00.000Z"
+  },
+  {
+    "id": "p063",
+    "slug": "nuviana-cava-brut",
+    "name": "Nuviana Cava Brut",
+    "description": "Nuviana Cava Brut – cava brut no Nuviana (Spānija). Aromātā bumbieru un mandeļu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv austerēm.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/nuviana-cava-brut.jpg",
+        "alt": "Nuviana Cava Brut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Spānija",
+    "producer": "Nuviana",
+    "variants": [
+      {
+        "id": "p063-v1",
+        "label": "0,75 l",
+        "priceCents": 1049,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T00:00:00.000Z",
+    "updatedAt": "2026-09-04T00:00:00.000Z"
+  },
+  {
+    "id": "p064",
+    "slug": "nuviana-cava-brut-rose",
+    "name": "Nuviana Cava Brut Rosé",
+    "description": "Nuviana Cava Brut Rosé – rozā cava no Nuviana (Spānija). Aromātā bumbieru un mandeļu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv svētku brīžiem.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/nuviana-cava-brut-rose.jpg",
+        "alt": "Nuviana Cava Brut Rosé"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 11.5,
+    "country": "Spānija",
+    "producer": "Nuviana",
+    "variants": [
+      {
+        "id": "p064-v1",
+        "label": "0,75 l",
+        "priceCents": 1049,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T01:00:00.000Z",
+    "updatedAt": "2026-09-04T01:00:00.000Z"
+  },
+  {
+    "id": "p065",
+    "slug": "desom-cremant-de-luxembourg-brut-elegance",
+    "name": "Desom Crémant de Luxembourg Brut Élégance",
+    "description": "Desom Crémant de Luxembourg Brut Élégance – crémant brut no Desom (Luksemburga). Aromātā zaļā ābola un briošas notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv austerēm.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/desom-cremant-de-luxembourg-brut-elegance.jpg",
+        "alt": "Desom Crémant de Luxembourg Brut Élégance"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Luksemburga",
+    "producer": "Desom",
+    "variants": [
+      {
+        "id": "p065-v1",
+        "label": "0,75 l",
+        "priceCents": 1799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T02:00:00.000Z",
+    "updatedAt": "2026-09-04T02:00:00.000Z"
+  },
+  {
+    "id": "p066",
+    "slug": "desom-cremant-de-luxembourg-brut-rose",
+    "name": "Desom Crémant de Luxembourg Brut Rosé",
+    "description": "Desom Crémant de Luxembourg Brut Rosé – rozā crémant no Desom (Luksemburga). Aromātā citrusu un baltu ziedu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/desom-cremant-de-luxembourg-brut-rose.jpg",
+        "alt": "Desom Crémant de Luxembourg Brut Rosé"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Luksemburga",
+    "producer": "Desom",
+    "variants": [
+      {
+        "id": "p066-v1",
+        "label": "0,75 l",
+        "priceCents": 1899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T03:00:00.000Z",
+    "updatedAt": "2026-09-04T03:00:00.000Z"
+  },
+  {
+    "id": "p067",
+    "slug": "pfaff-cremant-d-alsace-blanc-de-blancs",
+    "name": "Pfaff Crémant d'Alsace Blanc de Blancs",
+    "description": "Pfaff Crémant d'Alsace Blanc de Blancs – crémant d'alsace no Pfaff (Francija). Aromātā bumbieru un mandeļu notis, garšā līdzsvarots un patīkami svaigs. Lieliski piestāv uzkodām.",
+    "categoryId": "c04",
+    "images": [
+      {
+        "url": "/products/pfaff-cremant-d-alsace-blanc-de-blancs.jpg",
+        "alt": "Pfaff Crémant d'Alsace Blanc de Blancs"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 12,
+    "country": "Francija",
+    "producer": "Pfaff",
+    "variants": [
+      {
+        "id": "p067-v1",
+        "label": "0,75 l",
+        "priceCents": 1699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T04:00:00.000Z",
+    "updatedAt": "2026-09-04T04:00:00.000Z"
+  },
+  {
+    "id": "p068",
+    "slug": "arran-10-years-old",
+    "name": "Arran 10 Years Old",
+    "description": "Arran 10 Years Old – single malt no Skotija. Kūpinātas kūdras, citrusu un ceptu ābolu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/arran-10-years-old.jpg",
+        "alt": "Arran 10 Years Old"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 46,
+    "country": "Skotija",
+    "producer": "Arran",
+    "variants": [
+      {
+        "id": "p068-v1",
+        "label": "0,7 l",
+        "priceCents": 4999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T05:00:00.000Z",
+    "updatedAt": "2026-09-04T05:00:00.000Z"
+  },
+  {
+    "id": "p069",
+    "slug": "arran-barrel-reserve",
+    "name": "Arran Barrel Reserve",
+    "description": "Arran Barrel Reserve – single malt no Skotija. Maigas vaniļas, medus un žāvētu augļu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/arran-barrel-reserve.jpg",
+        "alt": "Arran Barrel Reserve"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 43,
+    "country": "Skotija",
+    "producer": "Arran",
+    "variants": [
+      {
+        "id": "p069-v1",
+        "label": "0,7 l",
+        "priceCents": 3699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T06:00:00.000Z",
+    "updatedAt": "2026-09-04T06:00:00.000Z"
+  },
+  {
+    "id": "p070",
+    "slug": "arran-quarter-cask",
+    "name": "Arran Quarter Cask",
+    "description": "Arran Quarter Cask – single malt no Skotija. Garšvielu, karameles un ozolkoka notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/arran-quarter-cask.png",
+        "alt": "Arran Quarter Cask"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 56.2,
+    "country": "Skotija",
+    "producer": "Arran",
+    "variants": [
+      {
+        "id": "p070-v1",
+        "label": "0,7 l",
+        "priceCents": 6499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T07:00:00.000Z",
+    "updatedAt": "2026-09-04T07:00:00.000Z"
+  },
+  {
+    "id": "p071",
+    "slug": "arran-sherry-cask",
+    "name": "Arran Sherry Cask",
+    "description": "Arran Sherry Cask – single malt šerija mucās no Skotija. Kūpinātas kūdras, citrusu un ceptu ābolu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/arran-sherry-cask.jpg",
+        "alt": "Arran Sherry Cask"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 55.8,
+    "country": "Skotija",
+    "producer": "Arran",
+    "variants": [
+      {
+        "id": "p071-v1",
+        "label": "0,7 l",
+        "priceCents": 6999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T08:00:00.000Z",
+    "updatedAt": "2026-09-04T08:00:00.000Z"
+  },
+  {
+    "id": "p072",
+    "slug": "lagg-kilmory-edition",
+    "name": "Lagg Kilmory Edition",
+    "description": "Lagg Kilmory Edition – kūpināts single malt no Skotija. Maigas vaniļas, medus un žāvētu augļu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/lagg-kilmory-edition.png",
+        "alt": "Lagg Kilmory Edition"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 46,
+    "country": "Skotija",
+    "producer": "Lagg",
+    "variants": [
+      {
+        "id": "p072-v1",
+        "label": "0,7 l",
+        "priceCents": 5999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T09:00:00.000Z",
+    "updatedAt": "2026-09-04T09:00:00.000Z"
+  },
+  {
+    "id": "p073",
+    "slug": "lagg-corriecravie-edition",
+    "name": "Lagg Corriecravie Edition",
+    "description": "Lagg Corriecravie Edition – kūpināts single malt no Skotija. Garšvielu, karameles un ozolkoka notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/lagg-corriecravie-edition.png",
+        "alt": "Lagg Corriecravie Edition"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 55,
+    "country": "Skotija",
+    "producer": "Lagg",
+    "variants": [
+      {
+        "id": "p073-v1",
+        "label": "0,7 l",
+        "priceCents": 6999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T10:00:00.000Z",
+    "updatedAt": "2026-09-04T10:00:00.000Z"
+  },
+  {
+    "id": "p074",
+    "slug": "yellow-rose-premium-american-whiskey",
+    "name": "Yellow Rose Premium American Whiskey",
+    "description": "Yellow Rose Premium American Whiskey – amerikāņu viskijs no ASV. Garšvielu, karameles un ozolkoka notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/yellow-rose-premium-american-whiskey.jpg",
+        "alt": "Yellow Rose Premium American Whiskey"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "ASV",
+    "producer": "Yellow Rose Distilling",
+    "variants": [
+      {
+        "id": "p074-v1",
+        "label": "0,7 l",
+        "priceCents": 3999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T11:00:00.000Z",
+    "updatedAt": "2026-09-04T11:00:00.000Z"
+  },
+  {
+    "id": "p075",
+    "slug": "yellow-rose-rye",
+    "name": "Yellow Rose Rye",
+    "description": "Yellow Rose Rye – rudzu viskijs no ASV. Kūpinātas kūdras, citrusu un ceptu ābolu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/yellow-rose-rye.jpg",
+        "alt": "Yellow Rose Rye"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 45,
+    "country": "ASV",
+    "producer": "Yellow Rose Distilling",
+    "variants": [
+      {
+        "id": "p075-v1",
+        "label": "0,7 l",
+        "priceCents": 4499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T12:00:00.000Z",
+    "updatedAt": "2026-09-04T12:00:00.000Z"
+  },
+  {
+    "id": "p076",
+    "slug": "yellow-rose-outlaw-bourbon",
+    "name": "Yellow Rose Outlaw Bourbon",
+    "description": "Yellow Rose Outlaw Bourbon – burbons no ASV. Kūpinātas kūdras, citrusu un ceptu ābolu notis ar ilgu, siltu pēcgaršu. Baudiet tīru vai ar dažiem pilieniem ūdens.",
+    "categoryId": "c05",
+    "images": [
+      {
+        "url": "/products/yellow-rose-outlaw-bourbon.jpg",
+        "alt": "Yellow Rose Outlaw Bourbon"
+      }
+    ],
+    "status": "draft",
+    "isAlcohol": true,
+    "abv": 46,
+    "country": "ASV",
+    "producer": "Yellow Rose Distilling",
+    "variants": [
+      {
+        "id": "p076-v1",
+        "label": "0,7 l",
+        "priceCents": 4999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T13:00:00.000Z",
+    "updatedAt": "2026-09-04T13:00:00.000Z"
+  },
+  {
+    "id": "p077",
+    "slug": "courvoisier-vs",
+    "name": "Courvoisier VS",
+    "description": "Courvoisier VS – konjaks VS no Courvoisier. Žāvētu augļu, vaniļas un riekstu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/courvoisier-vs.jpg",
+        "alt": "Courvoisier VS"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Courvoisier",
+    "variants": [
+      {
+        "id": "p077-v1",
+        "label": "0,35 l",
+        "priceCents": 1999,
+        "active": true
+      },
+      {
+        "id": "p077-v2",
+        "label": "0,5 l",
+        "priceCents": 2699,
+        "active": true
+      },
+      {
+        "id": "p077-v3",
+        "label": "0,7 l",
+        "priceCents": 3499,
+        "active": true
+      },
+      {
+        "id": "p077-v4",
+        "label": "1 l",
+        "priceCents": 4699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T14:00:00.000Z",
+    "updatedAt": "2026-09-04T14:00:00.000Z"
+  },
+  {
+    "id": "p078",
+    "slug": "courvoisier-vsop",
+    "name": "Courvoisier VSOP",
+    "description": "Courvoisier VSOP – konjaks VSOP no Courvoisier. Ābolu, ozolkoka un garšvielu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/courvoisier-vsop.jpg",
+        "alt": "Courvoisier VSOP"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Courvoisier",
+    "variants": [
+      {
+        "id": "p078-v1",
+        "label": "0,5 l",
+        "priceCents": 3699,
+        "active": true
+      },
+      {
+        "id": "p078-v2",
+        "label": "0,7 l",
+        "priceCents": 4799,
+        "active": true
+      },
+      {
+        "id": "p078-v3",
+        "label": "1 l",
+        "priceCents": 6499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T15:00:00.000Z",
+    "updatedAt": "2026-09-04T15:00:00.000Z"
+  },
+  {
+    "id": "p079",
+    "slug": "courvoisier-xo",
+    "name": "Courvoisier XO",
+    "description": "Courvoisier XO – konjaks XO no Courvoisier. Žāvētu augļu, vaniļas un riekstu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/courvoisier-xo.png",
+        "alt": "Courvoisier XO"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Courvoisier",
+    "variants": [
+      {
+        "id": "p079-v1",
+        "label": "0,7 l",
+        "priceCents": 13999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T16:00:00.000Z",
+    "updatedAt": "2026-09-04T16:00:00.000Z"
+  },
+  {
+    "id": "p080",
+    "slug": "coquerel-calvados-vs",
+    "name": "Coquerel Calvados VS",
+    "description": "Coquerel Calvados VS – kalvadoss no Domaine du Coquerel. Ābolu, ozolkoka un garšvielu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/coquerel-calvados-vs.png",
+        "alt": "Coquerel Calvados VS"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Domaine du Coquerel",
+    "variants": [
+      {
+        "id": "p080-v1",
+        "label": "0,7 l",
+        "priceCents": 3299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T17:00:00.000Z",
+    "updatedAt": "2026-09-04T17:00:00.000Z"
+  },
+  {
+    "id": "p081",
+    "slug": "coquerel-calvados-vsop",
+    "name": "Coquerel Calvados VSOP",
+    "description": "Coquerel Calvados VSOP – kalvadoss no Domaine du Coquerel. Medus, karameles un ziedu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/coquerel-calvados-vsop.png",
+        "alt": "Coquerel Calvados VSOP"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Domaine du Coquerel",
+    "variants": [
+      {
+        "id": "p081-v1",
+        "label": "0,7 l",
+        "priceCents": 4299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T18:00:00.000Z",
+    "updatedAt": "2026-09-04T18:00:00.000Z"
+  },
+  {
+    "id": "p082",
+    "slug": "coquerel-calvados-xo",
+    "name": "Coquerel Calvados XO",
+    "description": "Coquerel Calvados XO – kalvadoss no Domaine du Coquerel. Ābolu, ozolkoka un garšvielu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/coquerel-calvados-xo.jpg",
+        "alt": "Coquerel Calvados XO"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Francija",
+    "producer": "Domaine du Coquerel",
+    "variants": [
+      {
+        "id": "p082-v1",
+        "label": "0,7 l",
+        "priceCents": 6999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T19:00:00.000Z",
+    "updatedAt": "2026-09-04T19:00:00.000Z"
+  },
+  {
+    "id": "p083",
+    "slug": "bardar-silver-3-yo",
+    "name": "Bardar Silver 3 YO",
+    "description": "Bardar Silver 3 YO – brendijs no Bardar. Žāvētu augļu, vaniļas un riekstu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/bardar-silver-3-yo.png",
+        "alt": "Bardar Silver 3 YO"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Moldova",
+    "producer": "Bardar",
+    "variants": [
+      {
+        "id": "p083-v1",
+        "label": "0,5 l",
+        "priceCents": 1299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T20:00:00.000Z",
+    "updatedAt": "2026-09-04T20:00:00.000Z"
+  },
+  {
+    "id": "p084",
+    "slug": "bardar-silver-5-yo",
+    "name": "Bardar Silver 5 YO",
+    "description": "Bardar Silver 5 YO – brendijs no Bardar. Medus, karameles un ziedu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/bardar-silver-5-yo.png",
+        "alt": "Bardar Silver 5 YO"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Moldova",
+    "producer": "Bardar",
+    "variants": [
+      {
+        "id": "p084-v1",
+        "label": "0,5 l",
+        "priceCents": 1599,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T21:00:00.000Z",
+    "updatedAt": "2026-09-04T21:00:00.000Z"
+  },
+  {
+    "id": "p085",
+    "slug": "bardar-silver-7-yo",
+    "name": "Bardar Silver 7 YO",
+    "description": "Bardar Silver 7 YO – brendijs no Bardar. Ābolu, ozolkoka un garšvielu notis ar maigu, apaļīgu pēcgaršu. Piemērots baudīšanai tīrā veidā vai kokteiļos.",
+    "categoryId": "c06",
+    "images": [
+      {
+        "url": "/products/bardar-silver-7-yo.png",
+        "alt": "Bardar Silver 7 YO"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Moldova",
+    "producer": "Bardar",
+    "variants": [
+      {
+        "id": "p085-v1",
+        "label": "0,5 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T22:00:00.000Z",
+    "updatedAt": "2026-09-04T22:00:00.000Z"
+  },
+  {
+    "id": "p086",
+    "slug": "normindia-gin",
+    "name": "Normindia Gin",
+    "description": "Normindia Gin – džins no Francija. Kadiķogas, citrusu miziņas un garšaugi veido izteiksmīgu, tīru garšu. Ideāls džinam ar toniku.",
+    "categoryId": "c07",
+    "images": [
+      {
+        "url": "/products/normindia-gin.jpg",
+        "alt": "Normindia Gin"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 41.4,
+    "country": "Francija",
+    "producer": "Domaine du Coquerel",
+    "variants": [
+      {
+        "id": "p086-v1",
+        "label": "0,7 l",
+        "priceCents": 3999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-04T23:00:00.000Z",
+    "updatedAt": "2026-09-04T23:00:00.000Z"
+  },
+  {
+    "id": "p087",
+    "slug": "normindia-barrel-aged-gin",
+    "name": "Normindia Barrel Aged Gin",
+    "description": "Normindia Barrel Aged Gin – mucā nogatināts džins no Francija. Ābolu, garšvielu un ozolkoka toņi veido izteiksmīgu, tīru garšu. Ideāls džinam ar toniku.",
+    "categoryId": "c07",
+    "images": [
+      {
+        "url": "/products/normindia-barrel-aged-gin.jpg",
+        "alt": "Normindia Barrel Aged Gin"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 43,
+    "country": "Francija",
+    "producer": "Domaine du Coquerel",
+    "variants": [
+      {
+        "id": "p087-v1",
+        "label": "0,7 l",
+        "priceCents": 4999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T00:00:00.000Z",
+    "updatedAt": "2026-09-05T00:00:00.000Z"
+  },
+  {
+    "id": "p088",
+    "slug": "gin-sul-dry-gin",
+    "name": "Gin Sul Dry Gin",
+    "description": "Gin Sul Dry Gin – dry gin no Vācija. Ābolu, garšvielu un ozolkoka toņi veido izteiksmīgu, tīru garšu. Ideāls džinam ar toniku.",
+    "categoryId": "c07",
+    "images": [
+      {
+        "url": "/products/gin-sul-dry-gin.jpg",
+        "alt": "Gin Sul Dry Gin"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 43,
+    "country": "Vācija",
+    "producer": "Altonaer Spirituosen Manufaktur",
+    "variants": [
+      {
+        "id": "p088-v1",
+        "label": "0,5 l",
+        "priceCents": 3699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T01:00:00.000Z",
+    "updatedAt": "2026-09-05T01:00:00.000Z"
+  },
+  {
+    "id": "p089",
+    "slug": "langley-s-first-chapter-gin",
+    "name": "Langley's First Chapter Gin",
+    "description": "Langley's First Chapter Gin – london dry gin no Lielbritānija. Ābolu, garšvielu un ozolkoka toņi veido izteiksmīgu, tīru garšu. Ideāls džinam ar toniku.",
+    "categoryId": "c07",
+    "images": [
+      {
+        "url": "/products/langley-s-first-chapter-gin.jpg",
+        "alt": "Langley's First Chapter Gin"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 41.7,
+    "country": "Lielbritānija",
+    "producer": "Langley's",
+    "variants": [
+      {
+        "id": "p089-v1",
+        "label": "0,7 l",
+        "priceCents": 3499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T02:00:00.000Z",
+    "updatedAt": "2026-09-05T02:00:00.000Z"
+  },
+  {
+    "id": "p090",
+    "slug": "buen-amigo-blanco-100-agave",
+    "name": "Buen Amigo Blanco 100% Agave",
+    "description": "Buen Amigo Blanco 100% Agave – tekila blanco no Meksikas. Gatavots no 100% agaves, ar kūpinātu, zemes toņu raksturu. Baudiet tīru vai margaritā.",
+    "categoryId": "c08",
+    "images": [
+      {
+        "url": "/products/buen-amigo-blanco-100-agave.jpg",
+        "alt": "Buen Amigo Blanco 100% Agave"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 38,
+    "country": "Meksika",
+    "producer": "Buen Amigo",
+    "variants": [
+      {
+        "id": "p090-v1",
+        "label": "0,7 l",
+        "priceCents": 2799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T03:00:00.000Z",
+    "updatedAt": "2026-09-05T03:00:00.000Z"
+  },
+  {
+    "id": "p091",
+    "slug": "buen-amigo-reposado-100-agave",
+    "name": "Buen Amigo Reposado 100% Agave",
+    "description": "Buen Amigo Reposado 100% Agave – tekila reposado no Meksikas. Gatavots no 100% agaves, ar maigu, vaniļas raksturu. Baudiet tīru vai margaritā.",
+    "categoryId": "c08",
+    "images": [
+      {
+        "url": "/products/buen-amigo-reposado-100-agave.jpg",
+        "alt": "Buen Amigo Reposado 100% Agave"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 38,
+    "country": "Meksika",
+    "producer": "Buen Amigo",
+    "variants": [
+      {
+        "id": "p091-v1",
+        "label": "0,7 l",
+        "priceCents": 2999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T04:00:00.000Z",
+    "updatedAt": "2026-09-05T04:00:00.000Z"
+  },
+  {
+    "id": "p092",
+    "slug": "bruxo-x-mezcal-ensamble",
+    "name": "Bruxo X Mezcal Ensamble",
+    "description": "Bruxo X Mezcal Ensamble – mezcal no Meksikas. Gatavots no 100% agaves, ar kūpinātu, zemes toņu raksturu. Baudiet tīru vai margaritā.",
+    "categoryId": "c08",
+    "images": [
+      {
+        "url": "/products/bruxo-x-mezcal-ensamble.jpg",
+        "alt": "Bruxo X Mezcal Ensamble"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 40,
+    "country": "Meksika",
+    "producer": "Bruxo",
+    "variants": [
+      {
+        "id": "p092-v1",
+        "label": "0,7 l",
+        "priceCents": 4499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T05:00:00.000Z",
+    "updatedAt": "2026-09-05T05:00:00.000Z"
+  },
+  {
+    "id": "p093",
+    "slug": "flor-de-cana-4-extra-seco",
+    "name": "Flor de Caña 4 Extra Seco",
+    "description": "Flor de Caña 4 Extra Seco – gaišais rums no Nikaragva. Citrusu, cukurniedru un garšvielu notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/flor-de-cana-4-extra-seco.jpg",
+        "alt": "Flor de Caña 4 Extra Seco"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Nikaragva",
+    "producer": "Flor de Caña",
+    "variants": [
+      {
+        "id": "p093-v1",
+        "label": "0,7 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T06:00:00.000Z",
+    "updatedAt": "2026-09-05T06:00:00.000Z"
+  },
+  {
+    "id": "p094",
+    "slug": "flor-de-cana-7-gran-reserva",
+    "name": "Flor de Caña 7 Gran Reserva",
+    "description": "Flor de Caña 7 Gran Reserva – nogatināts rums no Nikaragva. Žāvētu augļu, kakao un ozolkoka notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/flor-de-cana-7-gran-reserva.jpg",
+        "alt": "Flor de Caña 7 Gran Reserva"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 40,
+    "country": "Nikaragva",
+    "producer": "Flor de Caña",
+    "variants": [
+      {
+        "id": "p094-v1",
+        "label": "0,7 l",
+        "priceCents": 2799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T07:00:00.000Z",
+    "updatedAt": "2026-09-05T07:00:00.000Z"
+  },
+  {
+    "id": "p095",
+    "slug": "flor-de-cana-12-centenario",
+    "name": "Flor de Caña 12 Centenario",
+    "description": "Flor de Caña 12 Centenario – nogatināts rums no Nikaragva. Citrusu, cukurniedru un garšvielu notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/flor-de-cana-12-centenario.jpg",
+        "alt": "Flor de Caña 12 Centenario"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Nikaragva",
+    "producer": "Flor de Caña",
+    "variants": [
+      {
+        "id": "p095-v1",
+        "label": "0,7 l",
+        "priceCents": 4499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T08:00:00.000Z",
+    "updatedAt": "2026-09-05T08:00:00.000Z"
+  },
+  {
+    "id": "p096",
+    "slug": "flor-de-cana-18-centenario",
+    "name": "Flor de Caña 18 Centenario",
+    "description": "Flor de Caña 18 Centenario – nogatināts rums no Nikaragva. Vaniļas, kokosa un karameles notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/flor-de-cana-18-centenario.jpg",
+        "alt": "Flor de Caña 18 Centenario"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Nikaragva",
+    "producer": "Flor de Caña",
+    "variants": [
+      {
+        "id": "p096-v1",
+        "label": "0,7 l",
+        "priceCents": 6499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T09:00:00.000Z",
+    "updatedAt": "2026-09-05T09:00:00.000Z"
+  },
+  {
+    "id": "p097",
+    "slug": "flor-de-cana-25-centenario",
+    "name": "Flor de Caña 25 Centenario",
+    "description": "Flor de Caña 25 Centenario – nogatināts rums no Nikaragva. Žāvētu augļu, kakao un ozolkoka notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/flor-de-cana-25-centenario.jpg",
+        "alt": "Flor de Caña 25 Centenario"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Nikaragva",
+    "producer": "Flor de Caña",
+    "variants": [
+      {
+        "id": "p097-v1",
+        "label": "0,75 l",
+        "priceCents": 14999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T10:00:00.000Z",
+    "updatedAt": "2026-09-05T10:00:00.000Z"
+  },
+  {
+    "id": "p098",
+    "slug": "cachaca-51",
+    "name": "Cachaça 51",
+    "description": "Cachaça 51 – kašasa no Brazīlija. Žāvētu augļu, kakao un ozolkoka notis. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c09",
+    "images": [
+      {
+        "url": "/products/cachaca-51.jpg",
+        "alt": "Cachaça 51"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Brazīlija",
+    "producer": "Companhia Müller de Bebidas",
+    "variants": [
+      {
+        "id": "p098-v1",
+        "label": "1 l",
+        "priceCents": 1799,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T11:00:00.000Z",
+    "updatedAt": "2026-09-05T11:00:00.000Z"
+  },
+  {
+    "id": "p099",
+    "slug": "danzka-forty",
+    "name": "Danzka Forty",
+    "description": "Danzka Forty – degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-forty.jpg",
+        "alt": "Danzka Forty"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p099-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T12:00:00.000Z",
+    "updatedAt": "2026-09-05T12:00:00.000Z"
+  },
+  {
+    "id": "p100",
+    "slug": "danzka-citrus",
+    "name": "Danzka Citrus",
+    "description": "Danzka Citrus – aromatizēts degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-citrus.jpg",
+        "alt": "Danzka Citrus"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p100-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T13:00:00.000Z",
+    "updatedAt": "2026-09-05T13:00:00.000Z"
+  },
+  {
+    "id": "p101",
+    "slug": "danzka-cranraz",
+    "name": "Danzka Cranraz",
+    "description": "Danzka Cranraz – aromatizēts degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-cranraz.jpg",
+        "alt": "Danzka Cranraz"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p101-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T14:00:00.000Z",
+    "updatedAt": "2026-09-05T14:00:00.000Z"
+  },
+  {
+    "id": "p102",
+    "slug": "danzka-currant",
+    "name": "Danzka Currant",
+    "description": "Danzka Currant – aromatizēts degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-currant.jpg",
+        "alt": "Danzka Currant"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p102-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T15:00:00.000Z",
+    "updatedAt": "2026-09-05T15:00:00.000Z"
+  },
+  {
+    "id": "p103",
+    "slug": "danzka-apple",
+    "name": "Danzka Apple",
+    "description": "Danzka Apple – aromatizēts degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-apple.png",
+        "alt": "Danzka Apple"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p103-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T16:00:00.000Z",
+    "updatedAt": "2026-09-05T16:00:00.000Z"
+  },
+  {
+    "id": "p104",
+    "slug": "danzka-grapefruit",
+    "name": "Danzka Grapefruit",
+    "description": "Danzka Grapefruit – aromatizēts degvīns no Dānijas. Trīskārt destilēts, ar tīru un maigu garšu. Pasniedziet labi atdzesētu vai kokteiļos.",
+    "categoryId": "c10",
+    "images": [
+      {
+        "url": "/products/danzka-grapefruit.png",
+        "alt": "Danzka Grapefruit"
+      }
+    ],
+    "status": "draft",
+    "isAlcohol": true,
+    "abv": 40,
+    "country": "Dānija",
+    "producer": "Danzka",
+    "variants": [
+      {
+        "id": "p104-v1",
+        "label": "1 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T17:00:00.000Z",
+    "updatedAt": "2026-09-05T17:00:00.000Z"
+  },
+  {
+    "id": "p105",
+    "slug": "wenneker-triple-sec",
+    "name": "Wenneker Triple Sec",
+    "description": "Wenneker Triple Sec – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-triple-sec.jpg",
+        "alt": "Wenneker Triple Sec"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p105-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T18:00:00.000Z",
+    "updatedAt": "2026-09-05T18:00:00.000Z"
+  },
+  {
+    "id": "p106",
+    "slug": "wenneker-sour-apple",
+    "name": "Wenneker Sour Apple",
+    "description": "Wenneker Sour Apple – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-sour-apple.jpg",
+        "alt": "Wenneker Sour Apple"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p106-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T19:00:00.000Z",
+    "updatedAt": "2026-09-05T19:00:00.000Z"
+  },
+  {
+    "id": "p107",
+    "slug": "wenneker-melon",
+    "name": "Wenneker Melon",
+    "description": "Wenneker Melon – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-melon.jpg",
+        "alt": "Wenneker Melon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p107-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T20:00:00.000Z",
+    "updatedAt": "2026-09-05T20:00:00.000Z"
+  },
+  {
+    "id": "p108",
+    "slug": "wenneker-caribbean-coconut",
+    "name": "Wenneker Caribbean Coconut",
+    "description": "Wenneker Caribbean Coconut – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-caribbean-coconut.jpg",
+        "alt": "Wenneker Caribbean Coconut"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p108-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T21:00:00.000Z",
+    "updatedAt": "2026-09-05T21:00:00.000Z"
+  },
+  {
+    "id": "p109",
+    "slug": "wenneker-pina-colada",
+    "name": "Wenneker Piña Colada",
+    "description": "Wenneker Piña Colada – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-pina-colada.jpg",
+        "alt": "Wenneker Piña Colada"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 14.5,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p109-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T22:00:00.000Z",
+    "updatedAt": "2026-09-05T22:00:00.000Z"
+  },
+  {
+    "id": "p110",
+    "slug": "wenneker-cherry-brandy",
+    "name": "Wenneker Cherry Brandy",
+    "description": "Wenneker Cherry Brandy – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-cherry-brandy.jpg",
+        "alt": "Wenneker Cherry Brandy"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p110-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-05T23:00:00.000Z",
+    "updatedAt": "2026-09-05T23:00:00.000Z"
+  },
+  {
+    "id": "p111",
+    "slug": "wenneker-creme-de-cassis",
+    "name": "Wenneker Crème de Cassis",
+    "description": "Wenneker Crème de Cassis – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-creme-de-cassis.jpg",
+        "alt": "Wenneker Crème de Cassis"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p111-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T00:00:00.000Z",
+    "updatedAt": "2026-09-06T00:00:00.000Z"
+  },
+  {
+    "id": "p112",
+    "slug": "wenneker-cafe",
+    "name": "Wenneker Café",
+    "description": "Wenneker Café – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-cafe.jpg",
+        "alt": "Wenneker Café"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p112-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T01:00:00.000Z",
+    "updatedAt": "2026-09-06T01:00:00.000Z"
+  },
+  {
+    "id": "p113",
+    "slug": "wenneker-blue-curacao",
+    "name": "Wenneker Blue Curaçao",
+    "description": "Wenneker Blue Curaçao – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-blue-curacao.jpg",
+        "alt": "Wenneker Blue Curaçao"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p113-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T02:00:00.000Z",
+    "updatedAt": "2026-09-06T02:00:00.000Z"
+  },
+  {
+    "id": "p114",
+    "slug": "wenneker-apricot-brandy",
+    "name": "Wenneker Apricot Brandy",
+    "description": "Wenneker Apricot Brandy – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-apricot-brandy.jpg",
+        "alt": "Wenneker Apricot Brandy"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p114-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T03:00:00.000Z",
+    "updatedAt": "2026-09-06T03:00:00.000Z"
+  },
+  {
+    "id": "p115",
+    "slug": "wenneker-royal-peach",
+    "name": "Wenneker Royal Peach",
+    "description": "Wenneker Royal Peach – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-royal-peach.jpg",
+        "alt": "Wenneker Royal Peach"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p115-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T04:00:00.000Z",
+    "updatedAt": "2026-09-06T04:00:00.000Z"
+  },
+  {
+    "id": "p116",
+    "slug": "wenneker-strawberry",
+    "name": "Wenneker Strawberry",
+    "description": "Wenneker Strawberry – augļu liķieris no Nīderlande. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/wenneker-strawberry.jpg",
+        "alt": "Wenneker Strawberry"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 24,
+    "country": "Nīderlande",
+    "producer": "Wenneker",
+    "variants": [
+      {
+        "id": "p116-v1",
+        "label": "0,7 l",
+        "priceCents": 1399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T05:00:00.000Z",
+    "updatedAt": "2026-09-06T05:00:00.000Z"
+  },
+  {
+    "id": "p117",
+    "slug": "villa-massa-limoncello",
+    "name": "Villa Massa Limoncello",
+    "description": "Villa Massa Limoncello – citronu liķieris no Itālija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/villa-massa-limoncello.jpg",
+        "alt": "Villa Massa Limoncello"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 30,
+    "country": "Itālija",
+    "producer": "Villa Massa",
+    "variants": [
+      {
+        "id": "p117-v1",
+        "label": "0,5 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T06:00:00.000Z",
+    "updatedAt": "2026-09-06T06:00:00.000Z"
+  },
+  {
+    "id": "p118",
+    "slug": "villa-massa-amaretto",
+    "name": "Villa Massa Amaretto",
+    "description": "Villa Massa Amaretto – mandeļu liķieris no Itālija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/villa-massa-amaretto.jpg",
+        "alt": "Villa Massa Amaretto"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 30,
+    "country": "Itālija",
+    "producer": "Villa Massa",
+    "variants": [
+      {
+        "id": "p118-v1",
+        "label": "0,7 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T07:00:00.000Z",
+    "updatedAt": "2026-09-06T07:00:00.000Z"
+  },
+  {
+    "id": "p119",
+    "slug": "licor-43-original",
+    "name": "Licor 43 Original",
+    "description": "Licor 43 Original – vaniļas un citrusu liķieris no Spānija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/licor-43-original.jpg",
+        "alt": "Licor 43 Original"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 31,
+    "country": "Spānija",
+    "producer": "Diego Zamora",
+    "variants": [
+      {
+        "id": "p119-v1",
+        "label": "0,7 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T08:00:00.000Z",
+    "updatedAt": "2026-09-06T08:00:00.000Z"
+  },
+  {
+    "id": "p120",
+    "slug": "licor-43-orochata",
+    "name": "Licor 43 Orochata",
+    "description": "Licor 43 Orochata – krēmīgs liķieris no Spānija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/licor-43-orochata.jpg",
+        "alt": "Licor 43 Orochata"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 16,
+    "country": "Spānija",
+    "producer": "Diego Zamora",
+    "variants": [
+      {
+        "id": "p120-v1",
+        "label": "0,7 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T09:00:00.000Z",
+    "updatedAt": "2026-09-06T09:00:00.000Z"
+  },
+  {
+    "id": "p121",
+    "slug": "jagermeister",
+    "name": "Jägermeister",
+    "description": "Jägermeister – garšaugu liķieris no Vācija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/jagermeister.png",
+        "alt": "Jägermeister"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Populārs",
+    "abv": 35,
+    "country": "Vācija",
+    "producer": "Mast-Jägermeister",
+    "variants": [
+      {
+        "id": "p121-v1",
+        "label": "0,5 l",
+        "priceCents": 1699,
+        "active": true
+      },
+      {
+        "id": "p121-v2",
+        "label": "0,7 l",
+        "priceCents": 2199,
+        "active": true
+      },
+      {
+        "id": "p121-v3",
+        "label": "1 l",
+        "priceCents": 2899,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T10:00:00.000Z",
+    "updatedAt": "2026-09-06T10:00:00.000Z"
+  },
+  {
+    "id": "p122",
+    "slug": "jagermeister-manifest",
+    "name": "Jägermeister Manifest",
+    "description": "Jägermeister Manifest – garšaugu liķieris no Vācija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/jagermeister-manifest.png",
+        "alt": "Jägermeister Manifest"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 38,
+    "country": "Vācija",
+    "producer": "Mast-Jägermeister",
+    "variants": [
+      {
+        "id": "p122-v1",
+        "label": "0,5 l",
+        "priceCents": 2999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T11:00:00.000Z",
+    "updatedAt": "2026-09-06T11:00:00.000Z"
+  },
+  {
+    "id": "p123",
+    "slug": "jagermeister-scharf",
+    "name": "Jägermeister Scharf",
+    "description": "Jägermeister Scharf – ingvera garšaugu liķieris no Vācija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/jagermeister-scharf.png",
+        "alt": "Jägermeister Scharf"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "badge": "Jaunums",
+    "abv": 33,
+    "country": "Vācija",
+    "producer": "Mast-Jägermeister",
+    "variants": [
+      {
+        "id": "p123-v1",
+        "label": "0,7 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T12:00:00.000Z",
+    "updatedAt": "2026-09-06T12:00:00.000Z"
+  },
+  {
+    "id": "p124",
+    "slug": "courvoisier-rouge-luxe",
+    "name": "Courvoisier Rouge Luxe",
+    "description": "Courvoisier Rouge Luxe – konjaka liķieris no Francija. Spilgta, dabīga garša un patīkams saldums. Baudiet ar ledu, desertiem vai kokteiļos.",
+    "categoryId": "c11",
+    "images": [
+      {
+        "url": "/products/courvoisier-rouge-luxe.jpg",
+        "alt": "Courvoisier Rouge Luxe"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 30,
+    "country": "Francija",
+    "producer": "Courvoisier",
+    "variants": [
+      {
+        "id": "p124-v1",
+        "label": "0,7 l",
+        "priceCents": 3499,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T13:00:00.000Z",
+    "updatedAt": "2026-09-06T13:00:00.000Z"
+  },
+  {
+    "id": "p125",
+    "slug": "cocchi-americano-bianco",
+    "name": "Cocchi Americano Bianco",
+    "description": "Cocchi Americano Bianco – itāļu aperitīvs pēc tradicionālas receptes. Rūgtenas garšaugu un citrusu notis. Pasniedziet ar ledu un apelsīna šķēlīti vai kokteiļos.",
+    "categoryId": "c12",
+    "images": [
+      {
+        "url": "/products/cocchi-americano-bianco.jpg",
+        "alt": "Cocchi Americano Bianco"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 16.5,
+    "country": "Itālija",
+    "producer": "Giulio Cocchi",
+    "variants": [
+      {
+        "id": "p125-v1",
+        "label": "0,75 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T14:00:00.000Z",
+    "updatedAt": "2026-09-06T14:00:00.000Z"
+  },
+  {
+    "id": "p126",
+    "slug": "cocchi-americano-rosa",
+    "name": "Cocchi Americano Rosa",
+    "description": "Cocchi Americano Rosa – itāļu aperitīvs pēc tradicionālas receptes. Rūgtenas garšaugu un citrusu notis. Pasniedziet ar ledu un apelsīna šķēlīti vai kokteiļos.",
+    "categoryId": "c12",
+    "images": [
+      {
+        "url": "/products/cocchi-americano-rosa.jpg",
+        "alt": "Cocchi Americano Rosa"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 16.5,
+    "country": "Itālija",
+    "producer": "Giulio Cocchi",
+    "variants": [
+      {
+        "id": "p126-v1",
+        "label": "0,75 l",
+        "priceCents": 1999,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T15:00:00.000Z",
+    "updatedAt": "2026-09-06T15:00:00.000Z"
+  },
+  {
+    "id": "p127",
+    "slug": "cocchi-vermouth-amaro-dopo-teatro",
+    "name": "Cocchi Vermouth Amaro Dopo Teatro",
+    "description": "Cocchi Vermouth Amaro Dopo Teatro – itāļu vermuts amaro pēc tradicionālas receptes. Rūgtenas garšaugu un citrusu notis. Pasniedziet ar ledu un apelsīna šķēlīti vai kokteiļos.",
+    "categoryId": "c12",
+    "images": [
+      {
+        "url": "/products/cocchi-vermouth-amaro-dopo-teatro.jpg",
+        "alt": "Cocchi Vermouth Amaro Dopo Teatro"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 16,
+    "country": "Itālija",
+    "producer": "Giulio Cocchi",
+    "variants": [
+      {
+        "id": "p127-v1",
+        "label": "0,5 l",
+        "priceCents": 2299,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T16:00:00.000Z",
+    "updatedAt": "2026-09-06T16:00:00.000Z"
+  },
+  {
+    "id": "p128",
+    "slug": "cocchi-storico-vermouth-di-torino",
+    "name": "Cocchi Storico Vermouth di Torino",
+    "description": "Cocchi Storico Vermouth di Torino – itāļu sarkanais vermuts pēc tradicionālas receptes. Rūgtenas garšaugu un citrusu notis. Pasniedziet ar ledu un apelsīna šķēlīti vai kokteiļos.",
+    "categoryId": "c12",
+    "images": [
+      {
+        "url": "/products/cocchi-storico-vermouth-di-torino.jpg",
+        "alt": "Cocchi Storico Vermouth di Torino"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": true,
+    "abv": 16,
+    "country": "Itālija",
+    "producer": "Giulio Cocchi",
+    "variants": [
+      {
+        "id": "p128-v1",
+        "label": "0,75 l",
+        "priceCents": 2199,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T17:00:00.000Z",
+    "updatedAt": "2026-09-06T17:00:00.000Z"
+  },
+  {
+    "id": "p129",
+    "slug": "thomas-henry-pink-grapefruit",
+    "name": "Thomas Henry Pink Grapefruit",
+    "description": "Thomas Henry Pink Grapefruit – greipfrūtu limonāde bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-pink-grapefruit-0-2-l.png",
+        "alt": "Thomas Henry Pink Grapefruit 0,2 l"
+      },
+      {
+        "url": "/products/thomas-henry-pink-grapefruit-0-75-l.png",
+        "alt": "Thomas Henry Pink Grapefruit 0,75 l"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "badge": "Populārs",
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p129-v1",
+        "label": "0,2 l",
+        "priceCents": 179,
+        "active": true,
+        "image": "/products/thomas-henry-pink-grapefruit-0-2-l.png"
+      },
+      {
+        "id": "p129-v2",
+        "label": "0,75 l",
+        "priceCents": 399,
+        "active": true,
+        "image": "/products/thomas-henry-pink-grapefruit-0-75-l.png"
+      }
+    ],
+    "createdAt": "2026-09-06T18:00:00.000Z",
+    "updatedAt": "2026-09-06T18:00:00.000Z"
+  },
+  {
+    "id": "p130",
+    "slug": "thomas-henry-mystic-mango",
+    "name": "Thomas Henry Mystic Mango",
+    "description": "Thomas Henry Mystic Mango – mango limonāde bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-mystic-mango-0-2-l.png",
+        "alt": "Thomas Henry Mystic Mango 0,2 l"
+      },
+      {
+        "url": "/products/thomas-henry-mystic-mango-0-75-l.png",
+        "alt": "Thomas Henry Mystic Mango 0,75 l"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p130-v1",
+        "label": "0,2 l",
+        "priceCents": 179,
+        "active": true,
+        "image": "/products/thomas-henry-mystic-mango-0-2-l.png"
+      },
+      {
+        "id": "p130-v2",
+        "label": "0,75 l",
+        "priceCents": 399,
+        "active": true,
+        "image": "/products/thomas-henry-mystic-mango-0-75-l.png"
+      }
+    ],
+    "createdAt": "2026-09-06T19:00:00.000Z",
+    "updatedAt": "2026-09-06T19:00:00.000Z"
+  },
+  {
+    "id": "p131",
+    "slug": "thomas-henry-spicy-ginger-beer",
+    "name": "Thomas Henry Spicy Ginger Beer",
+    "description": "Thomas Henry Spicy Ginger Beer – ingvera alus bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-spicy-ginger-beer-0-2-l.png",
+        "alt": "Thomas Henry Spicy Ginger Beer 0,2 l"
+      },
+      {
+        "url": "/products/thomas-henry-spicy-ginger-beer-0-75-l.png",
+        "alt": "Thomas Henry Spicy Ginger Beer 0,75 l"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p131-v1",
+        "label": "0,2 l",
+        "priceCents": 179,
+        "active": true,
+        "image": "/products/thomas-henry-spicy-ginger-beer-0-2-l.png"
+      },
+      {
+        "id": "p131-v2",
+        "label": "0,75 l",
+        "priceCents": 399,
+        "active": true,
+        "image": "/products/thomas-henry-spicy-ginger-beer-0-75-l.png"
+      }
+    ],
+    "createdAt": "2026-09-06T20:00:00.000Z",
+    "updatedAt": "2026-09-06T20:00:00.000Z"
+  },
+  {
+    "id": "p132",
+    "slug": "thomas-henry-cherry-blossom-tonic",
+    "name": "Thomas Henry Cherry Blossom Tonic",
+    "description": "Thomas Henry Cherry Blossom Tonic – toniks bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-cherry-blossom-tonic.png",
+        "alt": "Thomas Henry Cherry Blossom Tonic"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p132-v1",
+        "label": "0,2 l",
+        "priceCents": 179,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T21:00:00.000Z",
+    "updatedAt": "2026-09-06T21:00:00.000Z"
+  },
+  {
+    "id": "p133",
+    "slug": "thomas-henry-ginger-ale",
+    "name": "Thomas Henry Ginger Ale",
+    "description": "Thomas Henry Ginger Ale – ingvera limonāde bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-ginger-ale.png",
+        "alt": "Thomas Henry Ginger Ale"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p133-v1",
+        "label": "0,2 l",
+        "priceCents": 159,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T22:00:00.000Z",
+    "updatedAt": "2026-09-06T22:00:00.000Z"
+  },
+  {
+    "id": "p134",
+    "slug": "thomas-henry-soda-water",
+    "name": "Thomas Henry Soda Water",
+    "description": "Thomas Henry Soda Water – sodas ūdens bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-soda-water.png",
+        "alt": "Thomas Henry Soda Water"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p134-v1",
+        "label": "0,2 l",
+        "priceCents": 139,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-06T23:00:00.000Z",
+    "updatedAt": "2026-09-06T23:00:00.000Z"
+  },
+  {
+    "id": "p135",
+    "slug": "thomas-henry-tonic-water",
+    "name": "Thomas Henry Tonic Water",
+    "description": "Thomas Henry Tonic Water – toniks bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-tonic-water.png",
+        "alt": "Thomas Henry Tonic Water"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p135-v1",
+        "label": "0,2 l",
+        "priceCents": 159,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-07T00:00:00.000Z",
+    "updatedAt": "2026-09-07T00:00:00.000Z"
+  },
+  {
+    "id": "p136",
+    "slug": "thomas-henry-wild-berry",
+    "name": "Thomas Henry Wild Berry",
+    "description": "Thomas Henry Wild Berry – ogu limonāde bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/thomas-henry-wild-berry.png",
+        "alt": "Thomas Henry Wild Berry"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p136-v1",
+        "label": "0,75 l",
+        "priceCents": 399,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-07T01:00:00.000Z",
+    "updatedAt": "2026-09-07T01:00:00.000Z"
+  },
+  {
+    "id": "p137",
+    "slug": "vivid-watermelon",
+    "name": "Vivid Watermelon",
+    "description": "Vivid Watermelon – arbūzu limonāde bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/vivid-watermelon.png",
+        "alt": "Vivid Watermelon"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "badge": "Jaunums",
+    "country": "Vācija",
+    "producer": "Thomas Henry",
+    "variants": [
+      {
+        "id": "p137-v1",
+        "label": "0,2 l",
+        "priceCents": 189,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-07T02:00:00.000Z",
+    "updatedAt": "2026-09-07T02:00:00.000Z"
+  },
+  {
+    "id": "p138",
+    "slug": "daos-bezalkoholiskais-vins",
+    "name": "Daos bezalkoholiskais vīns",
+    "description": "Daos bezalkoholiskais vīns – bezalkoholiskais vīns bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/daos-bezalkoholiskais-vins.jpg",
+        "alt": "Daos bezalkoholiskais vīns"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Moldova",
+    "producer": "Daos",
+    "variants": [
+      {
+        "id": "p138-v1",
+        "label": "0,75 l",
+        "priceCents": 699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-07T03:00:00.000Z",
+    "updatedAt": "2026-09-07T03:00:00.000Z"
+  },
+  {
+    "id": "p139",
+    "slug": "black-doctor-0-bezalkoholiskais-vins",
+    "name": "Black Doctor 0% bezalkoholiskais vīns",
+    "description": "Black Doctor 0% bezalkoholiskais vīns – bezalkoholiskais sarkanvīns bez alkohola. Dabīgas sastāvdaļas un atsvaidzinoša garša. Lieliski der kokteiļiem vai baudīšanai tīrā veidā.",
+    "categoryId": "c13",
+    "images": [
+      {
+        "url": "/products/black-doctor-0-bezalkoholiskais-vins.png",
+        "alt": "Black Doctor 0% bezalkoholiskais vīns"
+      }
+    ],
+    "status": "published",
+    "isAlcohol": false,
+    "country": "Moldova",
+    "producer": "Black Doctor",
+    "variants": [
+      {
+        "id": "p139-v1",
+        "label": "0,75 l",
+        "priceCents": 699,
+        "active": true
+      }
+    ],
+    "createdAt": "2026-09-07T04:00:00.000Z",
+    "updatedAt": "2026-09-07T04:00:00.000Z"
+  }
+]

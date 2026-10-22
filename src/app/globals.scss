@@ -1,0 +1,82 @@
+// Design tokens (reference: Faire web). Light theme only.
+:root {
+  --color-bg: #ffffff;
+  --color-fg: #333333;
+  --color-muted: #757575;
+  --color-line: #e5e5e5;
+  --color-tile: #f4f4f2;
+  --color-accent: #a0461e;
+  --color-panel: #f5f0ea;
+  --color-olive: #5c5945;
+  --color-maroon: #4e1a10;
+  --color-success: #2f6b3a;
+
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), Georgia, serif;
+
+  --radius: 2px;
+  --container: 72rem;
+  --gutter: 1rem;
+}
+
+// Minimal reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: inherit;
+  font-size: inherit;
+}

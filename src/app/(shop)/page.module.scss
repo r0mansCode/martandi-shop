@@ -1,0 +1,155 @@
+@use "@/styles/mixins" as *;
+
+.hero {
+  background: var(--color-olive);
+  color: #fff;
+}
+
+.heroInner {
+  @include container;
+  padding-block: 2rem 2.5rem;
+}
+
+.heroTitle {
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 300;
+
+  @include up(md) {
+    font-size: 2.25rem;
+  }
+}
+
+.heroLead {
+  margin-top: 0.25rem;
+  opacity: 0.9;
+}
+
+.tiles {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  padding-bottom: 0.5rem;
+}
+
+.tile {
+  display: block;
+  width: 9rem;
+  scroll-snap-align: start;
+
+  @include up(md) {
+    width: 10rem;
+  }
+
+  &:hover .tileName {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.tileImage {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  background: var(--color-tile);
+}
+
+.tileImg {
+  object-fit: contain;
+  padding: 1rem;
+  mix-blend-mode: multiply;
+}
+
+.tileName {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.section {
+  @include container;
+  margin-top: 3rem;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 300;
+}
+
+.more {
+  font-size: 0.9375rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  white-space: nowrap;
+}
+
+.promo {
+  @include container;
+  margin-top: 3.5rem;
+}
+
+.promoInner {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem 1.5rem;
+  background: var(--color-maroon);
+  color: #fff;
+
+  @include up(md) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 3rem;
+  }
+}
+
+.promoTitle {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 1.2;
+
+  @include up(md) {
+    font-size: 2.25rem;
+  }
+}
+
+.promoText {
+  margin-top: 0.75rem;
+  opacity: 0.9;
+}
+
+.steps {
+  display: grid;
+  gap: 0.75rem;
+  counter-reset: step;
+
+  li {
+    display: flex;
+    gap: 0.75rem;
+    counter-increment: step;
+
+    &::before {
+      content: counter(step);
+      flex: none;
+      display: grid;
+      place-items: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border: 1px solid rgb(255 255 255 / 0.6);
+      border-radius: 999px;
+      font-size: 0.875rem;
+    }
+  }
+}

@@ -1,0 +1,75 @@
+@use "@/styles/mixins" as *;
+
+.footer {
+  margin-top: auto;
+  padding-top: 3rem;
+  background: var(--color-panel);
+  font-size: 0.9375rem;
+}
+
+.inner {
+  @include container;
+  display: grid;
+  gap: 2rem;
+
+  @include up(md) {
+    grid-template-columns: 1.2fr 1fr 1.6fr;
+  }
+}
+
+.logo {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+.heading {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.hours {
+  margin-top: 0.5rem;
+
+  div {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  dt {
+    min-width: 3rem;
+  }
+
+  dd {
+    margin: 0;
+  }
+}
+
+.links {
+  columns: 2;
+  column-gap: 1.5rem;
+
+  li {
+    margin-bottom: 0.25rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+}
+
+.legal {
+  @include container;
+  margin-top: 2.5rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid rgb(0 0 0 / 0.08);
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
