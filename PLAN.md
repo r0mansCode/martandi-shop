@@ -79,7 +79,7 @@ Performance budget: Lighthouse ≥ 95 on mobile, minimal client JS (cart, varian
 ### Data access layer
 `ProductRepo`, `CategoryRepo`, `OrderRepo`, `CounterRepo` interfaces with two implementations:
 - `mock`: JSON file on disk (persists across dev restarts), seeded with sample data
-- `dynamo`: single-table DynamoDB, added in phase 7
+- `dynamo`: single-table DynamoDB (`src/server/db/dynamo.ts`, key layout in `dynamo-items.ts`). Table `martandi-shop-prod` in eu-north-1, GSI `GSI1`. Seed with `npm run db:seed:dynamo` (needs `DYNAMODB_TABLE`, `DYNAMODB_REGION`, `AWS_PROFILE`)
 Selected via `DATA_SOURCE=mock|dynamo`. **Mock mode is local-only**: Amplify has no persistent disk.
 
 ## 5. Page map

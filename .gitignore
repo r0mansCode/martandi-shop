@@ -37,6 +37,14 @@ yarn-error.log*
 # local mock database (seeded from data/seed on first run)
 /.data/
 
+# npm cache used by the Amplify build (amplify.yml: npm ci --cache .npm)
+/.npm/
+
+# AWS credentials downloaded from the IAM console (keys belong in ~/.aws, never in the repo)
+*accessKeys.csv
+*credentials.csv
+.aws/
+
 # vercel
 .vercel
 

@@ -1,4 +1,5 @@
 import "server-only";
+import { createDynamoDb } from "./dynamo";
 import { mockDb } from "./mock";
 import type { Db } from "./types";
 
@@ -8,7 +9,7 @@ function selectDb(): Db {
     case "mock":
       return mockDb;
     case "dynamo":
-      throw new Error("DynamoDB repositories are not implemented yet (phase 7).");
+      return createDynamoDb();
     default:
       throw new Error(`Unknown DATA_SOURCE "${source}". Use "mock" or "dynamo".`);
   }
