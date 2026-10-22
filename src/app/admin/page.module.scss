@@ -1,0 +1,38 @@
+@use "@/styles/mixins" as *;
+
+.title {
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.stats {
+  display: grid;
+  gap: 1rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  div {
+    padding: 1.25rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+  }
+
+  dt {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+
+  dd {
+    font-size: 1.75rem;
+    margin-top: 0.25rem;
+
+    span {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+    }
+  }
+}
