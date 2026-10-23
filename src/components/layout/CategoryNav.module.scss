@@ -1,0 +1,53 @@
+@use "@/styles/mixins" as *;
+
+.nav {
+  @include container;
+  padding-bottom: 0.875rem;
+}
+
+.carousel {
+  --arrow-size: 2.25rem;
+  --arrow-inset: -0.25rem;
+}
+
+.list {
+  gap: 0.625rem;
+  // Room for the pills' focus ring, which the scroll container would otherwise clip.
+  padding: 0.25rem;
+
+  @include up(lg) {
+    // "safe" keeps the first pills reachable when the row overflows.
+    justify-content: safe center;
+  }
+}
+
+.pill {
+  display: block;
+  padding: 0.625rem 1.125rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-bg);
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
+
+  &:hover {
+    border-color: var(--color-fg);
+  }
+}
+
+.active {
+  border-color: var(--color-fg);
+  background: var(--color-fg);
+  color: #fff;
+}
+
+// Desktop reaches "all products" through the category menu.
+.mobileOnly {
+  @include up(md) {
+    display: none;
+  }
+}

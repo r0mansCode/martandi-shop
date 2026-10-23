@@ -41,7 +41,19 @@ export const ChevronDownIcon = (p: SVGProps<SVGSVGElement>) => (
   </Icon>
 );
 
-export const CloseIcon = (p: SVGProps<SVGSVGElement>) => (
+export const ChevronLeftIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="m15 6-6 6 6 6" />
+  </Icon>
+);
+
+export const ChevronRightIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="m9 6 6 6-6 6" />
+  </Icon>
+);
+
+export const CloseIcon =(p: SVGProps<SVGSVGElement>) => (
   <Icon {...p}>
     <path d="M6 6l12 12M18 6 6 18" />
   </Icon>

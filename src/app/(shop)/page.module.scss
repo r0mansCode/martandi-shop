@@ -25,14 +25,19 @@
   opacity: 0.9;
 }
 
-.tiles {
-  display: flex;
-  gap: 1rem;
+.tilesCarousel {
   margin-top: 1.5rem;
-  overflow-x: auto;
+  // Arrows centred on the tile images (4:5, so half the height is 5/8 of the tile width).
+  --arrow-top: 5.625rem;
+
+  @include up(md) {
+    --arrow-top: 6.25rem;
+  }
+}
+
+.tiles {
+  gap: 1rem;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
-  padding-bottom: 0.5rem;
 }
 
 .tile {

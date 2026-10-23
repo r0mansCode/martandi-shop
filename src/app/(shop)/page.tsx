@@ -4,6 +4,7 @@ import { getCategories, getVisibleProducts } from "@/server/catalog";
 import { toCardData } from "@/lib/product-card";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { pickup, site } from "@/config/site";
+import { Carousel } from "@/components/ui/Carousel";
 import s from "./page.module.scss";
 
 export default async function Home() {
@@ -27,7 +28,7 @@ export default async function Home() {
         <div className={s.heroInner}>
           <h1 className={s.heroTitle}>Laipni lūgti {site.name}</h1>
           <p className={s.heroLead}>Vīni, stiprie un bezalkoholiskie dzērieni ar saņemšanu veikalā Rīgā.</p>
-          <ul className={s.tiles}>
+          <Carousel label="Iepirkties pēc kategorijas" className={s.tilesCarousel} trackClassName={s.tiles}>
             {tiles.map(({ category, image }, i) => (
               <li key={category.id}>
                 <Link href={`/katalogs/${category.slug}`} className={s.tile}>
@@ -45,7 +46,7 @@ export default async function Home() {
                 </Link>
               </li>
             ))}
-          </ul>
+          </Carousel>
         </div>
       </section>
 

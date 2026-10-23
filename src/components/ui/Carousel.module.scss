@@ -1,0 +1,79 @@
+// Customize per use with --arrow-size, --arrow-top (arrow centre) and --arrow-inset (distance
+// from the row's edge) on the className passed to <Carousel>.
+
+.carousel {
+  --arrow-size: 2.75rem;
+  --arrow-top: 50%;
+  --arrow-inset: 0.5rem;
+  position: relative;
+}
+
+.track {
+  display: flex;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// "Liquid glass": frosted, saturated backdrop with a bright rim and inner highlights.
+.arrow {
+  position: absolute;
+  top: var(--arrow-top);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: var(--arrow-size);
+  height: var(--arrow-size);
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 0.65);
+  border-radius: 50%;
+  color: var(--color-fg);
+  background: linear-gradient(145deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.35));
+  // The build adds the -webkit- prefix for Safari; writing both makes it drop the property.
+  backdrop-filter: blur(14px) saturate(180%);
+  box-shadow:
+    0 8px 24px rgb(0 0 0 / 0.16),
+    0 1px 3px rgb(0 0 0 / 0.1),
+    inset 0 1px 1px rgb(255 255 255 / 0.9),
+    inset 0 -2px 4px rgb(0 0 0 / 0.06);
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  svg {
+    width: 55%;
+    height: 55%;
+  }
+
+  &:hover {
+    background: linear-gradient(145deg, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.5));
+    transform: translateY(-50%) scale(1.06);
+  }
+
+  &:active {
+    transform: translateY(-50%) scale(0.97);
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.prev {
+  left: var(--arrow-inset);
+}
+
+.next {
+  right: var(--arrow-inset);
+}
