@@ -158,3 +158,171 @@
     }
   }
 }
+
+// Story sections: photo beside a short pitch (stacked on phones).
+
+.story {
+  @include container;
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 3.5rem;
+
+  @include up(md) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+  }
+}
+
+.storyReverse {
+  @include up(md) {
+    .storyImage {
+      order: 2;
+    }
+  }
+}
+
+.storyImage {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--color-tile);
+
+  // Square on wider screens: tall crops cut off the sides of the landscape photos.
+  @include up(md) {
+    aspect-ratio: 1;
+  }
+}
+
+.storyImg {
+  object-fit: cover;
+}
+
+.storyText {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.kicker {
+  color: var(--color-accent);
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.storyTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.15;
+
+  @include up(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.storyLead {
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.benefits {
+  display: grid;
+  gap: 1rem;
+  margin-block: 0.5rem;
+  padding-block: 1.25rem;
+  border-block: 1px solid var(--color-line);
+
+  @include up(lg) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  li {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  strong {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  span {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+}
+
+.storyCategories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block: 0.25rem 0.5rem;
+}
+
+.categoryPill {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  font-size: 0.9375rem;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+
+  span {
+    color: var(--color-muted);
+    font-size: 0.8125rem;
+  }
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--color-fg);
+    background: var(--color-fg);
+    color: #fff;
+
+    span {
+      color: rgb(255 255 255 / 0.7);
+    }
+  }
+}
+
+.storyActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  display: inline-block;
+  padding: 0.875rem 1.5rem;
+  border: 1px solid var(--color-fg);
+  border-radius: var(--radius);
+  font-size: 0.9375rem;
+  text-align: center;
+}
+
+.buttonPrimary {
+  background: var(--color-fg);
+  color: #fff;
+
+  &:hover {
+    background: #000;
+  }
+}
+
+.buttonSecondary {
+  background: var(--color-bg);
+
+  &:hover {
+    background: var(--color-fg);
+    color: #fff;
+  }
+}

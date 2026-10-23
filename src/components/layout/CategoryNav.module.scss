@@ -34,8 +34,11 @@
     border-color 0.15s ease,
     background 0.15s ease;
 
-  &:hover {
+  &:hover,
+  &:focus-visible {
     border-color: var(--color-fg);
+    background: var(--color-fg);
+    color: #fff;
   }
 }
 
