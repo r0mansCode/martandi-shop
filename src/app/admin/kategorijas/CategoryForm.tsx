@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState } from "react";
+import { startTransition, useActionState } from "react";
 import { saveCategory } from "../actions";
 import { initialFormState } from "@/lib/catalog-input";
 import type { Category } from "@/lib/types";
@@ -12,7 +12,16 @@ export function CategoryForm({ category }: { category: Category }) {
   const cls = (key: string) => (err(key) ? `${a.input} ${a.invalid}` : a.input);
 
   return (
-    <form action={formAction} className={a.form}>
+    <form
+      className={a.form}
+      // Submit by hand instead of <form action>, so React doesn't reset the fields to the
+      // values the page was loaded with after saving.
+      onSubmit={(e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        startTransition(() => formAction(data));
+      }}
+    >
       <input type="hidden" name="id" value={category.id} />
       <div className={a.row}>
         <label className={a.field}>

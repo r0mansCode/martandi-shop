@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useState } from "react";
+import { startTransition, useActionState, useState } from "react";
 import { saveProduct } from "../../actions";
 import { initialFormState, type ProductFormValues } from "@/lib/catalog-input";
 import type { ProductImage } from "@/lib/types";
@@ -33,7 +33,16 @@ export function ProductForm({ initial, categories, images }: Props) {
   const slugChanged = values.slug !== initial.slug && initial.status === "published";
 
   return (
-    <form action={formAction} className={a.form}>
+    <form
+      className={a.form}
+      // Submit by hand instead of <form action>: React resets a form after its action runs,
+      // which snaps controlled <select>s back to their first-render option on screen.
+      onSubmit={(e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        startTransition(() => formAction(data));
+      }}
+    >
       <input type="hidden" name="product" value={JSON.stringify(values)} />
 
       <section className={a.section}>
