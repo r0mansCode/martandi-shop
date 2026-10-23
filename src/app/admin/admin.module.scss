@@ -251,16 +251,49 @@ textarea.input {
   color: var(--color-success);
 }
 
-.images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.imageList {
+  display: grid;
+  gap: 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+.imageItem {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: 1rem;
+  align-items: start;
 
   img {
-    width: 5rem;
-    height: 5rem;
+    width: 6rem;
+    height: 6rem;
     object-fit: contain;
     background: var(--color-tile);
     border-radius: var(--radius);
+  }
+}
+
+.imageMeta {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.imageButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+
+  button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
+label.buttonSecondary {
+  justify-self: start;
+
+  &[aria-disabled="true"] {
+    opacity: 0.5;
+    cursor: default;
   }
 }

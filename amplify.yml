@@ -8,7 +8,7 @@ frontend:
       commands:
         # Amplify console env vars exist only during the build; write the ones the
         # server needs at runtime into .env.production so Next bundles them for SSR.
-        - env | grep -E '^(DATA_SOURCE|DYNAMODB_|COGNITO_|NEXT_PUBLIC_)' >> .env.production || true
+        - env | grep -E '^(DATA_SOURCE|DYNAMODB_|COGNITO_|IMAGES_|NEXT_PUBLIC_)' >> .env.production || true
         - npm run build
   artifacts:
     baseDirectory: .next

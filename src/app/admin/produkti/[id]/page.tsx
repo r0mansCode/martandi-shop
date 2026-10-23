@@ -38,6 +38,7 @@ export default async function EditProduct({ params }: PageProps<"/admin/produkti
       price: centsToEuro(v.priceCents),
       active: v.active,
     })),
+    images: product.images.map((i) => ({ url: i.url, alt: i.alt })),
   };
 
   return (
@@ -62,7 +63,6 @@ export default async function EditProduct({ params }: PageProps<"/admin/produkti
       <ProductForm
         initial={values}
         categories={categories.map((c) => ({ id: c.id, name: c.name }))}
-        images={product.images}
       />
     </>
   );

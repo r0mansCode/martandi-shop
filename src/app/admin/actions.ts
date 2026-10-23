@@ -3,6 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
+import { createUploadUrl } from "@/server/images";
+import { isImageType, MAX_IMAGE_BYTES } from "@/lib/product-images";
 import {
   categoryInput,
   errorState,
@@ -54,6 +56,15 @@ export async function saveProduct(_prev: ProductFormState, formData: FormData): 
     return fail("Pārbaudiet iezīmētos laukus.", { slug: `Šo adresi jau izmanto „${sameSlug.name}”` });
   }
 
+  // Images: either ones the product already had, or new uploads into this product's folder.
+  const ownUploads = `/products/${existing.id}/`;
+  const hadImage = new Set(existing.images.map((i) => i.url));
+  if (input.images.some((i) => !hadImage.has(i.url) && !new URL(i.url, "http://x").pathname.startsWith(ownUploads))) {
+    return fail("Nederīgs attēls. Pārlādējiet lapu un augšupielādējiet vēlreiz.");
+  }
+  const images = input.images.map((i) => ({ url: i.url, alt: i.alt }));
+  const imageUrls = new Set(images.map((i) => i.url));
+
   const known = new Map(existing.variants.map((v) => [v.id, v]));
   if (input.variants.some((v) => v.id && !known.has(v.id))) {
     return fail("Tilpumi mainījušies citā logā. Pārlādējiet lapu.");
@@ -64,8 +75,8 @@ export async function saveProduct(_prev: ProductFormState, formData: FormData): 
     label: v.label,
     priceCents: euroToCents(v.price),
     active: v.active,
-    // Variant photos aren't edited here yet; keep the one it had.
-    image: v.id ? known.get(v.id)?.image : undefined,
+    // Variant photos aren't picked here yet; keep the one it had while that image still exists.
+    image: v.id ? [known.get(v.id)?.image].find((url) => url && imageUrls.has(url)) : undefined,
   }));
 
   const product: Product = {
@@ -80,6 +91,7 @@ export async function saveProduct(_prev: ProductFormState, formData: FormData): 
     abv: input.abv,
     country: input.country,
     producer: input.producer,
+    images,
     variants,
     updatedAt: new Date().toISOString(),
   };
@@ -112,4 +124,17 @@ export async function saveCategory(_prev: FormState, formData: FormData): Promis
   await db.categories.put(input);
   refreshStorefront();
   return { ok: true, message: "Saglabāts.", errors: {} };
+}
+
+export type ImageUpload = { uploadUrl: string; headers: Record<string, string>; url: string } | { error: string };
+
+/** Step 1 of an upload: a short-lived URL the browser PUTs the file to. Saving the product attaches it. */
+export async function createImageUpload(productId: string, type: string, size: number): Promise<ImageUpload> {
+  await requireAdmin();
+  if (!isImageType(type)) return { error: "Atļauti tikai JPEG, PNG vai WebP attēli." };
+  if (!Number.isInteger(size) || size <= 0 || size > MAX_IMAGE_BYTES) {
+    return { error: `Attēls nedrīkst būt lielāks par ${MAX_IMAGE_BYTES / 1024 / 1024} MB.` };
+  }
+  if (!(await db.products.getById(productId))) return { error: "Produkts vairs neeksistē." };
+  return createUploadUrl(productId, type, size);
 }

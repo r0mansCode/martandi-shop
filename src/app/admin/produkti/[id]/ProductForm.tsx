@@ -3,16 +3,15 @@
 import { startTransition, useActionState, useState } from "react";
 import { saveProduct } from "../../actions";
 import { initialFormState, type ProductFormValues } from "@/lib/catalog-input";
-import type { ProductImage } from "@/lib/types";
+import { ImagesField } from "./ImagesField";
 import a from "../../admin.module.scss";
 
 type Props = {
   initial: ProductFormValues;
   categories: { id: string; name: string }[];
-  images: ProductImage[];
 };
 
-export function ProductForm({ initial, categories, images }: Props) {
+export function ProductForm({ initial, categories }: Props) {
   const [values, setValues] = useState(initial);
   const [state, formAction, pending] = useActionState(saveProduct, initialFormState);
 
@@ -189,16 +188,13 @@ export function ProductForm({ initial, categories, images }: Props) {
         </div>
       </section>
 
-      <section className={a.section}>
-        <h2>Attēli</h2>
-        <div className={a.images}>
-          {images.map((img) => (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img key={img.url} src={img.url} alt={img.alt} />
-          ))}
-        </div>
-        <span className={a.hint}>Attēlu augšupielāde būs pieejama nākamajā solī.</span>
-      </section>
+      <ImagesField
+        productId={values.id}
+        productName={values.name}
+        images={values.images}
+        onChange={(images) => set("images", images)}
+        error={err}
+      />
 
       <div className={a.actions}>
         <button type="submit" className={a.button} disabled={pending}>

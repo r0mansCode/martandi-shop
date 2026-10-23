@@ -80,6 +80,8 @@ Performance budget: Lighthouse ≥ 95 on mobile, minimal client JS (cart, varian
 `ProductRepo`, `CategoryRepo`, `OrderRepo`, `CounterRepo` interfaces with two implementations:
 - `mock`: JSON file on disk (persists across dev restarts), seeded with sample data
 - `dynamo`: single-table DynamoDB (`src/server/db/dynamo.ts`, key layout in `dynamo-items.ts`). Table `martandi-shop-prod` in eu-north-1, GSI `GSI1`. Seed with `npm run db:seed:dynamo` (needs `DYNAMODB_TABLE`, `DYNAMODB_REGION`, `AWS_PROFILE`)
+Product images: private S3 bucket `martandi-shop-images` (eu-north-1, uploads under `products/`) served through CloudFront `d3km0y3qcm4oz.cloudfront.net` (distribution `E1IUIIRH4OS5AM`, origin access control). IAM policy `martandi-shop-images-write` (Put/Delete on `products/*`) is attached to the `martandi-shop-compute` role and the `martandi-shop-local` user; bucket CORS allows `PUT` from localhost:3000 and the Amplify domain.
+
 Selected via `DATA_SOURCE=mock|dynamo`. **Mock mode is local-only**: Amplify has no persistent disk.
 
 ## 5. Page map

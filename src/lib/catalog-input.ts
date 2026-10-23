@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { isAllowedImageUrl, MAX_IMAGES } from "./product-images";
 
 // Admin form input for products and categories. Shared by the client forms (shape) and the
 // Server Actions (validation); the server is the only place the result is trusted.
@@ -62,6 +63,14 @@ export const productInput = z
     country: optionalText(60),
     producer: optionalText(80),
     variants: z.array(variantInput).min(1, "Vajag vismaz vienu tilpumu"),
+    images: z
+      .array(
+        z.object({
+          url: z.string().refine(isAllowedImageUrl, "Nederīga attēla adrese"),
+          alt: text("Attēla apraksts", 200),
+        }),
+      )
+      .max(MAX_IMAGES, `Ne vairāk kā ${MAX_IMAGES} attēli`),
   })
   .refine((p) => p.status === "draft" || p.variants.some((v) => v.active), {
     message: "Publicētam produktam vajag vismaz vienu aktīvu tilpumu",
