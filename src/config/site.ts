@@ -1,5 +1,6 @@
 export const site = {
-  name: "Martandi",
+  /** Shop brand. The legal seller on invoices is in config/seller.ts. */
+  name: "TaviDzērieni.lv",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "lv-LV",
   currency: "EUR",
@@ -7,7 +8,7 @@ export const site = {
   paymentDueDays: 14,
   invoicePrefix: "MRT",
   minimumAge: 18,
-  emailFrom: "Martandi <veikals@martandi.lv>",
+  emailFrom: "TaviDzērieni.lv <veikals@tavidzerieni.lv>",
 } as const;
 
 export const pickup = {

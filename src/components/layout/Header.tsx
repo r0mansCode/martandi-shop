@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { site } from "@/config/site";
 import type { Category } from "@/lib/types";
 import { CategoryMenu } from "./CategoryMenu";
 import { SearchBox } from "./SearchBox";
@@ -9,8 +10,8 @@ export function Header({ categories }: { categories: Category[] }) {
   return (
     <header className={s.header}>
       <div className={s.top}>
-        <Link href="/" className={s.logo} aria-label="Martandi – sākums">
-          Martandi
+        <Link href="/" className={s.logo} aria-label={`${site.name} – sākums`}>
+          {site.name}
         </Link>
         <div className={s.menu}>
           <CategoryMenu categories={categories} />

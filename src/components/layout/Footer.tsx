@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Category } from "@/lib/types";
-import { pickup } from "@/config/site";
+import { pickup, site } from "@/config/site";
 import { seller } from "@/config/seller";
 import s from "./Footer.module.scss";
 
@@ -9,7 +9,7 @@ export function Footer({ categories }: { categories: Category[] }) {
     <footer className={s.footer}>
       <div className={s.inner}>
         <div>
-          <p className={s.logo}>Martandi</p>
+          <p className={s.logo}>{site.name}</p>
           <p className={s.muted}>Vīni, stiprie un bezalkoholiskie dzērieni Rīgā.</p>
         </div>
         <div>

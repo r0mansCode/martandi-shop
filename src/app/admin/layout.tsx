@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { requireAdmin } from "@/server/auth/session";
+import { site } from "@/config/site";
 import s from "./layout.module.scss";
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
     <>
       <header className={s.header}>
         <Link href="/admin" className={s.brand}>
-          Martandi · administrācija
+          {site.name} · administrācija
         </Link>
         <nav className={s.nav}>
           <Link href="/admin/produkti">Produkti</Link>

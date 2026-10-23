@@ -25,7 +25,7 @@ export default async function Home() {
     <>
       <section className={s.hero}>
         <div className={s.heroInner}>
-          <h1 className={s.heroTitle}>Laipni lūgti Martandi Veikalā</h1>
+          <h1 className={s.heroTitle}>Laipni lūgti {site.name}</h1>
           <p className={s.heroLead}>Vīni, stiprie un bezalkoholiskie dzērieni ar saņemšanu veikalā Rīgā.</p>
           <ul className={s.tiles}>
             {tiles.map(({ category, image }, i) => (
