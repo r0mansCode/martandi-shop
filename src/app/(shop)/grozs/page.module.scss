@@ -1,0 +1,25 @@
+@use "@/styles/mixins" as *;
+
+.page {
+  @include container;
+  padding-top: 2rem;
+
+  @include up(md) {
+    padding-top: 3.5rem;
+  }
+}
+
+.lastMinute {
+  margin-top: 3.5rem;
+}
+
+.lastMinuteTitle {
+  margin-bottom: 1.5rem;
+  font-family: var(--font-serif);
+  font-size: 1.875rem;
+  font-weight: 400;
+
+  @include up(md) {
+    font-size: 2.25rem;
+  }
+}

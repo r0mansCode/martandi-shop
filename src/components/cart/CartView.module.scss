@@ -1,0 +1,343 @@
+@use "@/styles/mixins" as *;
+
+.placeholder {
+  min-height: 60vh;
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 400;
+  line-height: 1.1;
+
+  @include up(md) {
+    font-size: 3.25rem;
+  }
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+}
+
+.muted {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+// Empty state
+
+.empty {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding-bottom: 2rem;
+}
+
+.emptyButton {
+  padding: 0.875rem 1.5rem;
+  border-radius: var(--radius);
+  background: var(--color-fg);
+  color: #fff;
+}
+
+// Layout
+
+.header {
+  margin-bottom: 2rem;
+
+  @include up(md) {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.layout {
+  display: grid;
+  gap: 2.5rem;
+
+  @include up(lg) {
+    grid-template-columns: minmax(0, 1fr) 22rem;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  @include up(xl) {
+    grid-template-columns: minmax(0, 1fr) 24rem;
+  }
+}
+
+// Pickup notice (dashed box)
+
+.notice {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding: 1.5rem;
+  border: 1px dashed var(--color-fg);
+
+  @include up(md) {
+    padding: 2.25rem 2.5rem;
+  }
+}
+
+.noticeText {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.keepShopping {
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+// Lines
+
+.lines {
+  margin-top: 2rem;
+  border-top: 1px solid var(--color-line);
+
+  @include up(md) {
+    margin-top: 3.5rem;
+  }
+
+  > li {
+    border-bottom: 1px solid var(--color-line);
+  }
+}
+
+.line {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr) auto;
+  grid-template-areas:
+    "tile info remove"
+    "tile stepper price";
+  gap: 1rem 1.25rem;
+  padding-block: 1.75rem;
+
+  @include up(md) {
+    grid-template-columns: 10rem minmax(0, 1fr) auto;
+    column-gap: 2.75rem;
+    padding-block: 3.5rem;
+  }
+}
+
+.tile {
+  grid-area: tile;
+  position: relative;
+  align-self: start;
+  aspect-ratio: 5 / 6;
+  background: var(--color-tile);
+}
+
+.image {
+  object-fit: contain;
+  padding: 0.75rem;
+  mix-blend-mode: multiply;
+}
+
+.lineInfo {
+  grid-area: info;
+  display: grid;
+  align-content: start;
+  gap: 0.25rem;
+}
+
+.lineName {
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.3;
+
+  @include up(md) {
+    font-size: 1.375rem;
+  }
+
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.remove {
+  grid-area: remove;
+  justify-self: end;
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-fg);
+  color: #fff;
+
+  &:hover {
+    background: #000;
+  }
+}
+
+.stepper {
+  grid-area: stepper;
+  align-self: end;
+  display: inline-grid;
+  grid-template-columns: 2.75rem 2.5rem 2.75rem;
+  width: max-content;
+  height: 3rem;
+  border: 2px solid var(--color-fg);
+
+  button {
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 1.375rem;
+    line-height: 1;
+
+    &:disabled {
+      color: var(--color-line);
+      cursor: default;
+    }
+  }
+
+  output {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.linePrice {
+  grid-area: price;
+  align-self: end;
+  justify-self: end;
+  font-size: 1.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+
+  @include up(md) {
+    font-size: 1.5rem;
+  }
+}
+
+// Summary
+
+.summary {
+  padding: 2rem 1.5rem;
+  background: var(--color-panel);
+
+  @include up(md) {
+    padding: 3.5rem 3rem;
+  }
+
+  @include up(lg) {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
+.summaryTitle {
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+
+  @include up(md) {
+    margin-bottom: 3.5rem;
+  }
+}
+
+.rows {
+  display: grid;
+  gap: 0.875rem;
+  padding-bottom: 1.75rem;
+  border-bottom: 1px solid var(--color-muted);
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  dd {
+    margin: 0;
+    white-space: nowrap;
+  }
+}
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.payment {
+  margin: 2rem 0 0;
+  padding: 0;
+  border: 0;
+}
+
+.paymentLegend {
+  margin-bottom: 0.75rem;
+  padding: 0;
+  font-weight: 600;
+}
+
+.method {
+  display: flex;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid var(--color-fg);
+  background: var(--color-bg);
+  cursor: pointer;
+
+  input {
+    flex: none;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin-top: 0.1875rem;
+    accent-color: var(--color-fg);
+  }
+}
+
+.methodTitle {
+  display: block;
+  font-weight: 500;
+}
+
+.methodNote {
+  display: block;
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
+
+.ageNote {
+  display: flex;
+  gap: 0.625rem;
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+
+  svg {
+    flex: none;
+  }
+}
+
+.checkout {
+  width: 100%;
+  height: 4rem;
+  margin-top: 2rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-fg);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  &:hover {
+    background: #1f1f1f;
+  }
+}
