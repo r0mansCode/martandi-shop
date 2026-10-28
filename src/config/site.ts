@@ -12,7 +12,7 @@ export const site = {
 } as const;
 
 export const pickup = {
-  address: "Jūrmalas gatve 16a, Rīga, LV-1083",
+  address: "Krustpils iela 58, Rīga, LV-1057",
   hours: [
     { days: "P–Pk", time: "10:00–20:00" },
     { days: "S", time: "10:00–18:00" },

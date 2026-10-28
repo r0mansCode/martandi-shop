@@ -1,7 +1,7 @@
 // Seller details printed on invoices.
 export const seller = {
   name: 'SIA "Martandi"',
-  address: "Jūrmalas gatve 16a, Rīga, Latvija, LV-1083",
+  address: "Krustpils iela 58, Rīga, Latvija, LV-1057",
   regNo: "40103844462",
   vatNo: "LV40103844462",
   bank: 'AS "Citadele Banka"',

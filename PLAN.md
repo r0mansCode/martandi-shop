@@ -14,7 +14,7 @@ Implementation notes:
 | Products | Alcohol now, possibly snacks later. < 50 products, may grow to ~100 |
 | Variants | Yes (e.g. 0,7 l / 1 l). Each variant has its own price |
 | Inventory | Not tracked |
-| Fulfilment | **Pickup only**, no shipping, no shipping fees. Location: Jūrmalas gatve 16a, Rīga, LV-1083 (same as the legal address) |
+| Fulfilment | **Pickup only**, no shipping, no shipping fees. Location: Krustpils iela 58, Rīga, LV-1057 (same as the legal address) |
 | Pickup hours | Placeholder: Mon–Fri 10:00–20:00, Sat 10:00–18:00, Sun closed (in config, easy to change) |
 | Age check | No site-wide popup. A required 18+ checkbox at checkout, plus ID shown at pickup. Notice in cart/checkout/email/invoice |
 | Payment | Always bank transfer against an emailed PDF invoice. Due in **14 days**. Stripe later |
@@ -159,7 +159,7 @@ Reference screens:
 **Shapes**: sharp/2px radius on buttons and cards, pill-shaped search input, 1px hairline dividers, generous whitespace.
 
 **Components**
-- **Announcement bar**: "Saņemšana tikai veikalā — Jūrmalas gatve 16a, Rīga · ar personu apliecinošu dokumentu"
+- **Announcement bar**: "Saņemšana tikai veikalā — Krustpils iela 58, Rīga · ar personu apliecinošu dokumentu"
 - **Header**: wordmark · "Visas kategorijas" dropdown · pill search (client-side over a small static product index) · cart icon with count badge. Second row: category links
 - **Product card**: square image on light-gray tile, badge top-left, price, 2-line name clamp, "2 tilpumi" variant count, optional abv · country meta line. 4 columns desktop / 2 mobile. (No hearts, ratings, MSRP)
 - **Product page**: 2×2 image grid (mobile: CSS scroll-snap carousel, no JS library) · badge · serif title · price · variant boxes (square toggles like Faire's size picker) · quantity select · full-width charcoal "Pievienot grozam" · beige info panel replacing Faire's shipping box: pickup address, hours, ID requirement · details list (abv, country, producer) · description
@@ -189,7 +189,7 @@ Reference screens:
 | Field | Value |
 |---|---|
 | Company | SIA "Martandi" |
-| Legal address | Jūrmalas gatve 16a, Rīga, Latvija, LV-1083 |
+| Legal address | Krustpils iela 58, Rīga, Latvija, LV-1057 |
 | Reg. Nr. | 40103844462 |
 | PVN Nr. | LV40103844462 |
 | Bank | AS "Citadele Banka" |

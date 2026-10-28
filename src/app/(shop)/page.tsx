@@ -89,7 +89,7 @@ export default async function Home() {
             Labi dzērieni svētkiem un ikdienai – tepat Rīgā
           </h2>
           <p className={s.storyLead}>
-            {site.name} ir dzērienu veikals Jūrmalas gatvē. Izvēlieties mierīgi tiešsaistē – mēs sagatavosim pasūtījumu, un
+            {site.name} ir dzērienu veikals Krustpils ielā. Izvēlieties mierīgi tiešsaistē – mēs sagatavosim pasūtījumu, un
             jūs to saņemsiet veikalā, kad jums ērti.
           </p>
           <ul className={s.benefits}>
