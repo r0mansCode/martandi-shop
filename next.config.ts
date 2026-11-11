@@ -7,9 +7,10 @@ const imagesUrl = process.env.NEXT_PUBLIC_IMAGES_URL;
 // previous caching model (static pages + ISR + revalidatePath/revalidateTag).
 const nextConfig: NextConfig = {
   serverExternalPackages: ["pdfkit"],
-  // The mock store reads its seed at runtime via a computed path, which tracing can miss.
+  // Files read at runtime via computed paths, which tracing can miss: the mock store's seed
+  // and the invoice PDF fonts.
   outputFileTracingIncludes: {
-    "/**": ["./data/seed/**/*"],
+    "/**": ["./data/seed/**/*", "./assets/fonts/**/*"],
   },
   images: {
     // Only our own uploads folder; SVG stays disabled (the default).

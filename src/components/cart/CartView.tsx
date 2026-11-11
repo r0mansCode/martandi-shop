@@ -129,10 +129,9 @@ export function CartView() {
             </p>
           )}
 
-          {/* Placeholder: order creation and invoice generation aren't built yet. */}
-          <button type="button" className={s.checkout}>
+          <Link href="/noformet" className={s.checkout}>
             Noformēt pasūtījumu
-          </button>
+          </Link>
         </aside>
       </div>
     </>

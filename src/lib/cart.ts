@@ -1,6 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { MAX_QTY } from "./cart-limits";
 
 // Cart lives in localStorage. The display fields are a convenience snapshot;
 // the server re-prices every line from the database at checkout.
@@ -18,7 +19,7 @@ export type CartLine = {
 };
 
 const KEY = "martandi-cart";
-export const MAX_QTY = 99;
+export { MAX_QTY };
 const EMPTY: CartLine[] = [];
 
 const listeners = new Set<() => void>();
@@ -80,6 +81,15 @@ export function setQty(variantId: string, qty: number) {
 
 export function removeLine(variantId: string) {
   write(read().filter((l) => l.variantId !== variantId));
+}
+
+/** Brings the cart in line with the server at checkout: new prices, unavailable lines dropped. */
+export function applyServerCart(prices: Record<string, number>, removed: string[]) {
+  write(
+    read()
+      .filter((l) => !removed.includes(l.variantId))
+      .map((l) => (l.variantId in prices ? { ...l, priceCents: prices[l.variantId] } : l)),
+  );
 }
 
 export function clearCart() {

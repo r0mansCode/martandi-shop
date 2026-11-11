@@ -10,7 +10,8 @@
     "typecheck": "next typegen && tsc --noEmit",
     "db:reset": "node -e \"require('fs').rmSync('.data',{recursive:true,force:true})\"",
     "db:seed:dynamo": "tsx --env-file-if-exists=.env.local scripts/seed-dynamo.mts",
-    "images:migrate": "tsx --env-file-if-exists=.env.local scripts/migrate-images-to-s3.mts"
+    "images:migrate": "tsx --env-file-if-exists=.env.local scripts/migrate-images-to-s3.mts",
+    "email:test": "tsx --env-file-if-exists=.env.local scripts/send-test-email.mts"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1156.0",
@@ -19,13 +20,16 @@
     "@aws-sdk/s3-request-presigner": "^3.1156.0",
     "aws-jwt-verify": "^5.2.1",
     "next": "16.4.1",
+    "pdfkit": "^0.20.2",
     "react": "19.3.0",
     "react-dom": "19.3.0",
+    "resend": "^6.38.0",
     "server-only": "^0.0.1",
     "zod": "^4.6.5"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/pdfkit": "^0.17.7",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

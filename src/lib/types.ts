@@ -101,6 +101,8 @@ export type Order = {
   ageConfirmedAt?: string;
   pickupLocation: string;
   paymentMethod: PaymentMethod;
+  /** When the invoice email was accepted by the mail provider; unset if sending failed. */
+  invoiceEmailedAt?: string;
   paidAt?: string;
   readyAt?: string;
   collectedAt?: string;

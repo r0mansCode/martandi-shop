@@ -1,6 +1,6 @@
 # Martand Shop — Project Plan
 
-Status: phase 0 (local part), 1 and 2 done. Cart store (localStorage) and header badge exist; cart page, popover and checkout are phase 3. Last updated 2026-10-07.
+Status: phases 0–4 done, phase 5 (admin) mostly done. Checkout (`/noformet`) creates orders with gapless `MRT-YYYY-NNNNN` numbers and emails a PDF invoice through Resend; `/paldies/[id]` confirms. Admin has products, categories and orders (`/admin/pasutijumi`: list, detail, status changes, PDF download, resend invoice). Still open: emails to the customer on "paid" / "ready for pickup", the added-to-cart popover, phase 6 (SEO + legal pages). Last updated 2026-11-11.
 
 Implementation notes:
 - Next.js 16.4 with **Cache Components disabled**: Amplify Hosting officially documents support up to Next.js 15, so we use the previous caching model (static pages + `revalidatePath`/`revalidateTag`), which Amplify handles. Verify with an early Amplify deploy.

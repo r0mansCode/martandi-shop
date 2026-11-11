@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import s from "./page.module.scss";
@@ -10,6 +11,7 @@ export default async function AdminHome() {
     db.orders.list(),
   ]);
   const published = products.filter((p) => p.status === "published").length;
+  const awaitingPayment = orders.filter((o) => o.status === "awaiting_payment").length;
 
   return (
     <>
@@ -26,8 +28,12 @@ export default async function AdminHome() {
           <dd>{categories.length}</dd>
         </div>
         <div>
-          <dt>Pasūtījumi</dt>
-          <dd>{orders.length}</dd>
+          <dt>
+            <Link href="/admin/pasutijumi">Pasūtījumi</Link>
+          </dt>
+          <dd>
+            {orders.length} <span>({awaitingPayment} gaida apmaksu)</span>
+          </dd>
         </div>
       </dl>
     </>

@@ -1,0 +1,10 @@
+@use "@/styles/mixins" as *;
+
+.page {
+  @include container;
+  padding-top: 2rem;
+
+  @include up(md) {
+    padding-top: 3.5rem;
+  }
+}

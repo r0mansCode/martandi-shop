@@ -3,11 +3,15 @@ export const site = {
   name: "TaviDzērieni.lv",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   locale: "lv-LV",
+  /** Invoice dates and the invoice-number year use shop time, not UTC. */
+  timeZone: "Europe/Riga",
   currency: "EUR",
   vatRate: 0.21,
   paymentDueDays: 14,
   invoicePrefix: "MRT",
   minimumAge: 18,
+  /** Shop mailbox (Zoho); also the sender of invoices, so replies land here. */
+  email: "veikals@tavidzerieni.lv",
   emailFrom: "TaviDzērieni.lv <veikals@tavidzerieni.lv>",
 } as const;
 
