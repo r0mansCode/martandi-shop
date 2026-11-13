@@ -16,6 +16,13 @@ function priceRange(p: Product) {
   return min === max ? formatPrice(min) : `${formatPrice(min)} – ${formatPrice(max)}`;
 }
 
+/** "+ depozīts 0,10 €" when active variants carry a deposit; null otherwise. */
+function depositNote(p: Product) {
+  const deposits = [...new Set(p.variants.filter((v) => v.active && v.depositCents).map((v) => v.depositCents!))];
+  if (!deposits.length) return null;
+  return `+ depozīts ${deposits.map(formatPrice).join(" / ")}`;
+}
+
 export default async function AdminProducts({ searchParams }: PageProps<"/admin/produkti">) {
   await requireAdmin();
   const params = await searchParams;
@@ -91,7 +98,10 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
                   </Link>
                 </td>
                 <td>{categoryName.get(p.categoryId) ?? "—"}</td>
-                <td>{priceRange(p)}</td>
+                <td>
+                  {priceRange(p)}
+                  {depositNote(p) && <div className={a.muted}>{depositNote(p)}</div>}
+                </td>
                 <td>
                   <span className={p.status === "draft" ? `${a.status} ${a.statusDraft}` : a.status}>
                     {p.status === "draft" ? "Melnraksts" : "Publicēts"}

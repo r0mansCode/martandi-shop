@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { startTransition, useActionState, useEffect, useId, useState, useSyncExternalStore } from "react";
-import { applyServerCart, clearCart, useCart } from "@/lib/cart";
+import { applyServerCart, clearCart, useCart, useCartPriceSync } from "@/lib/cart";
 import { formatPrice, orderTotals } from "@/lib/money";
 import { plural } from "@/lib/format";
 import { initialCheckoutState, type CheckoutState } from "@/lib/checkout-input";
@@ -48,6 +48,7 @@ const ERROR_KEY: Record<keyof Fields, string> = {
 export function CheckoutForm() {
   const router = useRouter();
   const lines = useCart();
+  useCartPriceSync();
   const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
 
   const [fields, setFields] = useState<Fields>(EMPTY_FIELDS);

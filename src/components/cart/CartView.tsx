@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
-import { MAX_QTY, removeLine, setQty, useCart, type CartLine } from "@/lib/cart";
+import { MAX_QTY, removeLine, setQty, useCart, useCartPriceSync, type CartLine } from "@/lib/cart";
 import { formatPrice, orderTotals } from "@/lib/money";
 import { plural } from "@/lib/format";
 import type { PaymentMethod } from "@/lib/types";
@@ -24,6 +24,7 @@ const PAYMENT_METHODS: { id: PaymentMethod; title: string; note: string }[] = [
 
 export function CartView() {
   const lines = useCart();
+  useCartPriceSync();
   // The cart lives in localStorage, so the server can't know it; render nothing until hydrated.
   const hydrated = useSyncExternalStore(noopSubscribe, () => true, () => false);
   const [payment, setPayment] = useState<PaymentMethod>("bank_transfer");

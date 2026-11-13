@@ -1,6 +1,6 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 import { MAX_QTY } from "./cart-limits";
 import type { LinePrice } from "./checkout-input";
 
@@ -96,6 +96,35 @@ export function applyServerCart(prices: Record<string, LinePrice>, removed: stri
         return now ? { ...l, priceCents: now.priceCents, depositCents: now.depositCents } : l;
       }),
   );
+}
+
+/**
+ * Refreshes line prices and deposits from the server's current list, so a cart filled before a
+ * change shows the total the invoice will have. Lines missing from the list are left alone: the
+ * list can lag by a minute, and checkout removes truly unavailable lines anyway.
+ */
+async function syncCartPrices() {
+  let prices: Record<string, LinePrice>;
+  try {
+    const res = await fetch("/api/variant-prices");
+    if (!res.ok) return;
+    prices = await res.json();
+  } catch {
+    return; // Offline or blocked: keep the snapshot; checkout re-prices anyway.
+  }
+  const lines = read();
+  const changed = lines.some((l) => {
+    const now = prices[l.variantId];
+    return now && (now.priceCents !== l.priceCents || (now.depositCents ?? 0) !== (l.depositCents ?? 0));
+  });
+  if (changed) applyServerCart(prices, []);
+}
+
+/** Runs syncCartPrices once when a cart view mounts. */
+export function useCartPriceSync() {
+  useEffect(() => {
+    void syncCartPrices();
+  }, []);
 }
 
 export function clearCart() {
