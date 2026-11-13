@@ -3,7 +3,8 @@ import Link from "next/link";
 import { formatPrice } from "@/lib/money";
 import { formatAbv, plural } from "@/lib/format";
 import type { ProductCardData } from "@/lib/product-card";
-import { CardCartButton } from "./CardCartButton";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import cartButton from "@/components/cart/AddToCartButton.module.scss";
 import s from "./ProductCard.module.scss";
 
 type Props = {
@@ -47,10 +48,22 @@ export function ProductCard({ product: p, eager }: Props) {
 
       {/* One size: add straight from the card. Several: the size is picked on the product page. */}
       {p.quickAdd ? (
-        <CardCartButton product={{ ...p, quickAdd: p.quickAdd }} />
+        <AddToCartButton
+          line={{
+            productId: p.id,
+            variantId: p.quickAdd.variantId,
+            slug: p.slug,
+            name: p.name,
+            variantLabel: p.quickAdd.label,
+            priceCents: p.quickAdd.priceCents,
+            depositCents: p.quickAdd.depositCents,
+            image: p.quickAdd.image,
+            isAlcohol: p.isAlcohol,
+          }}
+        />
       ) : (
         // Same destination as the card link above, so it's skipped by keyboard and screen readers.
-        <Link href={href} className={s.cartButton} tabIndex={-1} aria-hidden>
+        <Link href={href} className={`${cartButton.button} ${cartButton.card}`} tabIndex={-1} aria-hidden>
           Izvēlēties tilpumu
         </Link>
       )}

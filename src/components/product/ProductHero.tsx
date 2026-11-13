@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { addToCart } from "@/lib/cart";
+import { useRef, useState, type ReactNode } from "react";
+import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/money";
 import type { ProductBadge, ProductImage, Variant } from "@/lib/types";
 import { pickup, site } from "@/config/site";
-import { CheckIcon, IdIcon, StoreIcon } from "@/components/icons";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
+import { IdIcon, StoreIcon } from "@/components/icons";
 import s from "./ProductHero.module.scss";
 
 type Props = {
@@ -25,13 +26,8 @@ type Props = {
   children: ReactNode;
 };
 
-const QTY_OPTIONS = Array.from({ length: 12 }, (_, i) => i + 1);
-
 export function ProductHero({ product, children }: Props) {
   const [variantId, setVariantId] = useState(product.variants[0].id);
-  const [qty, setQty] = useState(1);
-  const [added, setAdded] = useState(false);
-  const qtyId = useId();
   const galleryRef = useRef<HTMLDivElement>(null);
 
   const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
@@ -50,29 +46,7 @@ export function ProductHero({ product, children }: Props) {
     }
   };
 
-  useEffect(() => {
-    if (!added) return;
-    const t = setTimeout(() => setAdded(false), 3000);
-    return () => clearTimeout(t);
-  }, [added]);
-
-  const onAdd = () => {
-    addToCart(
-      {
-        productId: product.id,
-        variantId: variant.id,
-        slug: product.slug,
-        name: product.name,
-        variantLabel: variant.label,
-        priceCents: variant.priceCents,
-        depositCents: variant.depositCents,
-        image: variant.image ?? product.images[0]?.url ?? null,
-        isAlcohol: product.isAlcohol,
-      },
-      qty,
-    );
-    setAdded(true);
-  };
+  const inCart = useCart().some((l) => l.variantId === variant.id);
 
   return (
     <div className={s.hero}>
@@ -131,31 +105,21 @@ export function ProductHero({ product, children }: Props) {
           </p>
         )}
 
-        <div className={s.qty}>
-          <label htmlFor={qtyId} className={s.label}>
-            Daudzums
-          </label>
-          <select id={qtyId} value={qty} onChange={(e) => setQty(Number(e.target.value))}>
-            {QTY_OPTIONS.map((n) => (
-              <option key={n} value={n}>
-                {n} ({formatPrice(n * variant.priceCents)})
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <button type="button" className={s.add} onClick={onAdd}>
-          {added ? (
-            <>
-              <CheckIcon width={18} height={18} /> Pievienots grozam
-            </>
-          ) : (
-            "Pievienot grozam"
-          )}
-        </button>
-        <p className={s.addedNote} aria-live="polite">
-          {added && <Link href="/grozs">Skatīt grozu</Link>}
-        </p>
+        <AddToCartButton
+          size="page"
+          line={{
+            productId: product.id,
+            variantId: variant.id,
+            slug: product.slug,
+            name: product.name,
+            variantLabel: variant.label,
+            priceCents: variant.priceCents,
+            depositCents: variant.depositCents,
+            image: variant.image ?? product.images[0]?.url ?? null,
+            isAlcohol: product.isAlcohol,
+          }}
+        />
+        <p className={s.addedNote}>{inCart && <Link href="/grozs">Skatīt grozu</Link>}</p>
 
         <div className={s.panel}>
           <div className={s.panelRow}>
