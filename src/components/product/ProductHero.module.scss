@@ -40,6 +40,15 @@
   background: var(--color-tile);
 }
 
+// Outline drawn above the absolutely positioned image (an inset shadow would sit under it).
+.frameActive::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--color-fg);
+  pointer-events: none;
+}
+
 .image {
   object-fit: contain;
   padding: 2rem;

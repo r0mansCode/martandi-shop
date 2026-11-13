@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useId, useState, type ReactNode } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { addToCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/money";
 import type { ProductBadge, ProductImage, Variant } from "@/lib/types";
@@ -32,16 +32,23 @@ export function ProductHero({ product, children }: Props) {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const qtyId = useId();
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
-  // Selected variant's own image first, then the rest.
-  const images = variant.image
-    ? [
-        ...product.images.filter((i) => i.url === variant.image),
-        ...product.images.filter((i) => i.url !== variant.image),
-      ]
-    : product.images;
+  // Images keep their order; the selected variant's own image is outlined instead.
+  const images = product.images;
+  const highlight = images.length > 1 ? variant.image : undefined;
+
+  const selectVariant = (v: Variant) => {
+    setVariantId(v.id);
+    // Mobile gallery is a swipe row: bring the outlined image into view without scrolling the page.
+    const gallery = galleryRef.current;
+    const frame = gallery?.querySelector<HTMLElement>(`[data-url="${CSS.escape(v.image ?? "")}"]`);
+    if (gallery && frame && gallery.scrollWidth > gallery.clientWidth) {
+      gallery.scrollTo({ left: frame.offsetLeft - gallery.offsetLeft, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     if (!added) return;
@@ -69,9 +76,13 @@ export function ProductHero({ product, children }: Props) {
 
   return (
     <div className={s.hero}>
-      <div className={images.length > 1 ? `${s.gallery} ${s.galleryMulti}` : s.gallery}>
+      <div ref={galleryRef} className={images.length > 1 ? `${s.gallery} ${s.galleryMulti}` : s.gallery}>
         {images.map((img, i) => (
-          <div key={img.url} className={s.frame}>
+          <div
+            key={img.url}
+            data-url={img.url}
+            className={img.url === highlight ? `${s.frame} ${s.frameActive}` : s.frame}
+          >
             <Image
               src={img.url}
               alt={img.alt}
@@ -107,7 +118,7 @@ export function ProductHero({ product, children }: Props) {
                     name="variant"
                     value={v.id}
                     checked={v.id === variant.id}
-                    onChange={() => setVariantId(v.id)}
+                    onChange={() => selectVariant(v)}
                   />
                   {v.label}
                 </label>
