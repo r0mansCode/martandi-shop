@@ -45,6 +45,162 @@
   font-weight: 500;
 }
 
+// Tabs (list page)
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-line);
+
+  a {
+    margin-bottom: -1px;
+    padding: 0.625rem 1rem;
+    border: 1px solid transparent;
+    border-radius: var(--radius) var(--radius) 0 0;
+    color: var(--color-muted);
+
+    &:hover {
+      color: var(--color-fg);
+    }
+  }
+
+  .tabActive {
+    border-color: var(--color-line);
+    border-bottom-color: var(--color-bg);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-weight: 600;
+  }
+}
+
+.count {
+  align-self: center;
+  margin-left: auto;
+}
+
+// Orders table
+
+.ordersTable {
+  min-width: 72rem;
+
+  td {
+    vertical-align: top;
+  }
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.block {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+}
+
+.itemList {
+  display: grid;
+  gap: 0.125rem;
+  min-width: 14rem;
+
+  li::before {
+    content: "• ";
+    color: var(--color-muted);
+  }
+}
+
+.sent {
+  color: var(--color-success);
+}
+
+.rowActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  min-width: 9rem;
+}
+
+.linkAction {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #1d4f80;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.linkDanger {
+  color: #b3261e;
+}
+
+.empty {
+  padding: 1.5rem !important;
+  color: var(--color-muted);
+  text-align: center !important;
+}
+
+// Sales summary
+
+.dateField {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.stats {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+
+  @include up(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  > div {
+    padding: 1.25rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius);
+  }
+
+  dt {
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+
+  dd {
+    margin: 0.25rem 0 0.125rem;
+    font-size: 1.75rem;
+    font-weight: 600;
+  }
+}
+
+.rangeNote {
+  margin-bottom: 1.5rem;
+}
+
+.summaryGrid {
+  display: grid;
+  gap: 1.5rem;
+
+  @include up(lg) {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+.subTitle {
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
 // Detail page
 
 .head {
@@ -121,6 +277,11 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-top: 1.5rem;
+}
+
+// Separates the destructive action from the others.
+.pushRight {
+  margin-left: auto;
 }
 
 .danger {

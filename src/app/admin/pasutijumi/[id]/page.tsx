@@ -4,32 +4,24 @@ import { notFound } from "next/navigation";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { formatPrice } from "@/lib/money";
-import { formatDate } from "@/lib/format";
+import { formatDate, formatDateTime } from "@/lib/format";
 import {
+  deleteConfirmText,
   isOverdue,
   NEXT_STATUSES,
   ORDER_STATUS_LABEL,
   STATUS_ACTION_LABEL,
 } from "@/lib/order-status";
+import { ORDER_MESSAGES } from "@/lib/order-messages";
 import { site } from "@/config/site";
-import { resendInvoice, setOrderStatus } from "../actions";
-import { ConfirmButton } from "./ConfirmButton";
+import { removeOrder, resendInvoice, setOrderStatus } from "../actions";
+import { ConfirmButton } from "../ConfirmButton";
 import a from "../../admin.module.scss";
 import o from "../orders.module.scss";
 
 export const metadata: Metadata = { title: "Pasūtījums" };
 
-const MESSAGES: Record<string, { text: string; error?: boolean }> = {
-  statuss: { text: "Statuss atjaunināts." },
-  "statuss-nederigs": { text: "Šo statusu vairs nevar iestatīt – pārlādējiet lapu.", error: true },
-  "rekins-nosutits": { text: "Rēķins nosūtīts atkārtoti." },
-  "rekins-kluda": { text: "Rēķinu neizdevās nosūtīt. Mēģiniet vēlreiz vēlāk.", error: true },
-};
-
-const dateTime = (iso?: string) =>
-  iso
-    ? new Date(iso).toLocaleString(site.locale, { timeZone: site.timeZone, dateStyle: "short", timeStyle: "short" })
-    : "—";
+const dateTime = (iso?: string) => (iso ? formatDateTime(iso) : "—");
 
 export default async function AdminOrder({ params, searchParams }: PageProps<"/admin/pasutijumi/[id]">) {
   await requireAdmin();
@@ -38,8 +30,10 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
   if (!order) notFound();
 
   const zina = (await searchParams).zina;
-  const message = typeof zina === "string" ? MESSAGES[zina] : undefined;
+  const message = typeof zina === "string" ? ORDER_MESSAGES[zina] : undefined;
   const { customer, company } = order;
+  // Actions return to this page. Bound explicitly: a form action's next argument is its FormData.
+  const here = `/admin/pasutijumi/${order.id}`;
 
   return (
     <>
@@ -181,7 +175,7 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
 
       <div className={o.actions}>
         {NEXT_STATUSES[order.status].map((next) => (
-          <form key={next} action={setOrderStatus.bind(null, order.id, next)}>
+          <form key={next} action={setOrderStatus.bind(null, order.id, next, here)}>
             {next === "cancelled" ? (
               <ConfirmButton
                 confirm={`Atcelt pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.`}
@@ -199,10 +193,15 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
         <a href={`/admin/pasutijumi/${order.id}/rekins`} target="_blank" rel="noopener" className={a.buttonSecondary}>
           Atvērt rēķinu (PDF)
         </a>
-        <form action={resendInvoice.bind(null, order.id)}>
+        <form action={resendInvoice.bind(null, order.id, here)}>
           <button type="submit" className={a.buttonSecondary}>
             Nosūtīt rēķinu atkārtoti
           </button>
+        </form>
+        <form action={removeOrder.bind(null, order.id, here)} className={o.pushRight}>
+          <ConfirmButton confirm={deleteConfirmText(order)} className={`${a.buttonSecondary} ${o.danger}`}>
+            Dzēst pasūtījumu
+          </ConfirmButton>
         </form>
       </div>
     </>

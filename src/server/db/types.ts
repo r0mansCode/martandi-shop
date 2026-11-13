@@ -24,11 +24,17 @@ export interface OrderRepo {
   list(): Promise<Order[]>;
   getById(id: string): Promise<Order | null>;
   put(order: Order): Promise<void>;
+  delete(id: string): Promise<void>;
 }
 
 export interface CounterRepo {
   /** Atomically increments the counter and returns the new value (first call returns 1). */
   next(key: string): Promise<number>;
+  /**
+   * Sets the counter to `value`, but only if it still equals `expected` (atomic compare-and-set).
+   * Returns false when another increment got there first.
+   */
+  rewind(key: string, expected: number, value: number): Promise<boolean>;
 }
 
 export interface Db {

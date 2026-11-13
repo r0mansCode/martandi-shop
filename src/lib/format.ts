@@ -19,6 +19,24 @@ export function formatDate(iso: string): string {
   return dateFormat.format(new Date(iso));
 }
 
+const dayKeyFormat = new Intl.DateTimeFormat("en-CA", { timeZone: site.timeZone });
+
+/** ISO timestamp → "2026-11-13", the calendar day in Riga (matches <input type="date"> values). */
+export function toDayKey(iso: string | Date): string {
+  return dayKeyFormat.format(new Date(iso));
+}
+
+const dateTimeFormat = new Intl.DateTimeFormat(site.locale, {
+  timeZone: site.timeZone,
+  dateStyle: "short",
+  timeStyle: "short",
+});
+
+/** ISO timestamp → "13.11.26 14:05" in Riga time. */
+export function formatDateTime(iso: string): string {
+  return dateTimeFormat.format(new Date(iso));
+}
+
 /** Latvian plural: 1, 21, 31… (not 11) take the singular form. */
 export function plural(n: number, one: string, many: string): string {
   return n % 10 === 1 && n % 100 !== 11 ? one : many;

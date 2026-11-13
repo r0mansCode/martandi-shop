@@ -3,24 +3,77 @@ import Link from "next/link";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { formatPrice } from "@/lib/money";
-import { formatDate, normalizeSearch } from "@/lib/format";
-import { isOverdue, ORDER_STATUS_LABEL } from "@/lib/order-status";
-import type { OrderStatus } from "@/lib/types";
+import { formatDate, formatDateTime, normalizeSearch, plural, toDayKey } from "@/lib/format";
+import {
+  deleteConfirmText,
+  isOverdue,
+  NEXT_STATUSES,
+  ORDER_STATUS_LABEL,
+  PAID_STATUSES,
+  STATUS_SHORT_ACTION,
+} from "@/lib/order-status";
+import { ORDER_MESSAGES } from "@/lib/order-messages";
+import type { Order, OrderStatus } from "@/lib/types";
+import { site } from "@/config/site";
+import { removeOrder, resendInvoice, setOrderStatus } from "./actions";
+import { ConfirmButton } from "./ConfirmButton";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
 
 export const metadata: Metadata = { title: "Pasūtījumi" };
 
 const STATUSES = Object.keys(ORDER_STATUS_LABEL) as OrderStatus[];
+const DAY_MS = 24 * 60 * 60 * 1000;
+const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
+type Params = Awaited<PageProps<"/admin/pasutijumi">["searchParams"]>;
+const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
+
+// Two tabs, as in the ohmycrisp admin: the full orders table with inline actions, and a
+// sales summary for a date range. Deleting the newest order frees its invoice number
+// (see deleteOrder in server/orders.ts).
 export default async function AdminOrders({ searchParams }: PageProps<"/admin/pasutijumi">) {
   await requireAdmin();
   const params = await searchParams;
-  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
+  const view = one(params.skats) === "kopsavilkums" ? "summary" : "orders";
+  const orders = await db.orders.list();
+
+  const zina = one(params.zina);
+  const message = ORDER_MESSAGES[zina];
+
+  return (
+    <>
+      <div className={a.pageHead}>
+        <h1 className={a.title}>Pasūtījumi</h1>
+      </div>
+
+      <nav className={o.tabs} aria-label="Skats">
+        <Link href="/admin/pasutijumi" className={view === "orders" ? o.tabActive : undefined}>
+          Pasūtījumu tabula
+        </Link>
+        <Link
+          href="/admin/pasutijumi?skats=kopsavilkums"
+          className={view === "summary" ? o.tabActive : undefined}
+        >
+          Pārdošanas kopsavilkums
+        </Link>
+      </nav>
+
+      {message && (
+        <p className={message.error ? `${o.message} ${o.messageError}` : o.message} role="status">
+          {message.text}
+        </p>
+      )}
+
+      {view === "orders" ? <OrdersTable orders={orders} params={params} /> : <SalesSummary orders={orders} params={params} />}
+    </>
+  );
+}
+
+function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
   const q = one(params.q);
   const status = one(params.statuss);
 
-  const orders = await db.orders.list();
   const needle = normalizeSearch(q.trim());
   const shown = orders
     .filter((order) => !status || order.status === status)
@@ -28,21 +81,20 @@ export default async function AdminOrders({ searchParams }: PageProps<"/admin/pa
       (order) =>
         !needle ||
         normalizeSearch(
-          [order.invoiceNumber, order.customer.name, order.customer.email, order.company?.name ?? ""].join(" "),
+          [order.invoiceNumber, order.customer.name, order.customer.email, order.customer.phone, order.company?.name ?? ""].join(" "),
         ).includes(needle),
     );
 
+  // Actions come back to this exact view (filters kept).
+  const query = new URLSearchParams();
+  if (q) query.set("q", q);
+  if (status) query.set("statuss", status);
+  const returnTo = `/admin/pasutijumi${query.size ? `?${query}` : ""}`;
+
   return (
     <>
-      <div className={a.pageHead}>
-        <h1 className={a.title}>Pasūtījumi</h1>
-        <span className={a.muted}>
-          {shown.length} no {orders.length}
-        </span>
-      </div>
-
       <form className={a.filters}>
-        <input type="search" name="q" defaultValue={q} placeholder="Meklēt pēc rēķina Nr., vārda vai e-pasta" />
+        <input type="search" name="q" defaultValue={q} placeholder="Meklēt pēc rēķina Nr., vārda, e-pasta vai tālruņa" />
         <select name="statuss" defaultValue={status} aria-label="Statuss">
           <option value="">Visi statusi</option>
           {STATUSES.map((st) => (
@@ -54,51 +106,258 @@ export default async function AdminOrders({ searchParams }: PageProps<"/admin/pa
         <button type="submit" className={a.buttonSecondary}>
           Filtrēt
         </button>
+        <span className={`${a.muted} ${o.count}`}>
+          {shown.length} no {orders.length}
+        </span>
       </form>
 
-      {orders.length === 0 ? (
-        <p className={a.muted}>Pasūtījumu vēl nav.</p>
-      ) : (
-        <div className={a.tableWrap}>
-          <table className={a.table}>
-            <thead>
-              <tr>
-                <th>Rēķina Nr.</th>
-                <th>Datums</th>
-                <th>Pircējs</th>
-                <th>Summa</th>
-                <th>Statuss</th>
-                <th>Apmaksāt līdz</th>
-                <th>Rēķins</th>
+      <div className={a.tableWrap}>
+        <table className={`${a.table} ${o.ordersTable}`}>
+          <thead>
+            <tr>
+              <th>Datums</th>
+              <th>Rēķina Nr.</th>
+              <th>Pircējs</th>
+              <th>E-pasts</th>
+              <th>Tālrunis</th>
+              <th>Preces</th>
+              <th className={o.right}>Summa</th>
+              <th>Statuss</th>
+              <th>Rēķins</th>
+              <th>Darbības</th>
+            </tr>
+          </thead>
+          <tbody>
+            {shown.map((order) => (
+              <tr key={order.id}>
+                <td className={o.nowrap}>{formatDateTime(order.createdAt)}</td>
+                <td>
+                  <Link href={`/admin/pasutijumi/${order.id}`} className={o.number}>
+                    {order.invoiceNumber}
+                  </Link>
+                </td>
+                <td>
+                  {order.company ? (
+                    <>
+                      {order.company.name}
+                      <br />
+                      <span className={a.muted}>{order.customer.name}</span>
+                    </>
+                  ) : (
+                    order.customer.name
+                  )}
+                </td>
+                <td>
+                  <a href={`mailto:${order.customer.email}`}>{order.customer.email}</a>
+                </td>
+                <td className={o.nowrap}>{order.customer.phone}</td>
+                <td>
+                  <ul className={o.itemList}>
+                    {order.items.map((item) => (
+                      <li key={item.variantId}>
+                        {item.name}, {item.variantLabel} × {item.qty}
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
+                <td>
+                  <span className={`${o.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>
+                  {isOverdue(order) && <span className={`${o.overdue} ${o.block}`}>nokavēts</span>}
+                </td>
+                <td>
+                  {order.invoiceEmailedAt ? (
+                    <span className={o.sent} title={formatDateTime(order.invoiceEmailedAt)}>
+                      Nosūtīts
+                    </span>
+                  ) : (
+                    <span className={o.overdue}>Nav nosūtīts</span>
+                  )}
+                </td>
+                <td>
+                  <div className={o.rowActions}>
+                    {NEXT_STATUSES[order.status].map((next) => (
+                      <form key={next} action={setOrderStatus.bind(null, order.id, next, returnTo)}>
+                        {next === "cancelled" ? (
+                          <ConfirmButton
+                            confirm={`Atcelt pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.`}
+                            className={`${o.linkAction} ${o.linkDanger}`}
+                          >
+                            {STATUS_SHORT_ACTION[next]}
+                          </ConfirmButton>
+                        ) : (
+                          <button type="submit" className={o.linkAction}>
+                            {STATUS_SHORT_ACTION[next]}
+                          </button>
+                        )}
+                      </form>
+                    ))}
+                    {!order.invoiceEmailedAt && order.status !== "cancelled" && (
+                      <form action={resendInvoice.bind(null, order.id, returnTo)}>
+                        <button type="submit" className={o.linkAction}>
+                          Sūtīt rēķinu
+                        </button>
+                      </form>
+                    )}
+                    <a href={`/admin/pasutijumi/${order.id}/rekins`} target="_blank" rel="noopener" className={o.linkAction}>
+                      PDF
+                    </a>
+                    <form action={removeOrder.bind(null, order.id, returnTo)}>
+                      <ConfirmButton confirm={deleteConfirmText(order)} className={`${o.linkAction} ${o.linkDanger}`}>
+                        Dzēst
+                      </ConfirmButton>
+                    </form>
+                  </div>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {shown.map((order) => (
-                <tr key={order.id}>
-                  <td>
-                    <Link href={`/admin/pasutijumi/${order.id}`} className={o.number}>
-                      {order.invoiceNumber}
-                    </Link>
-                  </td>
-                  <td>{formatDate(order.createdAt)}</td>
-                  <td>
-                    {order.company ? order.company.name : order.customer.name}
-                    <br />
-                    <span className={a.muted}>{order.customer.email}</span>
-                  </td>
-                  <td>{formatPrice(order.totals.grossCents)}</td>
-                  <td>
-                    <span className={`${o.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>
-                  </td>
-                  <td className={isOverdue(order) ? o.overdue : undefined}>
-                    {formatDate(order.dueDate)}
-                    {isOverdue(order) && " · nokavēts"}
-                  </td>
-                  <td>{order.invoiceEmailedAt ? "Nosūtīts" : <span className={o.overdue}>Nav nosūtīts</span>}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+            ))}
+            {shown.length === 0 && (
+              <tr>
+                <td colSpan={10} className={o.empty}>
+                  {orders.length ? "Neviens pasūtījums neatbilst filtriem." : "Pasūtījumu vēl nav."}
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
+  // Default range: the last 7 days, in Riga time.
+  const now = new Date();
+  const today = toDayKey(now);
+  const from = DAY.test(one(params.no)) ? one(params.no) : toDayKey(new Date(now.getTime() - 7 * DAY_MS));
+  const to = DAY.test(one(params.lidz)) ? one(params.lidz) : today;
+
+  // Revenue counts on the day the payment was recorded.
+  const sales = orders
+    .filter((order) => PAID_STATUSES.includes(order.status))
+    .map((order) => ({ order, day: toDayKey(order.paidAt ?? order.createdAt) }))
+    .filter(({ day }) => day >= from && day <= to)
+    .toSorted((x, y) => y.day.localeCompare(x.day));
+
+  const sum = (key: "grossCents" | "netCents" | "vatCents") =>
+    sales.reduce((total, { order }) => total + order.totals[key], 0);
+
+  const awaiting = orders.filter((order) => order.status === "awaiting_payment");
+  const awaitingTotal = awaiting.reduce((total, order) => total + order.totals.grossCents, 0);
+  const overdue = awaiting.filter((order) => isOverdue(order)).length;
+
+  // Units sold per product variant in the range, most sold first.
+  const sold = new Map<string, { name: string; qty: number; grossCents: number }>();
+  for (const { order } of sales) {
+    for (const item of order.items) {
+      const key = `${item.name}, ${item.variantLabel}`;
+      const entry = sold.get(key) ?? { name: key, qty: 0, grossCents: 0 };
+      entry.qty += item.qty;
+      entry.grossCents += item.unitPriceCents * item.qty;
+      sold.set(key, entry);
+    }
+  }
+  const topProducts = [...sold.values()].toSorted((x, y) => y.qty - x.qty || y.grossCents - x.grossCents);
+
+  return (
+    <>
+      <form className={a.filters}>
+        <input type="hidden" name="skats" value="kopsavilkums" />
+        <label className={o.dateField}>
+          No
+          <input type="date" name="no" defaultValue={from} max={today} />
+        </label>
+        <label className={o.dateField}>
+          Līdz
+          <input type="date" name="lidz" defaultValue={to} max={today} />
+        </label>
+        <button type="submit" className={a.buttonSecondary}>
+          Rādīt
+        </button>
+      </form>
+
+      <dl className={o.stats}>
+        <div>
+          <dt>Apmaksāti pasūtījumi</dt>
+          <dd>{sales.length}</dd>
+        </div>
+        <div>
+          <dt>Ieņēmumi (ar PVN)</dt>
+          <dd>{formatPrice(sum("grossCents"))}</dd>
+          <p className={a.muted}>
+            bez PVN {formatPrice(sum("netCents"))} · PVN {Math.round(site.vatRate * 100)}% {formatPrice(sum("vatCents"))}
+          </p>
+        </div>
+        <div>
+          <dt>Gaida apmaksu (visi)</dt>
+          <dd>{formatPrice(awaitingTotal)}</dd>
+          <p className={a.muted}>
+            {awaiting.length} {plural(awaiting.length, "pasūtījums", "pasūtījumi")}
+            {overdue > 0 && <span className={o.overdue}> · {overdue} nokavēti</span>}
+          </p>
+        </div>
+      </dl>
+
+      <p className={`${a.muted} ${o.rangeNote}`}>
+        Apmaksātie pasūtījumi no {formatDate(`${from}T12:00:00Z`)} līdz {formatDate(`${to}T12:00:00Z`)} (pēc apmaksas
+        datuma).
+      </p>
+
+      {sales.length > 0 && (
+        <div className={o.summaryGrid}>
+          <section>
+            <h2 className={o.subTitle}>Pasūtījumi</h2>
+            <div className={a.tableWrap}>
+              <table className={a.table}>
+                <thead>
+                  <tr>
+                    <th>Apmaksāts</th>
+                    <th>Rēķina Nr.</th>
+                    <th>Pircējs</th>
+                    <th className={o.right}>Summa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sales.map(({ order }) => (
+                    <tr key={order.id}>
+                      <td>{formatDate(order.paidAt ?? order.createdAt)}</td>
+                      <td>
+                        <Link href={`/admin/pasutijumi/${order.id}`} className={o.number}>
+                          {order.invoiceNumber}
+                        </Link>
+                      </td>
+                      <td>{order.company?.name ?? order.customer.name}</td>
+                      <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section>
+            <h2 className={o.subTitle}>Pārdotās preces</h2>
+            <div className={a.tableWrap}>
+              <table className={a.table}>
+                <thead>
+                  <tr>
+                    <th>Prece</th>
+                    <th className={o.right}>Daudz.</th>
+                    <th className={o.right}>Summa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {topProducts.map((p) => (
+                    <tr key={p.name}>
+                      <td>{p.name}</td>
+                      <td className={o.right}>{p.qty}</td>
+                      <td className={o.right}>{formatPrice(p.grossCents)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
       )}
     </>

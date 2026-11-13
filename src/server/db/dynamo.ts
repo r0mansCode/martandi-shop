@@ -108,6 +108,7 @@ export function createDynamoDb(): Db {
       list: () => queryAll<Order>("ORDER", true),
       getById: (id) => get("ORDER", id),
       put: (order) => put(orderItem(order)),
+      delete: (id) => remove("ORDER", id),
     },
     counters: {
       next: async (key) => {
@@ -122,6 +123,24 @@ export function createDynamoDb(): Db {
           }),
         );
         return Attributes!.value as number;
+      },
+      rewind: async (key, expected, value) => {
+        try {
+          await client.send(
+            new UpdateCommand({
+              TableName: table,
+              Key: { PK: pk("COUNTER", key), SK: META },
+              UpdateExpression: "SET #v = :value",
+              ConditionExpression: "#v = :expected",
+              ExpressionAttributeNames: { "#v": "value" },
+              ExpressionAttributeValues: { ":value": value, ":expected": expected },
+            }),
+          );
+          return true;
+        } catch (err) {
+          if ((err as { name?: string }).name === "ConditionalCheckFailedException") return false;
+          throw err;
+        }
       },
     },
   };

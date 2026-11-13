@@ -19,11 +19,43 @@ function shopYear(date: Date): string {
   return new Intl.DateTimeFormat("en", { year: "numeric", timeZone: site.timeZone }).format(date);
 }
 
+const counterKey = (year: string) => `invoice-${year}`;
+
 /** Next number in the gapless yearly sequence, e.g. MRT-2026-00001. */
 async function nextInvoiceNumber(date: Date): Promise<string> {
   const year = shopYear(date);
-  const n = await db.counters.next(`invoice-${year}`);
+  const n = await db.counters.next(counterKey(year));
   return `${site.invoicePrefix}-${year}-${String(n).padStart(5, "0")}`;
+}
+
+/** "MRT-2026-00042" → { year: "2026", seq: 42 }; null for anything else. */
+function parseInvoiceNumber(invoiceNumber: string) {
+  const match = /^[A-Z]+-(\d{4})-(\d+)$/.exec(invoiceNumber);
+  return match ? { year: match[1], seq: Number(match[2]) } : null;
+}
+
+/**
+ * Deletes an order. When it held the newest invoice number of its year, the counter is moved
+ * back to the highest number still in use, so the next order reuses the freed number(s) as if
+ * the deleted invoices never existed. An older number can't be reused (later invoices already
+ * follow it), so it stays unused. Returns whether the number was freed.
+ */
+export async function deleteOrder(order: Order): Promise<{ numberFreed: boolean }> {
+  await db.orders.delete(order.id);
+
+  const parsed = parseInvoiceNumber(order.invoiceNumber);
+  if (!parsed) return { numberFreed: false };
+
+  const remaining = (await db.orders.list())
+    .map((o) => parseInvoiceNumber(o.invoiceNumber))
+    .filter((p) => p?.year === parsed.year)
+    .map((p) => p!.seq);
+  const highest = Math.max(0, ...remaining);
+  if (highest > parsed.seq) return { numberFreed: false };
+
+  // Only if no order took a newer number in the meantime.
+  const numberFreed = await db.counters.rewind(counterKey(parsed.year), parsed.seq, highest);
+  return { numberFreed };
 }
 
 /**

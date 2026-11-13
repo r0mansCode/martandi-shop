@@ -26,6 +26,18 @@ export const STATUS_ACTION_LABEL: Record<OrderStatus, string> = {
   cancelled: "Atcelt pasūtījumu",
 };
 
+/** Compact button text for the orders table rows. */
+export const STATUS_SHORT_ACTION: Record<OrderStatus, string> = {
+  awaiting_payment: "",
+  paid: "Apmaksāts",
+  ready_for_pickup: "Gatavs",
+  collected: "Izsniegts",
+  cancelled: "Atcelt",
+};
+
+/** Statuses that count as revenue: the money has arrived. */
+export const PAID_STATUSES: OrderStatus[] = ["paid", "ready_for_pickup", "collected"];
+
 /** Timestamp field set when an order enters a status. */
 export const STATUS_TIMESTAMP: Partial<Record<OrderStatus, keyof Order>> = {
   paid: "paidAt",
@@ -33,6 +45,14 @@ export const STATUS_TIMESTAMP: Partial<Record<OrderStatus, keyof Order>> = {
   collected: "collectedAt",
   cancelled: "cancelledAt",
 };
+
+/** Confirmation text before deleting; warns when the customer already has the invoice. */
+export const deleteConfirmText = (order: Order) =>
+  `Dzēst pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.` +
+  (order.invoiceEmailedAt
+    ? "\n\nRēķins jau ir nosūtīts klientam. Ja šis bija jaunākais rēķins, tā numurs tiks piešķirts nākamajam" +
+      " pasūtījumam, un diviem rēķiniem būs vienāds numurs."
+    : "");
 
 export const isOverdue = (order: Order, now = Date.now()) =>
   order.status === "awaiting_payment" && Date.parse(order.dueDate) < now;

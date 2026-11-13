@@ -118,12 +118,22 @@ export const mockDb: Db = {
       (await load()).orders.toSorted((a, b) => b.createdAt.localeCompare(a.createdAt)),
     getById: async (id) => (await load()).orders.find((o) => o.id === id) ?? null,
     put: (order) => mutate((d) => upsert(d.orders, order)),
+    delete: (id) =>
+      mutate((d) => {
+        d.orders = d.orders.filter((o) => o.id !== id);
+      }),
   },
   counters: {
     next: (key) =>
       mutate((d) => {
         d.counters[key] = (d.counters[key] ?? 0) + 1;
         return d.counters[key];
+      }),
+    rewind: (key, expected, value) =>
+      mutate((d) => {
+        if ((d.counters[key] ?? 0) !== expected) return false;
+        d.counters[key] = value;
+        return true;
       }),
   },
 };
