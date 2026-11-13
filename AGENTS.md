@@ -126,6 +126,7 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
   - Show feedback through `?zina=` query messages (see `lib/order-messages.ts`).
 - **Accessibility:** icon buttons get `aria-label` in Latvian. Live counters and status use `aria-live`. Drag-and-drop also has a keyboard path.
 - **Dates:** use the helpers in `lib/format.ts` (`formatDate`, `formatDateTime`, `toDayKey`), which are always in Riga time. Don't call `Date.now()` during render; it fails the react-hooks purity lint.
+- **Reusable components:** when the same UI or behaviour shows up in a second place, extract one component and use it in both, so they can't drift apart. For example, `components/cart/AddToCartButton` serves both the product cards and the product page. Keep it simple: a small prop for real differences (e.g. `size`) is fine, but don't add config objects, render props or generic abstractions for cases that don't exist yet. A one-off stays inline.
 - **Comments:** explain *why*, briefly. Keep files small and focused, and don't add dependencies casually. The goal is a lightweight, fast shop.
 
 ## Development commands
