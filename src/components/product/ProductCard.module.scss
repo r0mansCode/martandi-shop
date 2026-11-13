@@ -14,13 +14,59 @@
   }
 }
 
+.grid > li {
+  display: flex;
+}
+
+// Card: link (image + text) on top, cart button pinned to the bottom so buttons line up
+// across a row even when names wrap to two lines.
 .card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.link {
   display: block;
+  flex: 1;
 
   &:hover .name {
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+}
+
+.cartButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  width: 100%;
+  height: 2.75rem;
+  margin-top: 0.875rem;
+  padding-inline: 0.75rem;
+  border: 1px solid var(--color-fg);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  white-space: nowrap;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
+
+  &:hover {
+    background: var(--color-fg);
+    color: #fff;
+  }
+}
+
+.cartButtonAdded,
+.cartButtonAdded:hover {
+  border-color: var(--color-success);
+  background: var(--color-success);
+  color: #fff;
 }
 
 .tile {
@@ -36,7 +82,7 @@
   mix-blend-mode: multiply;
   transition: transform 0.3s ease;
 
-  .card:hover & {
+  .link:hover & {
     transform: scale(1.03);
   }
 }

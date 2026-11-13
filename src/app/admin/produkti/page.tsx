@@ -64,7 +64,7 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
       </form>
 
       <div className={a.tableWrap}>
-        <table className={a.table}>
+        <table className={`${a.table} ${a.clickable}`}>
           <thead>
             <tr>
               <th aria-label="Attēls" />
@@ -86,7 +86,9 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
                   )}
                 </td>
                 <td>
-                  <Link href={`/admin/produkti/${p.id}`}>{p.name}</Link>
+                  <Link href={`/admin/produkti/${p.id}`} className={a.rowLink}>
+                    {p.name}
+                  </Link>
                 </td>
                 <td>{categoryName.get(p.categoryId) ?? "—"}</td>
                 <td>{priceRange(p)}</td>

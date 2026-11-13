@@ -78,6 +78,41 @@
   }
 }
 
+// Clickable rows: put .rowLink on the row's main link and .clickable on the table. The
+// link's ::after stretches over the whole row, so clicking anywhere opens it while it
+// stays a real link (keyboard, middle-click, "open in new tab").
+
+.clickable tbody tr {
+  position: relative;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: var(--color-tile);
+  }
+
+  &:focus-within {
+    background: var(--color-tile);
+  }
+}
+
+.rowLink {
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+/** Controls inside a clickable row (buttons, handles) sit above the stretched link. */
+.aboveRow {
+  position: relative;
+  z-index: 1;
+}
+
 .thumb {
   width: 2.5rem;
   height: 2.5rem;

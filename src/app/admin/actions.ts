@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { createUploadUrl } from "@/server/images";
@@ -129,6 +130,53 @@ export async function saveCategory(_prev: FormState, formData: FormData): Promis
 export type ImageUpload = { uploadUrl: string; headers: Record<string, string>; url: string } | { error: string };
 
 /** Step 1 of an upload: a short-lived URL the browser PUTs the file to. Saving the product attaches it. */
+/**
+ * Saves a new category order from the drag-and-drop list: `ids` top to bottom become
+ * sortOrder 1, 2, 3… Only categories whose position changed are written.
+ */
+export async function reorderCategories(ids: string[]): Promise<{ ok: boolean; message: string }> {
+  await requireAdmin();
+
+  const categories = await db.categories.list();
+  const known = new Set(categories.map((c) => c.id));
+  if (
+    !Array.isArray(ids) ||
+    ids.length !== categories.length ||
+    new Set(ids).size !== ids.length ||
+    !ids.every((id) => typeof id === "string" && known.has(id))
+  ) {
+    return { ok: false, message: "Kategoriju saraksts ir mainījies. Pārlādējiet lapu." };
+  }
+
+  const byId = new Map(categories.map((c) => [c.id, c]));
+  await Promise.all(
+    ids.map((id, i) => {
+      const category = byId.get(id)!;
+      return category.sortOrder === i + 1 ? null : db.categories.put({ ...category, sortOrder: i + 1 });
+    }),
+  );
+
+  refreshStorefront();
+  revalidatePath("/admin/kategorijas");
+  return { ok: true, message: "Secība saglabāta." };
+}
+
+/** Deletes an empty category. Refused while products still use it (they'd lose their category). */
+export async function deleteCategory(id: string) {
+  await requireAdmin();
+
+  const category = await db.categories.getById(id);
+  if (!category) redirect("/admin/kategorijas");
+
+  const inUse = (await db.products.list()).filter((p) => p.categoryId === id).length;
+  if (inUse > 0) redirect(`/admin/kategorijas?zina=nav-tuksa&kategorija=${encodeURIComponent(category.name)}&skaits=${inUse}`);
+
+  await db.categories.delete(id);
+  refreshStorefront();
+  revalidatePath("/admin/kategorijas");
+  redirect(`/admin/kategorijas?zina=dzesta&kategorija=${encodeURIComponent(category.name)}`);
+}
+
 export async function createImageUpload(productId: string, type: string, size: number): Promise<ImageUpload> {
   await requireAdmin();
   if (!isImageType(type)) return { error: "Atļauti tikai JPEG, PNG vai WebP attēli." };

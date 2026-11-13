@@ -15,7 +15,7 @@ import {
 import { ORDER_MESSAGES } from "@/lib/order-messages";
 import { site } from "@/config/site";
 import { removeOrder, resendInvoice, setOrderStatus } from "../actions";
-import { ConfirmButton } from "../ConfirmButton";
+import { ConfirmButton } from "../../ConfirmButton";
 import a from "../../admin.module.scss";
 import o from "../orders.module.scss";
 

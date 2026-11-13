@@ -12,6 +12,9 @@ export type ProductCardData = {
   variantCount: number;
   /** Label of the only active variant, e.g. "0,7 l"; null when there are several. */
   singleVariantLabel: string | null;
+  /** The only active variant, so the card can add it to the cart directly; null when there are several. */
+  quickAdd: { variantId: string; label: string; priceCents: number; image: string | null } | null;
+  isAlcohol: boolean;
   badge?: ProductBadge;
   abv?: number;
   country?: string;
@@ -21,6 +24,7 @@ export type ProductCardData = {
 /** Only call for visible products (they always have an active variant). */
 export function toCardData(p: Product): ProductCardData {
   const variants = activeVariants(p);
+  const only = variants.length === 1 ? variants[0] : null;
   return {
     id: p.id,
     slug: p.slug,
@@ -29,7 +33,16 @@ export function toCardData(p: Product): ProductCardData {
     image: p.images[0] ?? null,
     fromPriceCents: fromPriceCents(p) ?? 0,
     variantCount: variants.length,
-    singleVariantLabel: variants.length === 1 ? variants[0].label : null,
+    singleVariantLabel: only?.label ?? null,
+    quickAdd: only
+      ? {
+          variantId: only.id,
+          label: only.label,
+          priceCents: only.priceCents,
+          image: only.image ?? p.images[0]?.url ?? null,
+        }
+      : null,
+    isAlcohol: p.isAlcohol,
     badge: p.badge,
     abv: p.abv,
     country: p.country,

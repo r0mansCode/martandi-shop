@@ -1,0 +1,103 @@
+.status {
+  min-height: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.table {
+  td {
+    padding-block: 0.5rem;
+  }
+
+  tbody tr {
+    cursor: pointer;
+  }
+}
+
+.dragging {
+  opacity: 0.4;
+}
+
+.handleCell {
+  width: 2.25rem;
+}
+
+.handle {
+  display: grid;
+  place-items: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  background: none;
+  color: var(--color-muted);
+  font-size: 1.125rem;
+  line-height: 1;
+  cursor: grab;
+
+  &:hover,
+  &:focus-visible {
+    background: var(--color-line);
+    color: var(--color-fg);
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.actions {
+  width: 1%;
+  text-align: right !important;
+}
+
+.delete {
+  padding: 0.25rem 0.625rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: none;
+  color: #b3261e;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    border-color: #b3261e;
+    background: #fbeceb;
+  }
+
+  &:disabled {
+    color: var(--color-muted);
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.dangerZone {
+  max-width: 48rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--color-line);
+}
+
+.deleteButton {
+  border-color: #b3261e;
+  color: #b3261e;
+
+  &:hover {
+    background: #b3261e;
+    color: #fff;
+  }
+}
+
+.message {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-success);
+  background: #eef6ef;
+}
+
+.messageError {
+  border-left-color: #b3261e;
+  background: #fbeceb;
+}

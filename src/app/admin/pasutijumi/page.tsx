@@ -17,7 +17,7 @@ import type { Order, OrderStatus } from "@/lib/types";
 import { site } from "@/config/site";
 import { removeOrder, setOrderStatus } from "./actions";
 import { DownloadIcon } from "@/components/icons";
-import { ConfirmButton } from "./ConfirmButton";
+import { ConfirmButton } from "../ConfirmButton";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
 
