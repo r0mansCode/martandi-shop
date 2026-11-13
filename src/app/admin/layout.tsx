@@ -26,6 +26,10 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
             Veikals ↗
           </Link>
         </nav>
+        {/* Plain <a>: an API route that redirects to Cognito, not a page to prefetch. */}
+        <a href="/api/auth/login?atslega=1&next=/admin" className={s.passkey}>
+          Pievienot piekļuves atslēgu
+        </a>
         <form action="/api/auth/logout" method="post">
           <button type="submit" className={s.logout}>
             Iziet

@@ -40,7 +40,7 @@ Business rules that shape the code:
 | Images | S3 bucket `martandi-shop-images` behind CloudFront (`NEXT_PUBLIC_IMAGES_URL`), uploaded from the admin via presigned PUT. Seed images are in `public/products/` |
 | Email | Resend (domain tavidzerieni.lv, sender `veikals@tavidzerieni.lv`). The mailbox is on Zoho Mail |
 | PDF | PDFKit with Roboto from `assets/fonts/`. It is a `serverExternalPackages` entry |
-| Admin auth | Cognito user pool `martandi-shop-admin`: managed login, auth code + PKCE, MFA on, no self-signup. Users must be in the group **`admin`** |
+| Admin auth | Cognito user pool `martandi-shop-admin`: managed login, auth code + PKCE, no self-signup. Users must be in the group **`admin`**. MFA is required; a passkey (user verification required) counts as MFA on its own, otherwise password + email code or TOTP. Admin-created users are never prompted for a passkey, so the admin header links to `/api/auth/login?atslega=1` (Cognito's `/passkeys/add`). Cognito email goes through SES (`no-reply@tavidzerieni.lv`, domain identity in eu-north-1), separate from Resend. Password recovery is admin-only, which Cognito requires for email MFA |
 | Hosting | AWS Amplify app `d38a541mf8rmxo` (eu-north-1). Pushing `main` deploys automatically. The compute role is `martandi-shop-compute` |
 | DNS | Route 53 hosted zone `Z0178077PFG1OW4TNS85`, with Zoho MX/SPF/DKIM/DMARC and Resend DKIM/return-path records |
 

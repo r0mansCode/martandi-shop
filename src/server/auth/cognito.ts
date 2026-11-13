@@ -67,9 +67,14 @@ export async function createPkce() {
   return { verifier: verifierValue, challenge, state: base64url(crypto.getRandomValues(new Uint8Array(16))) };
 }
 
-export function authorizeUrl(state: string, challenge: string) {
+/**
+ * Managed login URL. With addPasskey, Cognito first shows its passkey registration page
+ * (it needs the user's Cognito session and signs them in if there is none), then
+ * redirects to the callback with a code just like a normal sign-in.
+ */
+export function authorizeUrl(state: string, challenge: string, addPasskey = false) {
   const { clientId, domain } = config();
-  const url = new URL(`${domain}/oauth2/authorize`);
+  const url = new URL(`${domain}/${addPasskey ? "passkeys/add" : "oauth2/authorize"}`);
   url.search = new URLSearchParams({
     response_type: "code",
     client_id: clientId,
