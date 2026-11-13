@@ -59,6 +59,12 @@ export const CloseIcon =(p: SVGProps<SVGSVGElement>) => (
   </Icon>
 );
 
+export const DownloadIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="M12 4v11M7 10l5 5 5-5M5 20h14" />
+  </Icon>
+);
+
 export const StoreIcon = (p: SVGProps<SVGSVGElement>) => (
   <Icon {...p}>
     <path d="M4 10v10h16V10M3 10l2-6h14l2 6M3 10h18M9 20v-5h6v5" />

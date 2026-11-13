@@ -103,6 +103,8 @@ export type Order = {
   paymentMethod: PaymentMethod;
   /** When the invoice email was accepted by the mail provider; unset if sending failed. */
   invoiceEmailedAt?: string;
+  /** When the customer was emailed about each status change (paid, ready, collected). */
+  statusEmailedAt?: Partial<Record<OrderStatus, string>>;
   paidAt?: string;
   readyAt?: string;
   collectedAt?: string;

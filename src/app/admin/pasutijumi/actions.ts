@@ -4,7 +4,8 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
-import { sendInvoice } from "@/server/send-invoice";
+import { sendInvoice, sendStatusEmail } from "@/server/customer-emails";
+import { isNotifiedStatus } from "@/server/emails/order-status";
 import { deleteOrder } from "@/server/orders";
 import { NEXT_STATUSES, STATUS_TIMESTAMP } from "@/lib/order-status";
 import type { OrderStatus } from "@/lib/types";
@@ -33,10 +34,23 @@ export async function setOrderStatus(orderId: string, status: OrderStatus, retur
   }
 
   const stamp = STATUS_TIMESTAMP[status];
-  await db.orders.put({ ...order, status, ...(stamp ? { [stamp]: new Date().toISOString() } : {}) });
+  const updated = { ...order, status, ...(stamp ? { [stamp]: new Date().toISOString() } : {}) };
+  await db.orders.put(updated);
+
+  // Tell the customer. A failed email doesn't undo the status change; the message says so.
+  let message = "statuss";
+  if (isNotifiedStatus(status)) {
+    try {
+      await sendStatusEmail(updated);
+      message = "statuss-epasts";
+    } catch (err) {
+      console.error(`[admin] Status email for ${order.invoiceNumber} (${status}) failed`, err);
+      message = "statuss-epasts-kluda";
+    }
+  }
 
   revalidatePath("/admin", "layout");
-  redirect(back(returnTo, orderPath(orderId), "statuss"));
+  redirect(back(returnTo, orderPath(orderId), message));
 }
 
 export async function removeOrder(orderId: string, returnTo?: string) {

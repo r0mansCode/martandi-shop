@@ -15,7 +15,8 @@ import {
 import { ORDER_MESSAGES } from "@/lib/order-messages";
 import type { Order, OrderStatus } from "@/lib/types";
 import { site } from "@/config/site";
-import { removeOrder, resendInvoice, setOrderStatus } from "./actions";
+import { removeOrder, setOrderStatus } from "./actions";
+import { DownloadIcon } from "@/components/icons";
 import { ConfirmButton } from "./ConfirmButton";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
@@ -25,6 +26,18 @@ export const metadata: Metadata = { title: "Pasūtījumi" };
 const STATUSES = Object.keys(ORDER_STATUS_LABEL) as OrderStatus[];
 const DAY_MS = 24 * 60 * 60 * 1000;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+// Items column: at most this many lines, each shortened in the middle so the product's
+// start and the "0,7 l × 2" end stay readable. The full text is in the tooltip.
+const MAX_ITEMS_SHOWN = 5;
+const ITEM_TEXT_MAX = 34;
+
+function truncateMiddle(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const tail = Math.floor((max - 1) / 2.4);
+  const head = max - 1 - tail;
+  return `${text.slice(0, head).trimEnd()}…${text.slice(-tail).trimStart()}`;
+}
 
 type Params = Awaited<PageProps<"/admin/pasutijumi">["searchParams"]>;
 const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
@@ -153,11 +166,21 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                 <td className={o.nowrap}>{order.customer.phone}</td>
                 <td>
                   <ul className={o.itemList}>
-                    {order.items.map((item) => (
-                      <li key={item.variantId}>
-                        {item.name}, {item.variantLabel} × {item.qty}
+                    {order.items.slice(0, MAX_ITEMS_SHOWN).map((item) => {
+                      const text = `${item.name}, ${item.variantLabel} × ${item.qty}`;
+                      return (
+                        <li key={item.variantId} title={text}>
+                          {truncateMiddle(text, ITEM_TEXT_MAX)}
+                        </li>
+                      );
+                    })}
+                    {order.items.length > MAX_ITEMS_SHOWN && (
+                      <li className={o.moreItems}>
+                        <Link href={`/admin/pasutijumi/${order.id}`}>
+                          + vēl {order.items.length - MAX_ITEMS_SHOWN}
+                        </Link>
                       </li>
-                    ))}
+                    )}
                   </ul>
                 </td>
                 <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
@@ -192,15 +215,17 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                         )}
                       </form>
                     ))}
-                    {!order.invoiceEmailedAt && order.status !== "cancelled" && (
-                      <form action={resendInvoice.bind(null, order.id, returnTo)}>
-                        <button type="submit" className={o.linkAction}>
-                          Sūtīt rēķinu
-                        </button>
-                      </form>
-                    )}
                     <a href={`/admin/pasutijumi/${order.id}/rekins`} target="_blank" rel="noopener" className={o.linkAction}>
                       PDF
+                    </a>
+                    <a
+                      href={`/admin/pasutijumi/${order.id}/rekins?lejupieladet=1`}
+                      download
+                      className={`${o.linkAction} ${o.iconAction}`}
+                      title={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
+                      aria-label={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
+                    >
+                      <DownloadIcon width={16} height={16} />
                     </a>
                     <form action={removeOrder.bind(null, order.id, returnTo)}>
                       <ConfirmButton confirm={deleteConfirmText(order)} className={`${o.linkAction} ${o.linkDanger}`}>

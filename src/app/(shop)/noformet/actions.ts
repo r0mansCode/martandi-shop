@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { checkoutInput, type CheckoutState } from "@/lib/checkout-input";
 import { createOrder } from "@/server/orders";
-import { sendInvoice } from "@/server/send-invoice";
+import { sendInvoice } from "@/server/customer-emails";
 import { rateLimit } from "@/server/rate-limit";
 
 const ORDERS_PER_WINDOW = 10;

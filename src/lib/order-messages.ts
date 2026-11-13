@@ -1,6 +1,11 @@
 /** Feedback after an admin order action, keyed by the ?zina=… value the action redirects with. */
 export const ORDER_MESSAGES: Record<string, { text: string; error?: boolean }> = {
   statuss: { text: "Statuss atjaunināts." },
+  "statuss-epasts": { text: "Statuss atjaunināts, klientam nosūtīts e-pasts." },
+  "statuss-epasts-kluda": {
+    text: "Statuss atjaunināts, bet e-pastu klientam neizdevās nosūtīt. Sazinieties ar klientu personīgi.",
+    error: true,
+  },
   "statuss-nederigs": { text: "Šo statusu vairs nevar iestatīt – pārlādējiet lapu.", error: true },
   "rekins-nosutits": { text: "Rēķins nosūtīts atkārtoti." },
   "rekins-kluda": { text: "Rēķinu neizdevās nosūtīt. Mēģiniet vēlreiz vēlāk.", error: true },

@@ -3,6 +3,7 @@ import { db } from "./db";
 import { sendEmail } from "./email";
 import { invoiceFilename, renderInvoicePdf } from "./invoice-pdf";
 import { orderInvoiceEmail } from "./emails/order-invoice";
+import { isNotifiedStatus, orderStatusEmail } from "./emails/order-status";
 import type { Order } from "@/lib/types";
 
 /**
@@ -25,6 +26,32 @@ export async function sendInvoice(order: Order, { resend = false } = {}): Promis
   });
 
   const updated = { ...order, invoiceEmailedAt: new Date().toISOString() };
+  await db.orders.put(updated);
+  return updated;
+}
+
+/**
+ * Tells the customer about a status change (paid / ready for pickup / collected) and records
+ * it in `statusEmailedAt`. Other statuses send nothing. Throws if the send fails.
+ */
+export async function sendStatusEmail(order: Order): Promise<Order> {
+  const status = order.status;
+  if (!isNotifiedStatus(status)) return order;
+
+  const { subject, text, html } = orderStatusEmail(order, status);
+  await sendEmail({
+    to: order.customer.email,
+    subject,
+    text,
+    html,
+    // A status is only entered once, so one email per order and status.
+    idempotencyKey: `status-${order.id}-${status}`,
+  });
+
+  const updated = {
+    ...order,
+    statusEmailedAt: { ...order.statusEmailedAt, [status]: new Date().toISOString() },
+  };
   await db.orders.put(updated);
   return updated;
 }

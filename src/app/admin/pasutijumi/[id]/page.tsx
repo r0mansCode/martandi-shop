@@ -108,15 +108,24 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
             </div>
             <div>
               <dt>Apmaksāts</dt>
-              <dd>{dateTime(order.paidAt)}</dd>
+              <dd>
+                {dateTime(order.paidAt)}
+                <EmailedMark at={order.statusEmailedAt?.paid} />
+              </dd>
             </div>
             <div>
               <dt>Gatavs saņemšanai</dt>
-              <dd>{dateTime(order.readyAt)}</dd>
+              <dd>
+                {dateTime(order.readyAt)}
+                <EmailedMark at={order.statusEmailedAt?.ready_for_pickup} />
+              </dd>
             </div>
             <div>
               <dt>Izsniegts</dt>
-              <dd>{dateTime(order.collectedAt)}</dd>
+              <dd>
+                {dateTime(order.collectedAt)}
+                <EmailedMark at={order.statusEmailedAt?.collected} />
+              </dd>
             </div>
             {order.cancelledAt && (
               <div>
@@ -205,5 +214,16 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
         </form>
       </div>
     </>
+  );
+}
+
+/** Small "emailed" marker in the history, with the send time as a tooltip. */
+function EmailedMark({ at }: { at?: string }) {
+  if (!at) return null;
+  return (
+    <span className={o.emailed} title={`Klientam nosūtīts e-pasts ${formatDateTime(at)}`}>
+      {" "}
+      · e-pasts ✓
+    </span>
   );
 }
