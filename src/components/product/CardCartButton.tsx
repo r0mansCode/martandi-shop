@@ -23,6 +23,7 @@ export function CardCartButton({ product }: { product: ProductCardData & { quick
         name: product.name,
         variantLabel: quickAdd.label,
         priceCents: quickAdd.priceCents,
+        depositCents: quickAdd.depositCents,
         image: quickAdd.image,
         isAlcohol: product.isAlcohol,
       },

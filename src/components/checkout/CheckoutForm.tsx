@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { startTransition, useActionState, useEffect, useId, useState, useSyncExternalStore } from "react";
 import { applyServerCart, clearCart, useCart } from "@/lib/cart";
-import { formatPrice, splitVat } from "@/lib/money";
+import { formatPrice, orderTotals } from "@/lib/money";
 import { plural } from "@/lib/format";
 import { initialCheckoutState, type CheckoutState } from "@/lib/checkout-input";
 import type { BuyerType } from "@/lib/types";
@@ -85,7 +85,7 @@ export function CheckoutForm() {
 
   const errors = state.status === "error" ? state.errors : {};
   const count = lines.reduce((n, l) => n + l.qty, 0);
-  const totals = splitVat(lines.reduce((sum, l) => sum + l.priceCents * l.qty, 0));
+  const totals = orderTotals(lines);
   const hasAlcohol = lines.some((l) => l.isAlcohol);
 
   const onSubmit = (e: React.FormEvent) => {
@@ -103,7 +103,12 @@ export function CheckoutForm() {
         customer,
         ...(buyerType === "company" ? { company } : {}),
         ageConfirmed,
-        lines: lines.map((l) => ({ variantId: l.variantId, qty: l.qty, priceCents: l.priceCents })),
+        lines: lines.map((l) => ({
+          variantId: l.variantId,
+          qty: l.qty,
+          priceCents: l.priceCents,
+          depositCents: l.depositCents,
+        })),
         website,
       }),
     );
@@ -249,8 +254,14 @@ export function CheckoutForm() {
               <dt>
                 Starpsumma ({count} {plural(count, "prece", "preces")})
               </dt>
-              <dd>{formatPrice(totals.grossCents)}</dd>
+              <dd>{formatPrice(totals.netCents + totals.vatCents)}</dd>
             </div>
+            {totals.depositCents && (
+              <div>
+                <dt>Depozīts (bez PVN)</dt>
+                <dd>{formatPrice(totals.depositCents)}</dd>
+              </div>
+            )}
             <div>
               <dt>Saņemšana veikalā</dt>
               <dd>Bezmaksas</dd>

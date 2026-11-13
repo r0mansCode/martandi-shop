@@ -41,8 +41,15 @@ export function itemsTable(order: Order): string {
       </tr>`,
     )
     .join("");
+  const deposit = order.totals.depositCents
+    ? `<tr>
+      <td style="${cell}">Depozīts par iepakojumu<br><span style="color:#757575;font-size:13px">bez PVN</span></td>
+      <td style="${cell}text-align:right;white-space:nowrap;vertical-align:top">${formatPrice(order.totals.depositCents)}</td>
+    </tr>`
+    : "";
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
     ${rows}
+    ${deposit}
     <tr>
       <td style="padding:10px 0 0;font-weight:700">Kopā</td>
       <td style="padding:10px 0 0;text-align:right;font-weight:700;white-space:nowrap">${formatPrice(order.totals.grossCents)}</td>
@@ -57,6 +64,7 @@ export function itemsTable(order: Order): string {
 /** Plain-text version of the items, for the text part of an email. */
 export const itemsText = (order: Order) => [
   ...order.items.map((i) => `${i.name}, ${i.variantLabel} × ${i.qty} – ${formatPrice(i.unitPriceCents * i.qty)}`),
+  ...(order.totals.depositCents ? [`Depozīts par iepakojumu (bez PVN) – ${formatPrice(order.totals.depositCents)}`] : []),
   `Kopā: ${formatPrice(order.totals.grossCents)} (t. sk. PVN ${formatPrice(order.totals.vatCents)})`,
 ];
 

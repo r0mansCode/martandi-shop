@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useSyncExternalStore } from "react";
 import { MAX_QTY, removeLine, setQty, useCart, type CartLine } from "@/lib/cart";
-import { formatPrice, splitVat } from "@/lib/money";
+import { formatPrice, orderTotals } from "@/lib/money";
 import { plural } from "@/lib/format";
 import type { PaymentMethod } from "@/lib/types";
 import { pickup, site } from "@/config/site";
@@ -31,7 +31,7 @@ export function CartView() {
   if (!hydrated) return <div className={s.placeholder} />;
 
   const count = lines.reduce((n, l) => n + l.qty, 0);
-  const totals = splitVat(lines.reduce((sum, l) => sum + l.priceCents * l.qty, 0));
+  const totals = orderTotals(lines);
   const hasAlcohol = lines.some((l) => l.isAlcohol);
   const items = `${count} ${plural(count, "prece", "preces")}`;
 
@@ -85,8 +85,14 @@ export function CartView() {
           <dl className={s.rows}>
             <div>
               <dt>Starpsumma ({items})</dt>
-              <dd>{formatPrice(totals.grossCents)}</dd>
+              <dd>{formatPrice(totals.netCents + totals.vatCents)}</dd>
             </div>
+            {totals.depositCents && (
+              <div>
+                <dt>Depozīts (bez PVN)</dt>
+                <dd>{formatPrice(totals.depositCents)}</dd>
+              </div>
+            )}
             <div>
               <dt>Saņemšana veikalā</dt>
               <dd>Bezmaksas</dd>
@@ -153,6 +159,9 @@ function CartRow({ line }: { line: CartLine }) {
         </h3>
         <p className={s.muted}>{line.variantLabel}</p>
         {line.qty > 1 && <p className={s.muted}>{formatPrice(line.priceCents)} / gab.</p>}
+        {line.depositCents ? (
+          <p className={s.muted}>+ depozīts {formatPrice(line.depositCents * line.qty)}</p>
+        ) : null}
       </div>
 
       <button

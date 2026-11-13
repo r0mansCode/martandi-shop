@@ -223,11 +223,17 @@ textarea.input {
   gap: 0.5rem;
 }
 
+// Flex, not a fixed grid: the deposit amount field only shows when the deposit is on.
 .variant {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto auto;
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.5rem;
+
+  > .field {
+    flex: 1 1 7rem;
+    min-width: 0;
+  }
 }
 
 // Lines the checkbox and remove button up with the inputs (below their labels).

@@ -148,8 +148,23 @@ function drawItems(doc: Doc, order: Order) {
   drawTableHeader(doc);
   const bottomLimit = doc.page.height - doc.page.margins.bottom - 40;
 
-  order.items.forEach((item, i) => {
-    const name = `${item.name}, ${item.variantLabel}`;
+  // The packaging deposit is a line of its own right under its product: it is VAT-free (0%)
+  // and must not read as part of the product's VAT-inclusive price.
+  const rows = order.items.flatMap((item) => [
+    { name: `${item.name}, ${item.variantLabel}`, qty: item.qty, unitCents: item.unitPriceCents },
+    ...(item.depositCents
+      ? [
+          {
+            name: `Depozīts par iepakojumu (PVN 0%) – ${item.name}, ${item.variantLabel}`,
+            qty: item.qty,
+            unitCents: item.depositCents,
+          },
+        ]
+      : []),
+  ]);
+
+  rows.forEach((row, i) => {
+    const { name } = row;
     doc.font("regular").fontSize(10);
     const height = Math.max(doc.heightOfString(name, { width: COL.name.w }), 12);
 
@@ -163,9 +178,9 @@ function drawItems(doc: Doc, order: Order) {
     doc.font("regular").fontSize(10).fillColor(TEXT);
     doc.text(String(i + 1), COL.no.x, y, { width: COL.no.w });
     doc.text(name, COL.name.x, y, { width: COL.name.w });
-    doc.text(String(item.qty), COL.qty.x, y, { width: COL.qty.w, align: "right" });
-    doc.text(formatPrice(item.unitPriceCents), COL.price.x, y, { width: COL.price.w, align: "right" });
-    doc.text(formatPrice(item.unitPriceCents * item.qty), COL.total.x, y, { width: COL.total.w, align: "right" });
+    doc.text(String(row.qty), COL.qty.x, y, { width: COL.qty.w, align: "right" });
+    doc.text(formatPrice(row.unitCents), COL.price.x, y, { width: COL.price.w, align: "right" });
+    doc.text(formatPrice(row.unitCents * row.qty), COL.total.x, y, { width: COL.total.w, align: "right" });
 
     doc.y = y + height + 6;
     rule(doc, doc.y);
@@ -175,14 +190,17 @@ function drawItems(doc: Doc, order: Order) {
 
 function drawTotals(doc: Doc, order: Order) {
   // Keep the totals block together.
-  if (doc.y + 70 > doc.page.height - doc.page.margins.bottom) doc.addPage();
+  if (doc.y + 85 > doc.page.height - doc.page.margins.bottom) doc.addPage();
 
   const labelX = MARGIN + 230;
   const labelWidth = 170;
+  const { netCents, vatCents, depositCents, grossCents } = order.totals;
+  // Net + VAT covers the goods; the deposit is outside VAT, so it is its own row.
   const rows: [string, string, boolean][] = [
-    ["Summa bez PVN", formatPrice(order.totals.netCents), false],
-    [`PVN ${Math.round(site.vatRate * 100)}%`, formatPrice(order.totals.vatCents), false],
-    ["Kopā apmaksai", formatPrice(order.totals.grossCents), true],
+    [depositCents ? "Preces bez PVN" : "Summa bez PVN", formatPrice(netCents), false],
+    [`PVN ${Math.round(site.vatRate * 100)}%`, formatPrice(vatCents), false],
+    ...(depositCents ? [["Depozīts (PVN 0%)", formatPrice(depositCents), false] as [string, string, boolean]] : []),
+    ["Kopā apmaksai", formatPrice(grossCents), true],
   ];
 
   doc.y += 4;

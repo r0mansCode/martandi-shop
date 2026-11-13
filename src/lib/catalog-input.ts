@@ -43,6 +43,14 @@ export const variantInput = z.object({
     .regex(EURO, "Cena formātā 12,99")
     .refine((v) => euroToCents(v) > 0, "Cenai jābūt lielākai par 0"),
   active: z.boolean(),
+  /** Packaging deposit (0% VAT) on top of the price. */
+  hasDeposit: z.boolean(),
+  /** Deposit amount in euro; only checked when hasDeposit is on. */
+  deposit: z.string().trim(),
+}).superRefine((v, ctx) => {
+  if (!v.hasDeposit) return;
+  if (!EURO.test(v.deposit)) ctx.addIssue({ code: "custom", path: ["deposit"], message: "Depozīts formātā 0,10" });
+  else if (euroToCents(v.deposit) <= 0) ctx.addIssue({ code: "custom", path: ["deposit"], message: "Depozītam jābūt lielākam par 0" });
 });
 
 export const productInput = z

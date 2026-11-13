@@ -264,8 +264,10 @@ function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
     .filter(({ day }) => day >= from && day <= to)
     .toSorted((x, y) => y.day.localeCompare(x.day));
 
-  const sum = (key: "grossCents" | "netCents" | "vatCents") =>
-    sales.reduce((total, { order }) => total + order.totals[key], 0);
+  const sum = (key: "netCents" | "vatCents" | "depositCents") =>
+    sales.reduce((total, { order }) => total + (order.totals[key] ?? 0), 0);
+  // Packaging deposits are passed on, not revenue, so they are shown apart from it.
+  const deposits = sum("depositCents");
 
   const awaiting = orders.filter((order) => order.status === "awaiting_payment");
   const awaitingTotal = awaiting.reduce((total, order) => total + order.totals.grossCents, 0);
@@ -308,9 +310,10 @@ function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
         </div>
         <div>
           <dt>Ieņēmumi (ar PVN)</dt>
-          <dd>{formatPrice(sum("grossCents"))}</dd>
+          <dd>{formatPrice(sum("netCents") + sum("vatCents"))}</dd>
           <p className={a.muted}>
             bez PVN {formatPrice(sum("netCents"))} · PVN {Math.round(site.vatRate * 100)}% {formatPrice(sum("vatCents"))}
+            {deposits > 0 && ` · depozīts ${formatPrice(deposits)}`}
           </p>
         </div>
         <div>

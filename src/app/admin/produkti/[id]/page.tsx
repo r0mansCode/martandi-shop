@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { centsToEuro, type ProductFormValues } from "@/lib/catalog-input";
+import { site } from "@/config/site";
 import { ProductForm } from "./ProductForm";
 import a from "../../admin.module.scss";
 
@@ -37,6 +38,8 @@ export default async function EditProduct({ params }: PageProps<"/admin/produkti
       label: v.label,
       price: centsToEuro(v.priceCents),
       active: v.active,
+      hasDeposit: v.depositCents !== undefined,
+      deposit: centsToEuro(v.depositCents ?? site.defaultDepositCents),
     })),
     images: product.images.map((i) => ({ url: i.url, alt: i.alt })),
   };

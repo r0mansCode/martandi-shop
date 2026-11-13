@@ -78,6 +78,7 @@ export async function saveProduct(_prev: ProductFormState, formData: FormData): 
     active: v.active,
     // Variant photos aren't picked here yet; keep the one it had while that image still exists.
     image: v.id ? [known.get(v.id)?.image].find((url) => url && imageUrls.has(url)) : undefined,
+    depositCents: v.hasDeposit ? euroToCents(v.deposit) : undefined,
   }));
 
   const product: Product = {

@@ -22,6 +22,11 @@ export type Variant = {
   active: boolean;
   /** Optional variant-specific image (must also be in product.images). */
   image?: string;
+  /**
+   * Packaging deposit (depozīts) per unit, in euro cents; unset means none. VAT-free and charged
+   * on top of the price. Per variant rather than per product: sizes can come in different packaging.
+   */
+  depositCents?: number;
 };
 
 export type ProductStatus = "draft" | "published";
@@ -77,12 +82,18 @@ export type OrderItem = {
   name: string;
   variantLabel: string;
   unitPriceCents: number;
+  /** Packaging deposit per unit (0% VAT), charged on top of unitPriceCents. */
+  depositCents?: number;
   qty: number;
 };
 
 export type OrderTotals = {
+  /** Goods without VAT. netCents + vatCents is the VAT-inclusive goods total. */
   netCents: number;
   vatCents: number;
+  /** Packaging deposits, outside VAT; unset when the order has none. */
+  depositCents?: number;
+  /** Amount payable: goods with VAT plus deposits. */
   grossCents: number;
 };
 

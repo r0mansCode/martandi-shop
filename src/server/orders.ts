@@ -1,15 +1,15 @@
 import "server-only";
 import { db } from "./db";
-import { activeVariants, splitVat } from "@/lib/money";
+import { activeVariants, orderTotals } from "@/lib/money";
 import { MAX_QTY } from "@/lib/cart-limits";
-import type { CheckoutInput } from "@/lib/checkout-input";
+import type { CheckoutInput, LinePrice } from "@/lib/checkout-input";
 import type { Order, OrderItem, Product, Variant } from "@/lib/types";
 import { pickup, site } from "@/config/site";
 
 export type CreateOrderResult =
   | { kind: "created"; order: Order }
-  /** Some lines are gone or repriced; nothing was saved. */
-  | { kind: "cart_changed"; prices: Record<string, number>; removed: string[] }
+  /** Some lines are gone or repriced (price or deposit); nothing was saved. */
+  | { kind: "cart_changed"; prices: Record<string, LinePrice>; removed: string[] }
   | { kind: "age_required" };
 
 const DAY_MS = 24 * 60 * 60 * 1000;
@@ -65,10 +65,10 @@ export async function deleteOrder(order: Order): Promise<{ numberFreed: boolean 
 export async function createOrder(input: CheckoutInput, now = new Date()): Promise<CreateOrderResult> {
   // Same variant twice (e.g. two tabs) → one line.
   const quantities = new Map<string, number>();
-  const shownPrice = new Map<string, number>();
+  const shown = new Map<string, LinePrice>();
   for (const line of input.lines) {
     quantities.set(line.variantId, Math.min(MAX_QTY, (quantities.get(line.variantId) ?? 0) + line.qty));
-    shownPrice.set(line.variantId, line.priceCents);
+    shown.set(line.variantId, { priceCents: line.priceCents, depositCents: line.depositCents });
   }
 
   const available = new Map<string, { product: Product; variant: Variant }>();
@@ -78,11 +78,17 @@ export async function createOrder(input: CheckoutInput, now = new Date()): Promi
   }
 
   const removed: string[] = [];
-  const prices: Record<string, number> = {};
-  for (const [variantId, price] of shownPrice) {
+  const prices: Record<string, LinePrice> = {};
+  for (const [variantId, seen] of shown) {
     const match = available.get(variantId);
     if (!match) removed.push(variantId);
-    else if (match.variant.priceCents !== price) prices[variantId] = match.variant.priceCents;
+    else {
+      // A deposit added or changed since the cart was filled changes the total too.
+      const { priceCents, depositCents } = match.variant;
+      if (priceCents !== seen.priceCents || (depositCents ?? 0) !== (seen.depositCents ?? 0)) {
+        prices[variantId] = { priceCents, depositCents };
+      }
+    }
   }
   if (removed.length || Object.keys(prices).length) return { kind: "cart_changed", prices, removed };
 
@@ -96,9 +102,10 @@ export async function createOrder(input: CheckoutInput, now = new Date()): Promi
     name: product.name,
     variantLabel: variant.label,
     unitPriceCents: variant.priceCents,
+    ...(variant.depositCents ? { depositCents: variant.depositCents } : {}),
     qty,
   }));
-  const grossCents = items.reduce((sum, i) => sum + i.unitPriceCents * i.qty, 0);
+  const totals = orderTotals(items.map((i) => ({ priceCents: i.unitPriceCents, depositCents: i.depositCents, qty: i.qty })));
   const createdAt = now.toISOString();
 
   const order: Order = {
@@ -111,7 +118,7 @@ export async function createOrder(input: CheckoutInput, now = new Date()): Promi
     buyerType: input.buyerType,
     ...(input.buyerType === "company" ? { company: input.company } : {}),
     items,
-    totals: splitVat(grossCents),
+    totals,
     ...(hasAlcohol ? { ageConfirmedAt: createdAt } : {}),
     pickupLocation: pickup.address,
     paymentMethod: "bank_transfer",

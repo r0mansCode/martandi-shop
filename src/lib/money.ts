@@ -19,6 +19,17 @@ export function splitVat(grossCents: number, vatRate: number = site.vatRate): Or
   return { netCents, vatCents: grossCents - netCents, grossCents };
 }
 
+/**
+ * Order or cart totals. VAT applies to the goods only; the packaging deposit is VAT-free (0%),
+ * so it is added after the split and never goes through splitVat.
+ */
+export function orderTotals(lines: { priceCents: number; depositCents?: number; qty: number }[]): OrderTotals {
+  const goodsCents = lines.reduce((sum, l) => sum + l.priceCents * l.qty, 0);
+  const depositCents = lines.reduce((sum, l) => sum + (l.depositCents ?? 0) * l.qty, 0);
+  const goods = splitVat(goodsCents);
+  return depositCents > 0 ? { ...goods, depositCents, grossCents: goodsCents + depositCents } : goods;
+}
+
 export function activeVariants(product: Product) {
   return product.variants.filter((v) => v.active);
 }

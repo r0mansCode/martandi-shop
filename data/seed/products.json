@@ -3668,14 +3668,16 @@
         "label": "0,2 l",
         "priceCents": 179,
         "active": true,
-        "image": "/products/thomas-henry-pink-grapefruit-0-2-l.png"
+        "image": "/products/thomas-henry-pink-grapefruit-0-2-l.png",
+        "depositCents": 10
       },
       {
         "id": "p129-v2",
         "label": "0,75 l",
         "priceCents": 399,
         "active": true,
-        "image": "/products/thomas-henry-pink-grapefruit-0-75-l.png"
+        "image": "/products/thomas-henry-pink-grapefruit-0-75-l.png",
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T18:00:00.000Z",
@@ -3707,14 +3709,16 @@
         "label": "0,2 l",
         "priceCents": 179,
         "active": true,
-        "image": "/products/thomas-henry-mystic-mango-0-2-l.png"
+        "image": "/products/thomas-henry-mystic-mango-0-2-l.png",
+        "depositCents": 10
       },
       {
         "id": "p130-v2",
         "label": "0,75 l",
         "priceCents": 399,
         "active": true,
-        "image": "/products/thomas-henry-mystic-mango-0-75-l.png"
+        "image": "/products/thomas-henry-mystic-mango-0-75-l.png",
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T19:00:00.000Z",
@@ -3746,14 +3750,16 @@
         "label": "0,2 l",
         "priceCents": 179,
         "active": true,
-        "image": "/products/thomas-henry-spicy-ginger-beer-0-2-l.png"
+        "image": "/products/thomas-henry-spicy-ginger-beer-0-2-l.png",
+        "depositCents": 10
       },
       {
         "id": "p131-v2",
         "label": "0,75 l",
         "priceCents": 399,
         "active": true,
-        "image": "/products/thomas-henry-spicy-ginger-beer-0-75-l.png"
+        "image": "/products/thomas-henry-spicy-ginger-beer-0-75-l.png",
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T20:00:00.000Z",
@@ -3780,7 +3786,8 @@
         "id": "p132-v1",
         "label": "0,2 l",
         "priceCents": 179,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T21:00:00.000Z",
@@ -3807,7 +3814,8 @@
         "id": "p133-v1",
         "label": "0,2 l",
         "priceCents": 159,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T22:00:00.000Z",
@@ -3834,7 +3842,8 @@
         "id": "p134-v1",
         "label": "0,2 l",
         "priceCents": 139,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-06T23:00:00.000Z",
@@ -3861,7 +3870,8 @@
         "id": "p135-v1",
         "label": "0,2 l",
         "priceCents": 159,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-07T00:00:00.000Z",
@@ -3888,7 +3898,8 @@
         "id": "p136-v1",
         "label": "0,75 l",
         "priceCents": 399,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-07T01:00:00.000Z",
@@ -3916,7 +3927,8 @@
         "id": "p137-v1",
         "label": "0,2 l",
         "priceCents": 189,
-        "active": true
+        "active": true,
+        "depositCents": 10
       }
     ],
     "createdAt": "2026-09-07T02:00:00.000Z",

@@ -10,6 +10,8 @@ export const site = {
   paymentDueDays: 14,
   invoicePrefix: "MRT",
   minimumAge: 18,
+  /** Packaging deposit (depozīts) suggested when the admin turns it on for a variant; VAT-free. */
+  defaultDepositCents: 10,
   /** Shop mailbox (Zoho); also the sender of invoices, so replies land here. */
   email: "veikals@tavidzerieni.lv",
   emailFrom: "TaviDzērieni.lv <veikals@tavidzerieni.lv>",

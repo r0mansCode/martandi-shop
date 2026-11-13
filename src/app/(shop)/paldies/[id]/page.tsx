@@ -96,6 +96,14 @@ export default async function ThankYouPage({ params }: PageProps<"/paldies/[id]"
               <span>{formatPrice(item.unitPriceCents * item.qty)}</span>
             </li>
           ))}
+          {order.totals.depositCents && (
+            <li>
+              <span>
+                Depozīts par iepakojumu <span className={s.muted}>· bez PVN</span>
+              </span>
+              <span>{formatPrice(order.totals.depositCents)}</span>
+            </li>
+          )}
         </ul>
         <p className={s.total}>
           <span>Kopā (t. sk. PVN {formatPrice(order.totals.vatCents)})</span>

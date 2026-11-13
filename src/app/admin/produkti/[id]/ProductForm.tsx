@@ -2,7 +2,8 @@
 
 import { startTransition, useActionState, useState } from "react";
 import { saveProduct } from "../../actions";
-import { initialFormState, type ProductFormValues } from "@/lib/catalog-input";
+import { centsToEuro, initialFormState, type ProductFormValues } from "@/lib/catalog-input";
+import { site } from "@/config/site";
 import { ImagesField } from "./ImagesField";
 import a from "../../admin.module.scss";
 
@@ -134,7 +135,10 @@ export function ProductForm({ initial, categories }: Props) {
 
       <section className={a.section}>
         <h2>Tilpumi un cenas</h2>
-        <span className={a.hint}>Cenas ar PVN, eiro. Lai paslēptu tilpumu, noņemiet „Aktīvs”.</span>
+        <span className={a.hint}>
+          Cenas ar PVN, eiro. Lai paslēptu tilpumu, noņemiet „Aktīvs”. Depozīts par iepakojumu ir bez PVN un
+          tiek pieskaitīts cenai; rēķinā tas ir atsevišķa rinda.
+        </span>
         <div className={a.variants}>
           {values.variants.map((v, i) => (
             <div key={v.id || `new-${i}`} className={a.variant}>
@@ -163,6 +167,27 @@ export function ProductForm({ initial, categories }: Props) {
                 <input type="checkbox" checked={v.active} onChange={(e) => setVariant(i, { active: e.target.checked })} />
                 Aktīvs
               </label>
+              <label className={`${a.check} ${a.variantControl}`}>
+                <input
+                  type="checkbox"
+                  checked={v.hasDeposit}
+                  onChange={(e) => setVariant(i, { hasDeposit: e.target.checked })}
+                />
+                Depozīts
+              </label>
+              {v.hasDeposit && (
+                <label className={a.field}>
+                  <span>Depozīts, €</span>
+                  <input
+                    className={cls(`variants.${i}.deposit`)}
+                    inputMode="decimal"
+                    value={v.deposit}
+                    placeholder={centsToEuro(site.defaultDepositCents)}
+                    onChange={(e) => setVariant(i, { deposit: e.target.value })}
+                  />
+                  {err(`variants.${i}.deposit`) && <span className={a.error}>{err(`variants.${i}.deposit`)}</span>}
+                </label>
+              )}
               {/* Saved variants can only be deactivated: carts and orders may refer to them. */}
               {!v.id && (
                 <button
@@ -181,7 +206,14 @@ export function ProductForm({ initial, categories }: Props) {
           <button
             type="button"
             className={a.buttonSecondary}
-            onClick={() => set("variants", [...values.variants, { id: "", label: "", price: "", active: true }])}
+            onClick={() => set("variants", [...values.variants, {
+                id: "",
+                label: "",
+                price: "",
+                active: true,
+                hasDeposit: false,
+                deposit: centsToEuro(site.defaultDepositCents),
+              }])}
           >
             + Pievienot tilpumu
           </button>

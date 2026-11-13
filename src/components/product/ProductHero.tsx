@@ -58,6 +58,7 @@ export function ProductHero({ product, children }: Props) {
         name: product.name,
         variantLabel: variant.label,
         priceCents: variant.priceCents,
+        depositCents: variant.depositCents,
         image: variant.image ?? product.images[0]?.url ?? null,
         isAlcohol: product.isAlcohol,
       },
@@ -88,7 +89,10 @@ export function ProductHero({ product, children }: Props) {
         {product.badge && <p className={s.badge}>{product.badge}</p>}
         <h1 className={s.title}>{product.name}</h1>
         <p className={s.price}>{formatPrice(variant.priceCents)}</p>
-        <p className={s.vat}>Cena ar PVN</p>
+        <p className={s.vat}>
+          Cena ar PVN
+          {variant.depositCents ? ` + depozīts ${formatPrice(variant.depositCents)}` : ""}
+        </p>
 
         {product.variants.length > 1 ? (
           <fieldset className={s.variants}>

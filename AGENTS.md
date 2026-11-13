@@ -99,6 +99,8 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 
 **Money.** All amounts are **integer cents**. VAT is included in the price, and `splitVat(gross)` derives net and VAT once. Never do float euro arithmetic.
 
+**Packaging deposit (depozīts).** A variant can carry `depositCents` (admin checkbox per size; default `site.defaultDepositCents` = 10). It is VAT-free (0%) and charged on top of the price, so it never goes through `splitVat`: use `orderTotals(lines)`, which returns `netCents + vatCents` for the goods plus `depositCents`, and `grossCents` = amount payable. Order items snapshot the deposit. The invoice shows it as a separate row under its product; revenue in the orders summary excludes it. A changed deposit counts as a stale cart at checkout (`cart_changed`).
+
 **Environment on Amplify.** Console env vars exist only at build time. `amplify.yml` greps `^(DATA_SOURCE|DYNAMODB_|COGNITO_|IMAGES_|RESEND_|NEXT_PUBLIC_)` into `.env.production`. **A new runtime env var needs a matching prefix there**, or it will be undefined in production. That exact bug once stopped invoice emails.
 
 ## Coding conventions
@@ -171,7 +173,7 @@ Don't write tests for UI components or styling. When a test runner is added, lis
 
 ## Status and open items
 
-- **Done:** phases 0–5 and 7 (setup, data, storefront, cart/checkout, invoice + email, admin, Dynamo launch). Recent additions: a card quantity stepper, drag-reorder categories, and an orders summary tab.
+- **Done:** phases 0–5 and 7 (setup, data, storefront, cart/checkout, invoice + email, admin, Dynamo launch). Recent additions: a card quantity stepper, drag-reorder categories, an orders summary tab, and a per-variant packaging deposit (prefilled for Thomas Henry in the seed).
 - **Open:**
   - Phase 6, SEO + legal: sitemap, robots, JSON-LD, terms/privacy pages. Parked until the user starts it.
   - A test runner and tests for critical code (see Development commands).

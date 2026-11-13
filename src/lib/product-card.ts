@@ -13,7 +13,7 @@ export type ProductCardData = {
   /** Label of the only active variant, e.g. "0,7 l"; null when there are several. */
   singleVariantLabel: string | null;
   /** The only active variant, so the card can add it to the cart directly; null when there are several. */
-  quickAdd: { variantId: string; label: string; priceCents: number; image: string | null } | null;
+  quickAdd: { variantId: string; label: string; priceCents: number; depositCents?: number; image: string | null } | null;
   isAlcohol: boolean;
   badge?: ProductBadge;
   abv?: number;
@@ -39,6 +39,7 @@ export function toCardData(p: Product): ProductCardData {
           variantId: only.id,
           label: only.label,
           priceCents: only.priceCents,
+          depositCents: only.depositCents,
           image: only.image ?? p.images[0]?.url ?? null,
         }
       : null,

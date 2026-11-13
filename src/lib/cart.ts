@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from "react";
 import { MAX_QTY } from "./cart-limits";
+import type { LinePrice } from "./checkout-input";
 
 // Cart lives in localStorage. The display fields are a convenience snapshot;
 // the server re-prices every line from the database at checkout.
@@ -13,6 +14,8 @@ export type CartLine = {
   name: string;
   variantLabel: string;
   priceCents: number;
+  /** Packaging deposit per unit (0% VAT); unset means none. Carts saved before deposits lack it. */
+  depositCents?: number;
   image: string | null;
   isAlcohol: boolean;
   qty: number;
@@ -84,11 +87,14 @@ export function removeLine(variantId: string) {
 }
 
 /** Brings the cart in line with the server at checkout: new prices, unavailable lines dropped. */
-export function applyServerCart(prices: Record<string, number>, removed: string[]) {
+export function applyServerCart(prices: Record<string, LinePrice>, removed: string[]) {
   write(
     read()
       .filter((l) => !removed.includes(l.variantId))
-      .map((l) => (l.variantId in prices ? { ...l, priceCents: prices[l.variantId] } : l)),
+      .map((l) => {
+        const now = prices[l.variantId];
+        return now ? { ...l, priceCents: now.priceCents, depositCents: now.depositCents } : l;
+      }),
   );
 }
 

@@ -52,7 +52,12 @@ const line = z.object({
   qty: z.number().int().min(1).max(MAX_QTY),
   /** The price the customer saw; a mismatch means the cart is stale. */
   priceCents: z.number().int().min(0),
+  /** The deposit per unit the customer saw; missing means none. */
+  depositCents: z.number().int().min(0).optional(),
 });
+
+/** A variant's current price and packaging deposit, sent back when the cart was stale. */
+export type LinePrice = { priceCents: number; depositCents?: number };
 
 const common = {
   customer,
@@ -71,7 +76,7 @@ export type CheckoutState =
   | { status: "idle" }
   | { status: "error"; message: string; errors: Record<string, string> }
   /** The cart was out of date; the client applies the server's prices and asks to confirm again. */
-  | { status: "cart_changed"; message: string; prices: Record<string, number>; removed: string[] }
+  | { status: "cart_changed"; message: string; prices: Record<string, LinePrice>; removed: string[] }
   | { status: "ok"; orderId: string };
 
 export const initialCheckoutState: CheckoutState = { status: "idle" };

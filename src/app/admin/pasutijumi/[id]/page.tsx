@@ -155,7 +155,10 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
                   <Link href={`/admin/produkti/${item.productId}`}>{item.name}</Link>
                 </td>
                 <td>{item.variantLabel}</td>
-                <td className={o.right}>{formatPrice(item.unitPriceCents)}</td>
+                <td className={o.right}>
+                  {formatPrice(item.unitPriceCents)}
+                  {item.depositCents ? ` + ${formatPrice(item.depositCents)} dep.` : ""}
+                </td>
                 <td className={o.right}>{item.qty}</td>
                 <td className={o.right}>{formatPrice(item.unitPriceCents * item.qty)}</td>
               </tr>
@@ -172,6 +175,14 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
               </td>
               <td className={o.right}>{formatPrice(order.totals.vatCents)}</td>
             </tr>
+            {order.totals.depositCents && (
+              <tr>
+                <td colSpan={4} className={o.right}>
+                  Depozīts (PVN 0%)
+                </td>
+                <td className={o.right}>{formatPrice(order.totals.depositCents)}</td>
+              </tr>
+            )}
             <tr className={o.totals}>
               <td colSpan={4} className={o.right}>
                 Kopā
