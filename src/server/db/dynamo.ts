@@ -19,7 +19,7 @@ import {
   productItem,
   type EntityType,
 } from "./dynamo-items";
-import type { Db } from "./types";
+import { byCategoryOrder, type Db } from "./types";
 
 // Production store: one DynamoDB table, layout in ./dynamo-items.
 // Credentials come from the default AWS chain: the Amplify compute role in production,
@@ -86,8 +86,7 @@ export function createDynamoDb(): Db {
 
   return {
     categories: {
-      list: async () =>
-        (await queryAll<Category>("CATEGORY")).toSorted((a, b) => a.sortOrder - b.sortOrder),
+      list: async () => (await queryAll<Category>("CATEGORY")).toSorted(byCategoryOrder),
       getById: (id) => get("CATEGORY", id),
       getBySlug: (slug) => getBySlug("CATEGORY", slug),
       put: (category) => put(categoryItem(category)),

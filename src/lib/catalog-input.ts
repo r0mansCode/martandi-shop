@@ -85,7 +85,7 @@ export const categoryInput = z.object({
   name: text("Nosaukums", 60),
   slug,
   description: text("Apraksts", 500),
-  sortOrder: z.coerce.number().int("Secībai jābūt veselam skaitlim").min(0).max(999),
+  // No sortOrder: the order is set only by dragging in the list, which keeps it 1, 2, 3…
 });
 
 export type FormState<Values = never> = {

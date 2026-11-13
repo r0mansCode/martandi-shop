@@ -44,8 +44,7 @@ export default async function AdminCategories({ searchParams }: PageProps<"/admi
           {message.text}
         </p>
       )}
-      {/* Keyed by the saved order so the list resets after a save elsewhere (e.g. the edit page). */}
-      <CategoryList key={categories.map((c) => `${c.id}:${c.sortOrder}`).join("|")} categories={rows} />
+      <CategoryList categories={rows} />
     </>
   );
 }

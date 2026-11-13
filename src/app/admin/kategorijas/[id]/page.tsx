@@ -15,9 +15,15 @@ export const metadata: Metadata = { title: "Kategorija" };
 export default async function AdminCategory({ params }: PageProps<"/admin/kategorijas/[id]">) {
   await requireAdmin();
   const { id } = await params;
-  const [category, products] = await Promise.all([db.categories.getById(id), db.products.list()]);
+  const [category, categories, products] = await Promise.all([
+    db.categories.getById(id),
+    db.categories.list(),
+    db.products.list(),
+  ]);
   if (!category) notFound();
   const count = products.filter((p) => p.categoryId === id).length;
+  // Show the place in the list (same as the list's "Nr."), not the raw sortOrder value.
+  const position = categories.findIndex((c) => c.id === id) + 1;
 
   return (
     <>
@@ -33,7 +39,7 @@ export default async function AdminCategory({ params }: PageProps<"/admin/katego
 
       <section className={a.section}>
         {/* Keyed so the fields show fresh values after a save changes the stored category. */}
-        <CategoryForm key={`${category.slug}-${category.sortOrder}`} category={category} />
+        <CategoryForm key={category.slug} category={category} position={position} />
       </section>
 
       <div className={s.dangerZone}>

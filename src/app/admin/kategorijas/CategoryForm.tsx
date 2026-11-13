@@ -1,12 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { startTransition, useActionState } from "react";
 import { saveCategory } from "../actions";
 import { initialFormState } from "@/lib/catalog-input";
 import type { Category } from "@/lib/types";
 import a from "../admin.module.scss";
 
-export function CategoryForm({ category }: { category: Category }) {
+export function CategoryForm({ category, position }: { category: Category; position: number }) {
   const [state, formAction, pending] = useActionState(saveCategory, initialFormState);
   const err = (key: string) => state.errors[key];
   const cls = (key: string) => (err(key) ? `${a.input} ${a.invalid}` : a.input);
@@ -34,11 +35,13 @@ export function CategoryForm({ category }: { category: Category }) {
           <input name="slug" className={cls("slug")} defaultValue={category.slug} />
           {err("slug") && <span className={a.error}>{err("slug")}</span>}
         </label>
-        <label className={a.field}>
+        {/* Read-only: one place to change the order, so the numbers can't clash or skip. */}
+        <div className={a.field}>
           <span>Secība</span>
-          <input name="sortOrder" className={cls("sortOrder")} inputMode="numeric" defaultValue={category.sortOrder} />
-          {err("sortOrder") && <span className={a.error}>{err("sortOrder")}</span>}
-        </label>
+          <span className={a.muted}>
+            {position}. vieta · mainiet, velkot rindas <Link href="/admin/kategorijas">kategoriju sarakstā</Link>
+          </span>
+        </div>
       </div>
       <label className={a.field}>
         <span>Apraksts</span>

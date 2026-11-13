@@ -3,7 +3,15 @@ import type { Category, Order, Product } from "@/lib/types";
 // Storage interfaces. Implementations: ./mock (local JSON file) and ./dynamo (phase 7).
 // They only persist; validation and business rules live in the callers.
 
+/**
+ * Menu order: sortOrder, then id. The id tie-break makes both stores agree even when
+ * sortOrder values repeat; otherwise DynamoDB falls back to slug order and the mock to file order.
+ */
+export const byCategoryOrder = (a: Category, b: Category) =>
+  a.sortOrder - b.sortOrder || a.id.localeCompare(b.id);
+
 export interface CategoryRepo {
+  /** In menu order (see byCategoryOrder). */
   list(): Promise<Category[]>;
   getById(id: string): Promise<Category | null>;
   getBySlug(slug: string): Promise<Category | null>;

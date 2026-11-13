@@ -116,20 +116,21 @@ export async function saveCategory(_prev: FormState, formData: FormData): Promis
   if (!parsed.success) return errorState(parsed.error);
   const input = parsed.data;
 
-  if (!(await db.categories.getById(input.id))) return fail("Kategorija vairs neeksistē.");
   const sameSlug = await db.categories.getBySlug(input.slug);
   if (sameSlug && sameSlug.id !== input.id) {
     return fail("Pārbaudiet iezīmētos laukus.", { slug: `Šo adresi jau izmanto „${sameSlug.name}”` });
   }
 
-  await db.categories.put(input);
+  // Read right before writing so the position from the drag-and-drop list is kept.
+  const existing = await db.categories.getById(input.id);
+  if (!existing) return fail("Kategorija vairs neeksistē.");
+  await db.categories.put({ ...existing, ...input });
   refreshStorefront();
   return { ok: true, message: "Saglabāts.", errors: {} };
 }
 
 export type ImageUpload = { uploadUrl: string; headers: Record<string, string>; url: string } | { error: string };
 
-/** Step 1 of an upload: a short-lived URL the browser PUTs the file to. Saving the product attaches it. */
 /**
  * Saves a new category order from the drag-and-drop list: `ids` top to bottom become
  * sortOrder 1, 2, 3… Only categories whose position changed are written.
@@ -177,6 +178,7 @@ export async function deleteCategory(id: string) {
   redirect(`/admin/kategorijas?zina=dzesta&kategorija=${encodeURIComponent(category.name)}`);
 }
 
+/** Step 1 of an upload: a short-lived URL the browser PUTs the file to. Saving the product attaches it. */
 export async function createImageUpload(productId: string, type: string, size: number): Promise<ImageUpload> {
   await requireAdmin();
   if (!isImageType(type)) return { error: "Atļauti tikai JPEG, PNG vai WebP attēli." };

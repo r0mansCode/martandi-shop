@@ -4,7 +4,7 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import type { Category, Order, Product } from "@/lib/types";
-import type { Db } from "./types";
+import { byCategoryOrder, type Db } from "./types";
 
 // Local development store: one JSON file, created from data/seed on first use.
 // Not for production: Amplify compute has no persistent disk.
@@ -94,7 +94,7 @@ function upsert<T extends { id: string }>(list: T[], item: T) {
 
 export const mockDb: Db = {
   categories: {
-    list: async () => (await load()).categories.toSorted((a, b) => a.sortOrder - b.sortOrder),
+    list: async () => (await load()).categories.toSorted(byCategoryOrder),
     getById: async (id) => (await load()).categories.find((c) => c.id === id) ?? null,
     getBySlug: async (slug) => (await load()).categories.find((c) => c.slug === slug) ?? null,
     put: (category) => mutate((d) => upsert(d.categories, category)),

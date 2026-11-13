@@ -2,8 +2,9 @@ import { getCategories, getVisibleProducts } from "@/server/catalog";
 import { fromPriceCents, activeVariants } from "@/lib/money";
 import { buildHaystack, type SearchEntry } from "@/lib/search";
 
-// Built once at build time; admin changes revalidate this path.
+// Static JSON, refreshed by time-based ISR, because Amplify ignores the admin's revalidatePath().
 export const dynamic = "force-static";
+export const revalidate = 60;
 
 export async function GET() {
   const [products, categories] = await Promise.all([getVisibleProducts(), getCategories()]);

@@ -25,6 +25,16 @@ export function CategoryList({ categories }: { categories: CategoryRow[] }) {
   const [status, setStatus] = useState<{ ok: boolean; message: string } | null>(null);
   const [saving, startSaving] = useTransition();
 
+  // Take the server's list when it changes (after a save, a delete or an edit elsewhere), but
+  // not mid-drag or mid-save, so a stale refresh can't undo a move. Adjusting state here instead
+  // of remounting by key keeps the save message and the handle's keyboard focus.
+  const signature = JSON.stringify(categories);
+  const [synced, setSynced] = useState(signature);
+  if (signature !== synced && !saving && !dragging) {
+    setSynced(signature);
+    setRows(categories);
+  }
+
   const save = (next: CategoryRow[]) => {
     setStatus(null);
     startSaving(async () => {
@@ -79,8 +89,10 @@ export function CategoryList({ categories }: { categories: CategoryRow[] }) {
                   if (from !== index) setRows(move(rows, from, index));
                 }}
                 onDrop={(e) => e.preventDefault()}
-                onDragEnd={() => {
+                onDragEnd={(e) => {
                   setDragging(null);
+                  // Dropped outside the table or cancelled with Esc: put the rows back, save nothing.
+                  if (e.dataTransfer.dropEffect === "none") return setRows(categories);
                   if (!sameOrder(rows, categories)) save(rows);
                 }}
               >
