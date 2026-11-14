@@ -93,6 +93,11 @@
   white-space: nowrap;
 }
 
+// Company names are long; keep them from wrapping into a narrow column.
+.buyer {
+  min-width: 14rem;
+}
+
 .block {
   display: block;
   margin-top: 0.25rem;
@@ -123,39 +128,78 @@
   text-underline-offset: 2px;
 }
 
-.sent {
+// Table status: plain bold text in the status colour (the pill badge is for the detail page).
+// Declared after the status classes so it drops their background.
+.statusText {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0;
+  background: none;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.paidIcon {
+  flex: none;
   color: var(--color-success);
 }
 
-.rowActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 0.75rem;
-  min-width: 9rem;
-}
-
-.linkAction {
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #1d4f80;
-  font-size: 0.875rem;
+// Next-step button under the status, e.g. "ATZĪMĒT KĀ APMAKSĀTU".
+.statusButton {
+  margin-top: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--color-fg);
+  border-radius: var(--radius);
+  background: var(--color-fg);
+  color: #fff;
+  font: inherit;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
 
   &:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
+    background: #000;
   }
 }
 
-.iconAction {
-  display: inline-flex;
-  align-items: center;
+.rowActions {
+  display: grid;
+  gap: 0.375rem;
+  justify-items: start;
 }
 
-.linkDanger {
-  color: #b3261e;
+// Stretch so the icon button matches the height of its text neighbour.
+.actionRow {
+  display: flex;
+  align-items: stretch;
+  gap: 0.375rem;
+}
+
+.smallButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3125rem 0.625rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font: inherit;
+  font-size: 0.8125rem;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--color-fg);
+  }
+}
+
+// Icon-only: little side padding so the icon fills the button.
+.iconButton {
+  padding: 0 0.25rem;
 }
 
 .empty {

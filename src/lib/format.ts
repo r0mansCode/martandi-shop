@@ -37,6 +37,13 @@ export function formatDateTime(iso: string): string {
   return dateTimeFormat.format(new Date(iso));
 }
 
+const timeFormat = new Intl.DateTimeFormat(site.locale, { timeZone: site.timeZone, timeStyle: "short" });
+
+/** ISO timestamp → "14:05" in Riga time. */
+export function formatTime(iso: string): string {
+  return timeFormat.format(new Date(iso));
+}
+
 /** Latvian plural: 1, 21, 31… (not 11) take the singular form. */
 export function plural(n: number, one: string, many: string): string {
   return n % 10 === 1 && n % 100 !== 11 ? one : many;

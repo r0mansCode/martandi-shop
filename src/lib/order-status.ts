@@ -26,12 +26,12 @@ export const STATUS_ACTION_LABEL: Record<OrderStatus, string> = {
   cancelled: "Atcelt pasūtījumu",
 };
 
-/** Compact button text for the orders table rows. */
+/** Button text for the orders table rows (shown uppercase there). */
 export const STATUS_SHORT_ACTION: Record<OrderStatus, string> = {
   awaiting_payment: "",
-  paid: "Apmaksāts",
-  ready_for_pickup: "Gatavs",
-  collected: "Izsniegts",
+  paid: "Atzīmēt kā apmaksātu",
+  ready_for_pickup: "Atzīmēt kā gatavu",
+  collected: "Atzīmēt kā izsniegtu",
   cancelled: "Atcelt",
 };
 

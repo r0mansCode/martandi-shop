@@ -3,7 +3,7 @@ import Link from "next/link";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { formatPrice } from "@/lib/money";
-import { formatDate, formatDateTime, normalizeSearch, plural, toDayKey } from "@/lib/format";
+import { formatDate, formatTime, normalizeSearch, plural, toDayKey } from "@/lib/format";
 import {
   deleteConfirmText,
   isOverdue,
@@ -16,7 +16,7 @@ import { ORDER_MESSAGES } from "@/lib/order-messages";
 import type { Order, OrderStatus } from "@/lib/types";
 import { site } from "@/config/site";
 import { removeOrder, setOrderStatus } from "./actions";
-import { DownloadIcon } from "@/components/icons";
+import { CheckCircleIcon, DownloadIcon, HourglassIcon } from "@/components/icons";
 import { ConfirmButton } from "../ConfirmButton";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
@@ -131,25 +131,27 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
               <th>Datums</th>
               <th>Rēķina Nr.</th>
               <th>Pircējs</th>
-              <th>E-pasts</th>
-              <th>Tālrunis</th>
+              <th>Pircēja kontakti</th>
               <th>Preces</th>
               <th className={o.right}>Summa</th>
               <th>Statuss</th>
-              <th>Rēķins</th>
               <th>Darbības</th>
             </tr>
           </thead>
           <tbody>
             {shown.map((order) => (
               <tr key={order.id}>
-                <td className={o.nowrap}>{formatDateTime(order.createdAt)}</td>
+                <td className={o.nowrap}>
+                  {formatDate(order.createdAt)}
+                  <br />
+                  <span className={a.muted}>{formatTime(order.createdAt)}</span>
+                </td>
                 <td>
                   <Link href={`/admin/pasutijumi/${order.id}`} className={o.number}>
                     {order.invoiceNumber}
                   </Link>
                 </td>
-                <td>
+                <td className={o.buyer}>
                   {order.company ? (
                     <>
                       {order.company.name}
@@ -162,8 +164,8 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                 </td>
                 <td>
                   <a href={`mailto:${order.customer.email}`}>{order.customer.email}</a>
+                  <span className={`${a.muted} ${o.block} ${o.nowrap}`}>{order.customer.phone}</span>
                 </td>
-                <td className={o.nowrap}>{order.customer.phone}</td>
                 <td>
                   <ul className={o.itemList}>
                     {order.items.slice(0, MAX_ITEMS_SHOWN).map((item) => {
@@ -185,60 +187,67 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                 </td>
                 <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
                 <td>
-                  <span className={`${o.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>
+                  <span className={`${o.statusText} ${o[order.status]}`}>
+                    {order.status === "awaiting_payment" && <HourglassIcon width={16} height={16} />}
+                    {order.status === "paid" && <CheckCircleIcon width={16} height={16} className={o.paidIcon} />}
+                    {ORDER_STATUS_LABEL[order.status]}
+                  </span>
                   {isOverdue(order) && <span className={`${o.overdue} ${o.block}`}>nokavēts</span>}
-                </td>
-                <td>
-                  {order.invoiceEmailedAt ? (
-                    <span className={o.sent} title={formatDateTime(order.invoiceEmailedAt)}>
-                      Nosūtīts
-                    </span>
-                  ) : (
-                    <span className={o.overdue}>Nav nosūtīts</span>
-                  )}
+                  {NEXT_STATUSES[order.status]
+                    .filter((next) => next !== "cancelled")
+                    .map((next) => (
+                      <form key={next} action={setOrderStatus.bind(null, order.id, next, returnTo)}>
+                        <button type="submit" className={o.statusButton}>
+                          {STATUS_SHORT_ACTION[next]}
+                        </button>
+                      </form>
+                    ))}
                 </td>
                 <td>
                   <div className={o.rowActions}>
-                    {NEXT_STATUSES[order.status].map((next) => (
-                      <form key={next} action={setOrderStatus.bind(null, order.id, next, returnTo)}>
-                        {next === "cancelled" ? (
+                    <div className={o.actionRow}>
+                      {NEXT_STATUSES[order.status].includes("cancelled") && (
+                        <form action={setOrderStatus.bind(null, order.id, "cancelled", returnTo)}>
                           <ConfirmButton
                             confirm={`Atcelt pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.`}
-                            className={`${o.linkAction} ${o.linkDanger}`}
+                            className={`${o.smallButton} ${o.danger}`}
                           >
-                            {STATUS_SHORT_ACTION[next]}
+                            {STATUS_SHORT_ACTION.cancelled}
                           </ConfirmButton>
-                        ) : (
-                          <button type="submit" className={o.linkAction}>
-                            {STATUS_SHORT_ACTION[next]}
-                          </button>
-                        )}
+                        </form>
+                      )}
+                      <form action={removeOrder.bind(null, order.id, returnTo)}>
+                        <ConfirmButton confirm={deleteConfirmText(order)} className={`${o.smallButton} ${o.danger}`}>
+                          Dzēst
+                        </ConfirmButton>
                       </form>
-                    ))}
-                    <a href={`/admin/pasutijumi/${order.id}/rekins`} target="_blank" rel="noopener" className={o.linkAction}>
-                      PDF
-                    </a>
-                    <a
-                      href={`/admin/pasutijumi/${order.id}/rekins?lejupieladet=1`}
-                      download
-                      className={`${o.linkAction} ${o.iconAction}`}
-                      title={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
-                      aria-label={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
-                    >
-                      <DownloadIcon width={16} height={16} />
-                    </a>
-                    <form action={removeOrder.bind(null, order.id, returnTo)}>
-                      <ConfirmButton confirm={deleteConfirmText(order)} className={`${o.linkAction} ${o.linkDanger}`}>
-                        Dzēst
-                      </ConfirmButton>
-                    </form>
+                    </div>
+                    <div className={o.actionRow}>
+                      <a
+                        href={`/admin/pasutijumi/${order.id}/rekins`}
+                        target="_blank"
+                        rel="noopener"
+                        className={o.smallButton}
+                      >
+                        Skatīt PDF
+                      </a>
+                      <a
+                        href={`/admin/pasutijumi/${order.id}/rekins?lejupieladet=1`}
+                        download
+                        className={`${o.smallButton} ${o.iconButton}`}
+                        title={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
+                        aria-label={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
+                      >
+                        <DownloadIcon width={20} height={20} />
+                      </a>
+                    </div>
                   </div>
                 </td>
               </tr>
             ))}
             {shown.length === 0 && (
               <tr>
-                <td colSpan={10} className={o.empty}>
+                <td colSpan={8} className={o.empty}>
                   {orders.length ? "Neviens pasūtījums neatbilst filtriem." : "Pasūtījumu vēl nav."}
                 </td>
               </tr>

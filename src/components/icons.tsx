@@ -65,7 +65,21 @@ export const DownloadIcon = (p: SVGProps<SVGSVGElement>) => (
   </Icon>
 );
 
-export const StoreIcon = (p: SVGProps<SVGSVGElement>) => (
+export const HourglassIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="M6 3h12M6 21h12M7 3v3a5 5 0 0 0 10 0V3M7 21v-3a5 5 0 0 1 10 0v3" />
+  </Icon>
+);
+
+/** Filled circle in the current colour with a white tick. */
+export const CheckCircleIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="10" fill="currentColor" stroke="none" />
+    <path d="m7.5 12.5 3 3 6-6.5" stroke="#fff" strokeWidth={2} />
+  </Icon>
+);
+
+export const StoreIcon =(p: SVGProps<SVGSVGElement>) => (
   <Icon {...p}>
     <path d="M4 10v10h16V10M3 10l2-6h14l2 6M3 10h18M9 20v-5h6v5" />
   </Icon>
