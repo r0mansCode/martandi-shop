@@ -13,6 +13,8 @@ export const COOKIE = {
   refresh: "admin_rt",
   /** state + PKCE verifier + return path, set by /api/auth/login, read by /api/auth/callback. */
   oauth: "admin_oauth",
+  /** Set when the callback restarts a login, so a second failure shows an error instead of looping. */
+  retry: "admin_retry",
 } as const;
 
 export const ADMIN_PATH = "/admin";
@@ -67,14 +69,9 @@ export async function createPkce() {
   return { verifier: verifierValue, challenge, state: base64url(crypto.getRandomValues(new Uint8Array(16))) };
 }
 
-/**
- * Managed login URL. With addPasskey, Cognito first shows its passkey registration page
- * (it needs the user's Cognito session and signs them in if there is none), then
- * redirects to the callback with a code just like a normal sign-in.
- */
-export function authorizeUrl(state: string, challenge: string, addPasskey = false) {
+export function authorizeUrl(state: string, challenge: string) {
   const { clientId, domain } = config();
-  const url = new URL(`${domain}/${addPasskey ? "passkeys/add" : "oauth2/authorize"}`);
+  const url = new URL(`${domain}/oauth2/authorize`);
   url.search = new URLSearchParams({
     response_type: "code",
     client_id: clientId,
@@ -84,6 +81,18 @@ export function authorizeUrl(state: string, challenge: string, addPasskey = fals
     code_challenge: challenge,
     code_challenge_method: "S256",
   }).toString();
+  return url;
+}
+
+/**
+ * Cognito's passkey registration page. It runs on the user's Cognito session, not our OAuth
+ * state, and comes back to the callback without a usable state, so the callback restarts
+ * a normal (silent) login afterwards.
+ */
+export function addPasskeyUrl() {
+  const { clientId, domain } = config();
+  const url = new URL(`${domain}/passkeys/add`);
+  url.search = new URLSearchParams({ client_id: clientId, redirect_uri: redirectUri() }).toString();
   return url;
 }
 
