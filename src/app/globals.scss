@@ -32,6 +32,12 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+
+  // In-page anchors (e.g. the home banner CTA) glide; data-scroll-behavior on <html> keeps
+  // route changes instant.
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
 }
 
 body {

@@ -3,7 +3,6 @@ import { getPickupInfo } from "@/server/shop-hours";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { PickupInfoProvider } from "@/components/layout/PickupHours";
-import { pickup } from "@/config/site";
 import s from "./layout.module.scss";
 
 // Amplify Hosting does not support on-demand revalidation: revalidatePath() from the admin
@@ -18,9 +17,6 @@ export default async function ShopLayout({ children }: LayoutProps<"/">) {
   return (
     <PickupInfoProvider value={pickupInfo}>
       {pickupInfo.closure && <p className={`${s.announcement} ${s.closure}`}>{pickupInfo.closure}</p>}
-      <p className={s.announcement}>
-        Saņemšana tikai veikalā – {pickup.address} · ar personu apliecinošu dokumentu
-      </p>
       <Header categories={categories} />
       <main className={s.main}>{children}</main>
       <Footer categories={categories} pickupInfo={pickupInfo} />

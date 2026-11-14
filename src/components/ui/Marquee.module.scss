@@ -1,0 +1,31 @@
+// Set the gap between items with --marquee-gap on the className passed to <Marquee>; the
+// same gap separates the two copies, so the loop seam is invisible.
+
+.track {
+  --marquee-gap: 0.625rem;
+  display: flex;
+  // A row that fits sits centred; "safe" keeps the first items reachable otherwise.
+  justify-content: safe center;
+  gap: var(--marquee-gap);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.list {
+  display: flex;
+  flex: none;
+  gap: var(--marquee-gap);
+  padding: 0;
+  list-style: none;
+}
+
+// Fade the row's edges while it moves, so pills slide in and out softly.
+.looping {
+  justify-content: flex-start;
+  mask-image: linear-gradient(to right, transparent, #000 2rem, #000 calc(100% - 2rem), transparent);
+}

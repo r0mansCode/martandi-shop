@@ -1,5 +1,75 @@
 @use "@/styles/mixins" as *;
 
+// Full-bleed photo banner at the top of the home page.
+.banner {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 26rem;
+  overflow: hidden;
+  background: #1a1612;
+  color: #fff;
+
+  // Darkens the photo behind the text: from below on mobile, from the left on desktop.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgb(0 0 0 / 0.7), transparent 70%);
+
+    @include up(md) {
+      background: linear-gradient(to right, rgb(0 0 0 / 0.65), transparent 65%);
+    }
+  }
+
+  @include up(md) {
+    align-items: center;
+    min-height: 34rem;
+  }
+}
+
+.bannerImg {
+  object-fit: cover;
+  // Keep the glass in frame when the banner is cropped narrow.
+  object-position: 55% 50%;
+}
+
+.bannerInner {
+  @include container;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  padding-block: 2.5rem;
+}
+
+.bannerTitle {
+  max-width: 14ch;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  line-height: 1.1;
+
+  @include up(md) {
+    font-size: 3.75rem;
+  }
+}
+
+.bannerCta {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.875rem 1.75rem;
+  border: 1px solid #fff;
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--color-fg);
+  font-size: 0.9375rem;
+
+  &:hover {
+    background: transparent;
+    color: #fff;
+  }
+}
+
 .hero {
   background: var(--color-olive);
   color: #fff;
@@ -77,6 +147,7 @@
 .section {
   @include container;
   margin-top: 3rem;
+  scroll-margin-top: 1.5rem;
 }
 
 .sectionHead {

@@ -58,7 +58,9 @@
 .info {
   @include up(lg) {
     position: sticky;
-    top: 1.5rem;
+    // Stays clear of the sticky header while it is shown (see StickyHeader).
+    top: calc(var(--header-offset, 0px) + 1.5rem);
+    transition: top 0.3s ease;
   }
 }
 

@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="lv" className={`${inter.variable} ${newsreader.variable}`}>
+    <html lang="lv" data-scroll-behavior="smooth" className={`${inter.variable} ${newsreader.variable}`}>
       <body>{children}</body>
     </html>
   );

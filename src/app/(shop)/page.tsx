@@ -9,6 +9,7 @@ import { pickup, site } from "@/config/site";
 import { Carousel } from "@/components/ui/Carousel";
 import { plural } from "@/lib/format";
 import sparklingPhoto from "../../../public/images/home/dzirkstosais-vins.jpg";
+import pouringPhoto from "../../../public/images/home/dzeriena-liesana.jpg";
 import frogPhoto from "../../../public/images/home/varde-ar-pudelem.jpg";
 import s from "./page.module.scss";
 
@@ -42,9 +43,27 @@ export default async function Home() {
 
   return (
     <>
+      <section className={s.banner}>
+        <Image
+          src={pouringPhoto}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          placeholder="blur"
+          className={s.bannerImg}
+        />
+        <div className={s.bannerInner}>
+          <h1 className={s.bannerTitle}>Tavi Dzērieni Tevi jau gaida</h1>
+          <a href="#populari" className={s.bannerCta}>
+            Uz Veikalu
+          </a>
+        </div>
+      </section>
+
       <section className={s.hero}>
         <div className={s.heroInner}>
-          <h1 className={s.heroTitle}>Laipni lūgti {site.name}</h1>
+          <h2 className={s.heroTitle}>Laipni lūgti {site.name}</h2>
           <p className={s.heroLead}>Vīni, stiprie un bezalkoholiskie dzērieni ar saņemšanu veikalā Rīgā.</p>
           <Carousel label="Iepirkties pēc kategorijas" className={s.tilesCarousel} trackClassName={s.tiles}>
             {tiles.map(({ category, image }, i) => (
@@ -68,7 +87,7 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className={s.section}>
+      <section id="populari" className={s.section}>
         <div className={s.sectionHead}>
           <h2 className={s.sectionTitle}>Populārākie</h2>
           <Link href="/katalogs" className={s.more}>

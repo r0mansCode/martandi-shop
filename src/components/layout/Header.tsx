@@ -5,11 +5,12 @@ import { CategoryMenu } from "./CategoryMenu";
 import { CategoryNav } from "./CategoryNav";
 import { SearchBox } from "./SearchBox";
 import { CartLink } from "./CartLink";
+import { StickyHeader } from "./StickyHeader";
 import s from "./Header.module.scss";
 
 export function Header({ categories }: { categories: Category[] }) {
   return (
-    <header className={s.header}>
+    <StickyHeader className={s.header}>
       <div className={s.top}>
         <Link href="/" className={s.logo} aria-label={`${site.name} – sākums`}>
           {site.name}
@@ -25,6 +26,6 @@ export function Header({ categories }: { categories: Category[] }) {
         </div>
       </div>
       <CategoryNav categories={categories} />
-    </header>
+    </StickyHeader>
   );
 }
