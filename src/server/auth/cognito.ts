@@ -15,10 +15,15 @@ export const COOKIE = {
   oauth: "admin_oauth",
   /** Set when the callback restarts a login, so a second failure shows an error instead of looping. */
   retry: "admin_retry",
+  /** This device has been through passkey registration; hides the header link here. */
+  passkey: "admin_passkey",
 } as const;
 
 export const ADMIN_PATH = "/admin";
 export const CALLBACK_PATH = "/api/auth/callback";
+
+/** Plain <a> target (an API route that redirects to Cognito), not a page to prefetch. */
+export const ADD_PASSKEY_HREF = "/api/auth/login?atslega=1&next=/admin";
 
 /** Refresh token lifetime; keep in sync with the app client's setting in Cognito. */
 export const REFRESH_TOKEN_SECONDS = 12 * 60 * 60;

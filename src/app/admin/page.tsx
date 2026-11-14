@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
+import { ADD_PASSKEY_HREF } from "@/server/auth/cognito";
 import s from "./page.module.scss";
 
 export default async function AdminHome() {
@@ -36,6 +37,10 @@ export default async function AdminHome() {
           </dd>
         </div>
       </dl>
+      {/* Always here: the header link hides once this device has been through passkey setup. */}
+      <p className={s.passkey}>
+        Jauna ierīce vai jāpievieno vēl viena? <a href={ADD_PASSKEY_HREF}>Pievienot piekļuves atslēgu</a>
+      </p>
     </>
   );
 }

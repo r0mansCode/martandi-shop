@@ -1,5 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import {
+  ADMIN_PATH,
   CALLBACK_PATH,
   COOKIE,
   addPasskeyUrl,
@@ -13,7 +14,19 @@ import {
 // ?atslega=1 opens Cognito's passkey registration instead (admin-created users are never prompted).
 export async function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams;
-  if (params.get("atslega") === "1") return NextResponse.redirect(addPasskeyUrl());
+  if (params.get("atslega") === "1") {
+    // Passkeys belong to a device, so remember the setup per browser (we can't see the
+    // account's passkeys without extra Cognito scopes). Admin home keeps a fallback link.
+    const response = NextResponse.redirect(addPasskeyUrl());
+    response.cookies.set(COOKIE.passkey, "1", {
+      httpOnly: true,
+      secure: secureCookies,
+      sameSite: "lax",
+      path: ADMIN_PATH,
+      maxAge: 400 * 24 * 60 * 60,
+    });
+    return response;
+  }
 
   const { verifier, challenge, state } = await createPkce();
   const next = safeNext(params.get("next"));

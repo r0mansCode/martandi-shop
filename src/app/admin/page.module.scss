@@ -36,3 +36,13 @@
     }
   }
 }
+
+.passkey {
+  margin-top: 2.5rem;
+  font-size: 0.875rem;
+  color: var(--color-muted);
+
+  a {
+    color: inherit;
+  }
+}

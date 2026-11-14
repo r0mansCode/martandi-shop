@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { requireAdmin } from "@/server/auth/session";
+import { ADD_PASSKEY_HREF, COOKIE } from "@/server/auth/cognito";
 import { site } from "@/config/site";
 import s from "./layout.module.scss";
 
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
 
 export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
   await requireAdmin();
+  const passkeyDone = (await cookies()).has(COOKIE.passkey);
 
   return (
     <>
@@ -27,10 +30,11 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
             Veikals ↗
           </Link>
         </nav>
-        {/* Plain <a>: an API route that redirects to Cognito, not a page to prefetch. */}
-        <a href="/api/auth/login?atslega=1&next=/admin" className={s.passkey}>
-          Pievienot piekļuves atslēgu
-        </a>
+        {!passkeyDone && (
+          <a href={ADD_PASSKEY_HREF} className={s.passkey}>
+            Pievienot piekļuves atslēgu
+          </a>
+        )}
         <form action="/api/auth/logout" method="post">
           <button type="submit" className={s.logout}>
             Iziet
