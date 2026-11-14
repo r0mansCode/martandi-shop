@@ -32,6 +32,30 @@
   object-fit: cover;
   // Keep the glass in frame when the banner is cropped narrow.
   object-position: 55% 50%;
+  animation: banner-unblur 1.2s ease-out both;
+}
+
+// On load: the photo sharpens from a soft blur while the heading, then the button, fade in.
+@keyframes banner-unblur {
+  from {
+    filter: blur(6px);
+    transform: scale(1.02);
+  }
+}
+
+@keyframes banner-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bannerImg,
+  .bannerTitle,
+  .bannerCta {
+    animation: none;
+  }
 }
 
 .bannerInner {
@@ -39,7 +63,12 @@
   position: relative;
   z-index: 1;
   width: 100%;
-  padding-block: 2.5rem;
+  // Extra bottom padding lifts the text a little above the bottom/centre.
+  padding-block: 2.5rem 4rem;
+
+  @include up(md) {
+    padding-bottom: 6rem;
+  }
 }
 
 .bannerTitle {
@@ -48,6 +77,7 @@
   font-size: 2.5rem;
   font-weight: 300;
   line-height: 1.1;
+  animation: banner-fade-up 0.9s ease-out 0.2s both;
 
   @include up(md) {
     font-size: 3.75rem;
@@ -62,7 +92,14 @@
   border-radius: var(--radius);
   background: #fff;
   color: var(--color-fg);
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+  animation: banner-fade-up 0.9s ease-out 0.35s both;
 
   &:hover {
     background: transparent;
@@ -326,41 +363,6 @@
     color: var(--color-muted);
     font-size: 0.875rem;
     line-height: 1.5;
-  }
-}
-
-.storyCategories {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-block: 0.25rem 0.5rem;
-}
-
-.categoryPill {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  font-size: 0.9375rem;
-  transition:
-    background 0.15s ease,
-    border-color 0.15s ease,
-    color 0.15s ease;
-
-  span {
-    color: var(--color-muted);
-    font-size: 0.8125rem;
-  }
-
-  &:hover,
-  &:focus-visible {
-    border-color: var(--color-fg);
-    background: var(--color-fg);
-    color: #fff;
-
-    span {
-      color: rgb(255 255 255 / 0.7);
-    }
   }
 }
 

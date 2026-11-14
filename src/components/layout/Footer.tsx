@@ -1,4 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
+import logo from "../../../public/logo.png";
 import type { Category } from "@/lib/types";
 import type { PickupInfo } from "@/lib/shop-hours";
 import { ClosureNotice } from "./PickupHours";
@@ -11,7 +13,7 @@ export function Footer({ categories, pickupInfo }: { categories: Category[]; pic
     <footer className={s.footer}>
       <div className={s.inner}>
         <div>
-          <p className={s.logo}>{site.name}</p>
+          <Image src={logo} alt={site.name} className={s.logo} sizes="6rem" />
           <p className={s.muted}>Vīni, stiprie un bezalkoholiskie dzērieni Rīgā.</p>
         </div>
         <div>

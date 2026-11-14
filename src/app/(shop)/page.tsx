@@ -10,7 +10,7 @@ import { Carousel } from "@/components/ui/Carousel";
 import { plural } from "@/lib/format";
 import sparklingPhoto from "../../../public/images/home/dzirkstosais-vins.jpg";
 import pouringPhoto from "../../../public/images/home/dzeriena-liesana.jpg";
-import frogPhoto from "../../../public/images/home/varde-ar-pudelem.jpg";
+import bartenderPhoto from "../../../public/images/home/barmenis.jpg";
 import s from "./page.module.scss";
 
 export default async function Home() {
@@ -35,11 +35,6 @@ export default async function Home() {
   // Story sections: figures come from the live catalog so the copy never overpromises.
   const countryCount = new Set(products.flatMap((p) => p.country ?? [])).size;
   const sparkling = categories.find((c) => c.id === "c04");
-  const topCategories = categories
-    .map((c) => ({ ...c, count: products.filter((p) => p.categoryId === c.id).length }))
-    .filter((c) => c.count > 0)
-    .toSorted((a, b) => b.count - a.count)
-    .slice(0, 6);
 
   return (
     <>
@@ -181,11 +176,11 @@ export default async function Home() {
         </section>
       )}
 
-      <section className={`${s.story} ${s.storyReverse}`} aria-labelledby="atrodi-savu">
+      <section className={`${s.story} ${s.storyReverse}`} aria-labelledby="barmenis">
         <div className={s.storyImage}>
           <Image
-            src={frogPhoto}
-            alt="Varde ar vīna glāzi starp divām pudelēm ar dzērieniem"
+            src={bartenderPhoto}
+            alt="Smaidīgs bārmenis cilindrā gatavo kokteili pie bāra"
             fill
             sizes="(min-width: 768px) 50vw, 100vw"
             placeholder="blur"
@@ -193,27 +188,18 @@ export default async function Home() {
           />
         </div>
         <div className={s.storyText}>
-          <p className={s.kicker}>Katram gadījumam</p>
-          <h2 id="atrodi-savu" className={s.storyTitle}>
-            Nezināt, ko izvēlēties? Sāciet šeit.
+          <p className={s.kicker}>Jūsu pasākumam</p>
+          <h2 id="barmenis" className={s.storyTitle}>
+            Ir sastāvdaļas, bet nav ideju?
           </h2>
           <p className={s.storyLead}>
-            Sarkanvīns vakariņām, baltvīns pie zivs, konjaks dāvanai vai bezalkoholisks dzēriens tiem, kas pie stūres.
-            Katram produktam norādīts tilpums, stiprums un izcelsme, bet katalogā varat atlasīt pēc valsts un ražotāja.
+            Profesionāls bārmenis ar smaidu pagatavos Jums gardus dzērienus Jūsu pasākumā. Spied zemāk, lai uzzinātu
+            vairāk.
           </p>
-          <ul className={s.storyCategories}>
-            {topCategories.map((c) => (
-              <li key={c.id}>
-                <Link href={`/katalogs/${c.slug}`} className={s.categoryPill}>
-                  {c.name} <span>{c.count}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
           <div className={s.storyActions}>
-            <Link href="/katalogs" className={s.buttonPrimary}>
-              Atvērt katalogu
-            </Link>
+            <a href="https://www.martandi.com/" target="_blank" rel="noopener" className={s.buttonPrimary}>
+              Uzzināt vairāk
+            </a>
           </div>
         </div>
       </section>

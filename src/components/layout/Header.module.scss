@@ -38,10 +38,16 @@
 
 .logo {
   grid-area: logo;
-  font-family: var(--font-serif);
-  font-size: 1.375rem;
-  letter-spacing: 0.02em;
-  white-space: nowrap;
+  justify-self: start;
+}
+
+.logoImg {
+  width: auto;
+  height: 2.25rem;
+
+  @include up(md) {
+    height: 2.625rem;
+  }
 }
 
 .menu {
