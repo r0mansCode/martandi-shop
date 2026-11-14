@@ -57,6 +57,7 @@ src/
       grozs/                cart
       noformet/             checkout page + actions.ts (placeOrder)
       paldies/[id]          thank-you page (force-dynamic, UUID-checked)
+      privatuma-politika/   privacy policy (static); the informational PrivacyNotice banner lives in components/layout
     admin/                  Cognito-protected admin
       produkti/             product list + [id] edit (ProductForm, ImagesField)
       kategorijas/          drag-reorder list (CategoryList), jauna/ create, [id] edit (shared CategoryForm)
@@ -180,7 +181,7 @@ Don't write tests for UI components or styling. When a test runner is added, lis
 
 - **Done:** phases 0–5 and 7 (setup, data, storefront, cart/checkout, invoice + email, admin, Dynamo launch). Recent additions: a card quantity stepper, drag-reorder categories, an orders summary tab, a per-variant packaging deposit (prefilled for Thomas Henry in the seed), a shared `AddToCartButton`, and admin-editable opening hours with a closure notice.
 - **Open:**
-  - Phase 6, SEO + legal: sitemap, robots, JSON-LD, terms/privacy pages. Parked until the user starts it.
+  - Phase 6, SEO + legal: sitemap, robots, JSON-LD, terms page. Parked until the user starts it. The privacy page and banner are done: no analytics means no consent choice, so the banner is informational with a single „Sapratu” button (dismissal stored in `martandi-privacy-ok`). Update the page text and its date when data processing changes (new processor, new data fields).
   - A test runner and tests for critical code (see Development commands).
   - An added-to-cart popover.
   - The Lighthouse pass.

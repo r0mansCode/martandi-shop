@@ -1,0 +1,56 @@
+@use "@/styles/mixins" as *;
+
+.notice {
+  position: fixed;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  z-index: 50;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  // Frosted glass: translucent fill + blurred backdrop, with a light edge and inner highlight.
+  border: 1px solid rgb(255 255 255 / 0.5);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  // box-shadow:
+  //   0 8px 32px rgb(0 0 0 / 0.12),
+  //   inset 0 1px 0 rgb(255 255 255 / 0.6);
+  font-size: 0.75rem;
+  line-height: 1.45;
+
+  // Only go translucent where the blur works, so the text stays readable everywhere else.
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    background: rgb(255 255 255 / 0.4);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    backdrop-filter: blur(18px) saturate(180%);
+  }
+
+  @include up(md) {
+    right: auto;
+    max-width: 34rem;
+  }
+}
+
+.text p + p {
+  margin-top: 0.375rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.button {
+  padding: 0.375rem 1rem;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--color-fg);
+  color: #fff;
+}

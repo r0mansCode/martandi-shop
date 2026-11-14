@@ -181,7 +181,7 @@ Reference screens:
 | 3 | Cart + checkout | localStorage cart, popover, cart page, checkout Server Action, honeypot + rate limit |
 | 4 | Invoice + email | `renderInvoicePdf` (Roboto), React Email templates, Resend domain DNS records in Route 53 |
 | 5 | Admin | Cognito + MFA, `requireAdmin`, product/variant/category CRUD with image upload, order management, revalidation |
-| 6 | SEO + legal | sitemap, robots, metadata, JSON-LD, terms/privacy/pickup pages |
+| 6 | SEO + legal | sitemap, robots, metadata, JSON-LD, terms/pickup pages (privacy page + notice banner done) |
 | 7 | DynamoDB + launch | Dynamo repos, IAM, env vars, production smoke test, Lighthouse pass |
 
 ## 11. Seller details (invoice)

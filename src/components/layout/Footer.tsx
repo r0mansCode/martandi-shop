@@ -45,6 +45,9 @@ export function Footer({ categories, pickupInfo }: { categories: Category[]; pic
           {seller.name} · Reģ. Nr. {seller.regNo} · PVN Nr. {seller.vatNo}
         </p>
         <p>Alkoholiskos dzērienus pārdodam tikai personām no 18 gadu vecuma.</p>
+        <p>
+          <Link href="/privatuma-politika">Privātuma politika</Link>
+        </p>
       </div>
     </footer>
   );

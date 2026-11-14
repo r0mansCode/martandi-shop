@@ -1,0 +1,43 @@
+@use "@/styles/mixins" as *;
+
+.root {
+  @include container;
+  max-width: 46rem;
+  padding-block: 2.5rem 4rem;
+  line-height: 1.6;
+
+  h2 {
+    margin: 2rem 0 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+  }
+
+  p + p,
+  ul + p,
+  p + ul {
+    margin-top: 0.75rem;
+  }
+
+  ul {
+    padding-left: 1.25rem;
+    list-style: disc;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.updated {
+  margin-top: 0.25rem;
+  color: var(--color-muted);
+  font-size: 0.875rem;
+}
