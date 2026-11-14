@@ -59,7 +59,7 @@ src/
       paldies/[id]          thank-you page (force-dynamic, UUID-checked)
     admin/                  Cognito-protected admin
       produkti/             product list + [id] edit (ProductForm, ImagesField)
-      kategorijas/          drag-reorder list (CategoryList) + [id] edit
+      kategorijas/          drag-reorder list (CategoryList), jauna/ create, [id] edit (shared CategoryForm)
       darba-laiks/          opening hours + closure notice (HoursForm)
       pasutijumi/           orders: table tab + sales-summary tab, [id] detail, [id]/rekins PDF route
       actions.ts            catalog Server Actions; pasutijumi/actions.ts for orders
@@ -83,7 +83,7 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 
 **Rendering.** Storefront pages are static with time-based ISR: `export const revalidate = 60` in `(shop)/layout.tsx` (covers every storefront page) and in `api/search-index`. **Amplify Hosting does not support on-demand revalidation**, so `revalidatePath()` has no effect in production, and only the 60-second ISR picks up catalog edits there. Admin Server Actions still call `refreshStorefront()` (`revalidatePath("/", "layout")` + `/api/search-index`) so other hosts and local `next start` update immediately. Don't remove the `revalidate` exports.
 
-**Category order.** `sortOrder` is written only by the drag-and-drop list (`reorderCategories`, always 1…n). The edit form shows the position read-only and `saveCategory` keeps the stored value. `byCategoryOrder` (`server/db/types.ts`) breaks ties by id in both stores. **Cache Components is intentionally OFF**, because Amplify officially supports only the previous caching model. Don't enable `cacheComponents` or `"use cache"`.
+**Category order.** `sortOrder` is written only by the drag-and-drop list (`reorderCategories`, always 1…n), except that `createCategory` appends a new category at max + 1. The edit form shows the position read-only and `saveCategory` keeps the stored value. `byCategoryOrder` (`server/db/types.ts`) breaks ties by id in both stores. **Cache Components is intentionally OFF**, because Amplify officially supports only the previous caching model. Don't enable `cacheComponents` or `"use cache"`.
 
 **Data layer.** `src/server/db/types.ts` defines the repo interfaces: `CategoryRepo`, `ProductRepo`, `OrderRepo` (with `delete`), `CounterRepo` (`next`, plus `rewind` as a compare-and-set) and `SettingsRepo` (small key → document store, e.g. `shop-hours`; callers validate with zod). `mock.ts` and `dynamo.ts` both implement them, and `db/index.ts` picks one from `DATA_SOURCE`. Always go through `db.*`; never call DynamoDB directly from pages. The single-table key layout is documented in `dynamo-items.ts` (PK `TYPE#id`, SK `META`, GSI1 for list/slug, orders sorted by `createdAt`).
 
@@ -183,6 +183,5 @@ Don't write tests for UI components or styling. When a test runner is added, lis
   - Phase 6, SEO + legal: sitemap, robots, JSON-LD, terms/privacy pages. Parked until the user starts it.
   - A test runner and tests for critical code (see Development commands).
   - An added-to-cart popover.
-  - A "create category" button in the admin.
   - The Lighthouse pass.
   - A real logo and photos.

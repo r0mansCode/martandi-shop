@@ -8,6 +8,7 @@ import { createUploadUrl } from "@/server/images";
 import { isImageType, MAX_IMAGE_BYTES } from "@/lib/product-images";
 import {
   categoryInput,
+  newCategoryInput,
   errorState,
   euroToCents,
   productInput,
@@ -130,6 +131,28 @@ export async function saveCategory(_prev: FormState, formData: FormData): Promis
   await db.categories.put({ ...existing, ...input });
   refreshStorefront();
   return { ok: true, message: "Saglabāts.", errors: {} };
+}
+
+/** Creates a category at the end of the menu, then opens the list with a confirmation. */
+export async function createCategory(_prev: FormState, formData: FormData): Promise<FormState> {
+  await requireAdmin();
+
+  const parsed = newCategoryInput.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) return errorState(parsed.error);
+  const input = parsed.data;
+
+  const categories = await db.categories.list();
+  const sameSlug = categories.find((c) => c.slug === input.slug);
+  if (sameSlug) {
+    return fail("Pārbaudiet iezīmētos laukus.", { slug: `Šo adresi jau izmanto „${sameSlug.name}”` });
+  }
+
+  // Last in the menu; the drag-and-drop list moves it from there.
+  const sortOrder = Math.max(0, ...categories.map((c) => c.sortOrder)) + 1;
+  await db.categories.put({ id: crypto.randomUUID(), ...input, sortOrder });
+  refreshStorefront();
+  revalidatePath("/admin/kategorijas");
+  redirect(`/admin/kategorijas?zina=izveidota&kategorija=${encodeURIComponent(input.name)}`);
 }
 
 export type ImageUpload = { uploadUrl: string; headers: Record<string, string>; url: string } | { error: string };

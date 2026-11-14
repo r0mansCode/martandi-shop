@@ -13,6 +13,16 @@ export function euroToCents(value: string): number {
   return Number(whole) * 100 + Number(fraction.padEnd(2, "0"));
 }
 
+/** "Konjaks un brendijs" → "konjaks-un-brendijs": a slug suggestion (diacritics dropped). */
+export function slugify(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 /** 1299 → "12,99", the format the price inputs show. */
 export function centsToEuro(cents: number): string {
   return (cents / 100).toFixed(2).replace(".", ",");
@@ -95,6 +105,9 @@ export const categoryInput = z.object({
   description: text("Apraksts", 500),
   // No sortOrder: the order is set only by dragging in the list, which keeps it 1, 2, 3…
 });
+
+/** A new category: the server assigns the id and puts it last in the menu. */
+export const newCategoryInput = categoryInput.omit({ id: true });
 
 export type FormState<Values = never> = {
   ok: boolean;
