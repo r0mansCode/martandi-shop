@@ -17,11 +17,21 @@ export const site = {
   emailFrom: "TaviDzērieni.lv <veikals@tavidzerieni.lv>",
 } as const;
 
+const weekday = { closed: false, open: "10:00", close: "20:00" };
+
 export const pickup = {
   address: "Krustpils iela 58, Rīga, LV-1057",
-  hours: [
-    { days: "P–Pk", time: "10:00–20:00" },
-    { days: "S", time: "10:00–18:00" },
-    { days: "Sv", time: "Slēgts" },
+  /**
+   * Opening (= pickup) hours until the admin saves their own in "Darba laiks".
+   * Monday first; the stored hours live in the database (server/shop-hours.ts).
+   */
+  defaultWeek: [
+    weekday,
+    weekday,
+    weekday,
+    weekday,
+    weekday,
+    { closed: false, open: "10:00", close: "18:00" },
+    { closed: true, open: "10:00", close: "18:00" },
   ],
-} as const;
+};

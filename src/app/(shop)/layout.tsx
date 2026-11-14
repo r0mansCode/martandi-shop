@@ -1,6 +1,8 @@
 import { getCategories } from "@/server/catalog";
+import { getPickupInfo } from "@/server/shop-hours";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { PickupInfoProvider } from "@/components/layout/PickupHours";
 import { pickup } from "@/config/site";
 import s from "./layout.module.scss";
 
@@ -11,16 +13,17 @@ import s from "./layout.module.scss";
 export const revalidate = 60;
 
 export default async function ShopLayout({ children }: LayoutProps<"/">) {
-  const categories = await getCategories();
+  const [categories, pickupInfo] = await Promise.all([getCategories(), getPickupInfo()]);
 
   return (
-    <>
+    <PickupInfoProvider value={pickupInfo}>
+      {pickupInfo.closure && <p className={`${s.announcement} ${s.closure}`}>{pickupInfo.closure}</p>}
       <p className={s.announcement}>
         Saņemšana tikai veikalā – {pickup.address} · ar personu apliecinošu dokumentu
       </p>
       <Header categories={categories} />
       <main className={s.main}>{children}</main>
-      <Footer categories={categories} />
-    </>
+      <Footer categories={categories} pickupInfo={pickupInfo} />
+    </PickupInfoProvider>
   );
 }

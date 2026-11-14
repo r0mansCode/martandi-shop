@@ -16,6 +16,8 @@ import {
   type ProductFormValues,
 } from "@/lib/catalog-input";
 import type { Product, Variant } from "@/lib/types";
+import { shopHoursInput, type ShopHours } from "@/lib/shop-hours";
+import { saveShopHours } from "@/server/shop-hours";
 
 // Catalog edits. Each action re-checks the admin session itself (never trust the page that
 // rendered the form), validates on the server, then refreshes every storefront page: the
@@ -188,4 +190,22 @@ export async function createImageUpload(productId: string, type: string, size: n
   }
   if (!(await db.products.getById(productId))) return { error: "Produkts vairs neeksistē." };
   return createUploadUrl(productId, type, size);
+}
+
+/** Saves the opening hours and closure notice. Every storefront page shows them. */
+export async function saveHours(_prev: FormState<ShopHours>, formData: FormData): Promise<FormState<ShopHours>> {
+  await requireAdmin();
+
+  let raw: unknown;
+  try {
+    raw = JSON.parse(String(formData.get("hours")));
+  } catch {
+    return fail("Neizdevās nolasīt formu. Pārlādējiet lapu un mēģiniet vēlreiz.");
+  }
+  const parsed = shopHoursInput.safeParse(raw);
+  if (!parsed.success) return errorState(parsed.error);
+
+  await saveShopHours(parsed.data);
+  refreshStorefront();
+  return { ok: true, message: "Saglabāts.", errors: {}, values: parsed.data };
 }

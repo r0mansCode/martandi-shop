@@ -14,6 +14,8 @@ type MockData = {
   products: Product[];
   orders: Order[];
   counters: Record<string, number>;
+  /** Missing in db.json files created before settings existed. */
+  settings?: Record<string, unknown>;
 };
 
 const SEED_DIR = path.join(process.cwd(), "data", "seed");
@@ -134,6 +136,13 @@ export const mockDb: Db = {
         if ((d.counters[key] ?? 0) !== expected) return false;
         d.counters[key] = value;
         return true;
+      }),
+  },
+  settings: {
+    get: async (key) => (await load()).settings?.[key] ?? null,
+    put: (key, value) =>
+      mutate((d) => {
+        d.settings = { ...d.settings, [key]: value };
       }),
   },
 };

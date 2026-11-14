@@ -142,5 +142,14 @@ export function createDynamoDb(): Db {
         }
       },
     },
+    settings: {
+      get: async (key) => {
+        const { Item } = await client.send(
+          new GetCommand({ TableName: table, Key: { PK: pk("SETTING", key), SK: META } }),
+        );
+        return Item?.value ?? null;
+      },
+      put: (key, value) => put({ PK: pk("SETTING", key), SK: META, value }),
+    },
   };
 }

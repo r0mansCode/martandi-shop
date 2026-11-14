@@ -27,7 +27,8 @@ Business rules that shape the code:
 - **Order statuses:** awaiting payment → paid → ready for pickup → collected (or cancelled). Each of paid, ready and collected sends the customer an email automatically. Cancelling **deliberately** sends no email.
 - **Alcohol sale-hour rules** apply to pickup only, not to placing orders online. Don't block checkout by time of day.
 - **Explicitly out of scope:** customer accounts, inventory tracking, Meta Pixel/GA, shipping, and Stripe/card payments. Don't design for Stripe now.
-- **Seller details** (Reg./PVN Nr., IBAN, bank) live in `src/config/seller.ts`. Shop settings (VAT 21%, due days, invoice prefix, pickup hours, email sender) live in `src/config/site.ts`. Never hard-code them anywhere else.
+- **Seller details** (Reg./PVN Nr., IBAN, bank) live in `src/config/seller.ts`. Shop settings (VAT 21%, due days, invoice prefix, email sender, the *default* pickup hours) live in `src/config/site.ts`. Never hard-code them anywhere else.
+- **Opening hours = pickup hours**, edited by the admin under „Darba laiks” (`/admin/darba-laiks`) together with an optional closure notice (one day or a date range: „… datumā(os) būsim slēgti.”). The notice shows on the storefront until its last day has passed, then hides itself. Until the admin saves, `pickup.defaultWeek` from `site.ts` is used.
 
 ## Tech stack
 
@@ -59,6 +60,7 @@ src/
     admin/                  Cognito-protected admin
       produkti/             product list + [id] edit (ProductForm, ImagesField)
       kategorijas/          drag-reorder list (CategoryList) + [id] edit
+      darba-laiks/          opening hours + closure notice (HoursForm)
       pasutijumi/           orders: table tab + sales-summary tab, [id] detail, [id]/rekins PDF route
       actions.ts            catalog Server Actions; pasutijumi/actions.ts for orders
       ConfirmButton.tsx     window.confirm submit button for destructive actions
@@ -83,7 +85,7 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 
 **Category order.** `sortOrder` is written only by the drag-and-drop list (`reorderCategories`, always 1…n). The edit form shows the position read-only and `saveCategory` keeps the stored value. `byCategoryOrder` (`server/db/types.ts`) breaks ties by id in both stores. **Cache Components is intentionally OFF**, because Amplify officially supports only the previous caching model. Don't enable `cacheComponents` or `"use cache"`.
 
-**Data layer.** `src/server/db/types.ts` defines the repo interfaces: `CategoryRepo`, `ProductRepo`, `OrderRepo` (with `delete`) and `CounterRepo` (`next`, plus `rewind` as a compare-and-set). `mock.ts` and `dynamo.ts` both implement them, and `db/index.ts` picks one from `DATA_SOURCE`. Always go through `db.*`; never call DynamoDB directly from pages. The single-table key layout is documented in `dynamo-items.ts` (PK `TYPE#id`, SK `META`, GSI1 for list/slug, orders sorted by `createdAt`).
+**Data layer.** `src/server/db/types.ts` defines the repo interfaces: `CategoryRepo`, `ProductRepo`, `OrderRepo` (with `delete`), `CounterRepo` (`next`, plus `rewind` as a compare-and-set) and `SettingsRepo` (small key → document store, e.g. `shop-hours`; callers validate with zod). `mock.ts` and `dynamo.ts` both implement them, and `db/index.ts` picks one from `DATA_SOURCE`. Always go through `db.*`; never call DynamoDB directly from pages. The single-table key layout is documented in `dynamo-items.ts` (PK `TYPE#id`, SK `META`, GSI1 for list/slug, orders sorted by `createdAt`).
 
 **Admin security.** `proxy.ts` only redirects and refreshes tokens, for convenience. **`requireAdmin()` (`src/server/auth/session.ts`) is the real check.** Call it at the top of every admin page, layout, route handler and Server Action.
 
@@ -91,6 +93,8 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 - The cart lives in `localStorage` (`martandi-cart`). `src/lib/cart.ts` is a `useSyncExternalStore` store, so components read it with `useCart()` / `useCartCount()`.
 - `placeOrder` re-prices every line from the DB. If prices or availability changed it returns `cart_changed`, and the client calls `applyServerCart`. It enforces the age check, a honeypot and an in-memory rate limit (`server/rate-limit.ts`).
 - `createOrder` (`server/orders.ts`) gets the invoice number from `counters.next("invoice-YYYY")`.
+
+**Opening hours.** `lib/shop-hours.ts` holds the zod schema, day grouping („P–Pk 10:00–20:00”) and the closure sentence; `server/shop-hours.ts` reads/saves them (`getPickupInfo()` is `cache()`d per request). The shop layout passes `PickupInfo` to client components through `PickupInfoProvider`; render hours with `<PickupHours>` (or `hoursLine()` in server pages), never from config. Emails get the hours and closure; the invoice PDF gets the hours only, since it is a permanent document.
 
 **Invoices and emails.**
 - `renderInvoicePdf(order)` builds the PDF.
@@ -174,7 +178,7 @@ Don't write tests for UI components or styling. When a test runner is added, lis
 
 ## Status and open items
 
-- **Done:** phases 0–5 and 7 (setup, data, storefront, cart/checkout, invoice + email, admin, Dynamo launch). Recent additions: a card quantity stepper, drag-reorder categories, an orders summary tab, and a per-variant packaging deposit (prefilled for Thomas Henry in the seed).
+- **Done:** phases 0–5 and 7 (setup, data, storefront, cart/checkout, invoice + email, admin, Dynamo launch). Recent additions: a card quantity stepper, drag-reorder categories, an orders summary tab, a per-variant packaging deposit (prefilled for Thomas Henry in the seed), a shared `AddToCartButton`, and admin-editable opening hours with a closure notice.
 - **Open:**
   - Phase 6, SEO + legal: sitemap, robots, JSON-LD, terms/privacy pages. Parked until the user starts it.
   - A test runner and tests for critical code (see Development commands).

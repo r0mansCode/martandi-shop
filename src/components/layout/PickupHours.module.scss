@@ -1,0 +1,7 @@
+@use "@/styles/mixins" as *;
+
+.closure {
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 600;
+}

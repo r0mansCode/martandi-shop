@@ -8,6 +8,7 @@ import type { Category, Order, Product } from "@/lib/types";
 //   Product   PRODUCT#<id>       META    PRODUCT     <slug>
 //   Order     ORDER#<id>         META    ORDER       <createdAt>#<id>
 //   Counter   COUNTER#<key>      META    -           -
+//   Setting   SETTING#<key>      META    -           -       (document in `value`)
 //
 // GSI1 (projection ALL) serves list() and getBySlug(); orders sort newest first on GSI1SK.
 
@@ -18,7 +19,7 @@ export type EntityType = "CATEGORY" | "PRODUCT" | "ORDER";
 
 const KEY_ATTRS = ["PK", "SK", "GSI1PK", "GSI1SK"] as const;
 
-export const pk = (type: EntityType | "COUNTER", id: string) => `${type}#${id}`;
+export const pk = (type: EntityType | "COUNTER" | "SETTING", id: string) => `${type}#${id}`;
 
 export const categoryItem = (c: Category) => ({
   ...c,

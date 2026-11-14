@@ -15,7 +15,7 @@ Implementation notes:
 | Variants | Yes (e.g. 0,7 l / 1 l). Each variant has its own price |
 | Inventory | Not tracked |
 | Fulfilment | **Pickup only**, no shipping, no shipping fees. Location: Krustpils iela 58, Rīga, LV-1057 (same as the legal address) |
-| Pickup hours | Placeholder: Mon–Fri 10:00–20:00, Sat 10:00–18:00, Sun closed (in config, easy to change) |
+| Pickup hours | Edited in the admin („Darba laiks”), with an optional closure notice. Defaults in config: Mon–Fri 10:00–20:00, Sat 10:00–18:00, Sun closed |
 | Age check | No site-wide popup. A required 18+ checkbox at checkout, plus ID shown at pickup. Notice in cart/checkout/email/invoice |
 | Payment | Always bank transfer against an emailed PDF invoice. Due in **14 days**. Stripe later |
 | Buyers | Guest checkout only. Private or company buyer (company details printed on the invoice) |

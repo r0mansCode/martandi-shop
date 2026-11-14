@@ -1,0 +1,49 @@
+@use "@/styles/mixins" as *;
+
+.week {
+  display: grid;
+  gap: 0.5rem;
+}
+
+// One row per weekday: name, closed checkbox, open – close.
+.day {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  @include up(md) {
+    grid-template-columns: 9rem 6rem 8rem auto 8rem;
+  }
+
+  input[type="time"]:disabled {
+    opacity: 0.4;
+  }
+}
+
+// <legend> ignores grid placement unless floated out of the fieldset's border box.
+.dayName {
+  float: left;
+  grid-column: 1 / -1;
+  padding: 0;
+  font-weight: 500;
+  font-size: 0.875rem;
+
+  @include up(md) {
+    grid-column: auto;
+  }
+}
+
+.dayError {
+  grid-column: 1 / -1;
+}
+
+.preview {
+  padding: 0.625rem 0.75rem;
+  border-left: 3px solid var(--color-accent);
+  background: var(--color-panel);
+  font-size: 0.875rem;
+}

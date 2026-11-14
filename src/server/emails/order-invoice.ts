@@ -1,11 +1,13 @@
 import "server-only";
 import type { Order } from "@/lib/types";
+import type { PickupInfo } from "@/lib/shop-hours";
 import { formatPrice } from "@/lib/money";
 import { formatDate } from "@/lib/format";
 import { site } from "@/config/site";
 import { seller } from "@/config/seller";
 import {
   ageNote,
+  closureLines,
   emailHtml,
   escape,
   firstName,
@@ -21,7 +23,7 @@ import {
 } from "./layout";
 
 // Email sent with the PDF invoice right after checkout.
-export function orderInvoiceEmail(order: Order): EmailContent {
+export function orderInvoiceEmail(order: Order, pickup: PickupInfo): EmailContent {
   const total = formatPrice(order.totals.grossCents);
   const age = ageNote(order);
   const payment: [string, string][] = [
@@ -45,7 +47,8 @@ export function orderInvoiceEmail(order: Order): EmailContent {
     "Apmaksa ar bankas pārskaitījumu:",
     ...payment.map(([k, v]) => `${k}: ${v}`),
     "",
-    `Saņemšana veikalā: ${order.pickupLocation}. Darba laiks: ${pickupHours()}.`,
+    `Saņemšana veikalā: ${order.pickupLocation}. Darba laiks: ${pickupHours(pickup)}.`,
+    ...closureLines(pickup),
     "Pasūtījumu sagatavosim pēc apmaksas saņemšanas un paziņosim, kad tas būs gatavs saņemšanai.",
     ...(age ? [age] : []),
     ...textFooter,
@@ -66,7 +69,7 @@ export function orderInvoiceEmail(order: Order): EmailContent {
       itemsTable(order),
     heading("Apmaksa ar bankas pārskaitījumu") +
       `<table role="presentation" cellpadding="0" cellspacing="0" style="font-size:14px">${paymentRows}</table>`,
-    pickupBlock(order) +
+    pickupBlock(order, pickup) +
       p("Pasūtījumu sagatavosim pēc apmaksas saņemšanas un paziņosim, kad tas būs gatavs saņemšanai.", "margin:12px 0 0") +
       (age ? note(age) : ""),
   ]);

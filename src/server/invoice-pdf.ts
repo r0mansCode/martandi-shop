@@ -4,7 +4,8 @@ import PDFDocument from "pdfkit";
 import type { Order } from "@/lib/types";
 import { formatPrice } from "@/lib/money";
 import { formatDate } from "@/lib/format";
-import { pickup, site } from "@/config/site";
+import { site } from "@/config/site";
+import { hoursLine, type PickupInfo } from "@/lib/shop-hours";
 import { seller } from "@/config/seller";
 
 // A4 invoice (rēķins) for one order. Prices include VAT; the VAT breakdown is shown in the
@@ -37,7 +38,8 @@ export function invoiceFilename(order: Order): string {
   return `Rekins-${order.invoiceNumber}.pdf`;
 }
 
-export function renderInvoicePdf(order: Order): Promise<Buffer> {
+/** `pickup` gives the current opening hours; a temporary closure is left off the permanent invoice. */
+export function renderInvoicePdf(order: Order, pickup: PickupInfo): Promise<Buffer> {
   const doc = new PDFDocument({
     size: "A4",
     margin: MARGIN,
@@ -57,7 +59,7 @@ export function renderInvoicePdf(order: Order): Promise<Buffer> {
   drawParties(doc, order);
   drawItems(doc, order);
   drawTotals(doc, order);
-  drawNotes(doc, order);
+  drawNotes(doc, order, pickup);
   doc.end();
 
   return done;
@@ -217,7 +219,7 @@ function drawTotals(doc: Doc, order: Order) {
   doc.y += 14;
 }
 
-function drawNotes(doc: Doc, order: Order) {
+function drawNotes(doc: Doc, order: Order, pickup: PickupInfo) {
   const section = (title: string, body: string) => {
     doc.font("bold").fontSize(10).fillColor(TEXT).text(title, MARGIN, doc.y, { width: CONTENT_WIDTH });
     doc.moveDown(0.2);
@@ -232,7 +234,7 @@ function drawNotes(doc: Doc, order: Order) {
       `Maksājuma mērķī norādiet rēķina numuru ${order.invoiceNumber}.`,
   );
 
-  const hours = pickup.hours.map((h) => `${h.days} ${h.time}`).join(", ");
+  const hours = hoursLine(pickup.hours, ", ");
   section(
     "Saņemšana",
     `Pasūtījumu varēs saņemt veikalā ${order.pickupLocation} pēc apmaksas saņemšanas. Darba laiks: ${hours}.` +

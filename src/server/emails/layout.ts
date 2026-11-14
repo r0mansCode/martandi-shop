@@ -1,7 +1,8 @@
 import "server-only";
 import type { Order } from "@/lib/types";
 import { formatPrice } from "@/lib/money";
-import { pickup, site } from "@/config/site";
+import { site } from "@/config/site";
+import { hoursLine, type PickupInfo } from "@/lib/shop-hours";
 import { seller } from "@/config/seller";
 
 // Shared building blocks for customer emails. Inline styles only: email clients ignore
@@ -12,7 +13,11 @@ export const escape = (s: string) =>
 
 export const firstName = (order: Order) => order.customer.name.split(/\s+/)[0];
 
-export const pickupHours = () => pickup.hours.map((h) => `${h.days} ${h.time}`).join(", ");
+/** "P–Pk 10:00–20:00, S 10:00–18:00, Sv Slēgts" */
+export const pickupHours = (info: PickupInfo) => hoursLine(info.hours, ", ");
+
+/** The closure sentence as its own text line, when one is set. */
+export const closureLines = (info: PickupInfo) => (info.closure ? [info.closure] : []);
 
 export const ageNote = (order: Order) =>
   order.ageConfirmedAt
@@ -69,9 +74,10 @@ export const itemsText = (order: Order) => [
 ];
 
 /** Pickup address and hours block. */
-export const pickupBlock = (order: Order) =>
+export const pickupBlock = (order: Order, info: PickupInfo) =>
   `${heading("Saņemšana veikalā")}${p(
-    `${escape(order.pickupLocation)}<br><span style="color:#757575">${escape(pickupHours())}</span>`,
+    `${escape(order.pickupLocation)}<br><span style="color:#757575">${escape(pickupHours(info))}</span>` +
+      (info.closure ? `<br><strong style="color:#a0461e">${escape(info.closure)}</strong>` : ""),
     "margin:0",
   )}`;
 

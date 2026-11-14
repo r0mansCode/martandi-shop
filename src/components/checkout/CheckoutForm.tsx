@@ -10,6 +10,7 @@ import { initialCheckoutState, type CheckoutState } from "@/lib/checkout-input";
 import type { BuyerType } from "@/lib/types";
 import { placeOrder } from "@/app/(shop)/noformet/actions";
 import { pickup, site } from "@/config/site";
+import { PickupHours } from "@/components/layout/PickupHours";
 import s from "./CheckoutForm.module.scss";
 
 const noopSubscribe = () => () => {};
@@ -199,7 +200,7 @@ export function CheckoutForm() {
             <div className={s.infoBox}>
               <p className={s.infoTitle}>Saņemšana veikalā – bezmaksas</p>
               <p>{pickup.address}</p>
-              <p className={s.muted}>{pickup.hours.map((h) => `${h.days} ${h.time}`).join(" · ")}</p>
+              <PickupHours className={s.muted} />
               <p className={s.muted}>Pasūtījumu sagatavosim pēc apmaksas un paziņosim, kad tas būs gatavs.</p>
             </div>
           </section>

@@ -7,6 +7,7 @@ import { useCart } from "@/lib/cart";
 import { formatPrice } from "@/lib/money";
 import type { ProductBadge, ProductImage, Variant } from "@/lib/types";
 import { pickup, site } from "@/config/site";
+import { PickupHours } from "@/components/layout/PickupHours";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { IdIcon, StoreIcon } from "@/components/icons";
 import s from "./ProductHero.module.scss";
@@ -127,7 +128,7 @@ export function ProductHero({ product, children }: Props) {
             <div>
               <p className={s.panelTitle}>Saņemšana tikai veikalā</p>
               <p>{pickup.address}</p>
-              <p className={s.panelMuted}>{pickup.hours.map((h) => `${h.days} ${h.time}`).join(" · ")}</p>
+              <PickupHours className={s.panelMuted} />
             </div>
           </div>
           {product.isAlcohol && (

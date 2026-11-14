@@ -1,6 +1,7 @@
 import "server-only";
 import { db } from "./db";
 import { sendEmail } from "./email";
+import { getPickupInfo } from "./shop-hours";
 import { invoiceFilename, renderInvoicePdf } from "./invoice-pdf";
 import { orderInvoiceEmail } from "./emails/order-invoice";
 import { isNotifiedStatus, orderStatusEmail } from "./emails/order-status";
@@ -12,8 +13,9 @@ import type { Order } from "@/lib/types";
  * `resend: true` bypasses the duplicate-send protection (e.g. an admin re-sending on request).
  */
 export async function sendInvoice(order: Order, { resend = false } = {}): Promise<Order> {
-  const pdf = await renderInvoicePdf(order);
-  const { subject, text, html } = orderInvoiceEmail(order);
+  const pickup = await getPickupInfo();
+  const pdf = await renderInvoicePdf(order, pickup);
+  const { subject, text, html } = orderInvoiceEmail(order, pickup);
 
   await sendEmail({
     to: order.customer.email,
@@ -38,7 +40,7 @@ export async function sendStatusEmail(order: Order): Promise<Order> {
   const status = order.status;
   if (!isNotifiedStatus(status)) return order;
 
-  const { subject, text, html } = orderStatusEmail(order, status);
+  const { subject, text, html } = orderStatusEmail(order, status, await getPickupInfo());
   await sendEmail({
     to: order.customer.email,
     subject,

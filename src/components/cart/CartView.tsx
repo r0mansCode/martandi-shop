@@ -8,6 +8,7 @@ import { formatPrice, orderTotals } from "@/lib/money";
 import { plural } from "@/lib/format";
 import type { PaymentMethod } from "@/lib/types";
 import { pickup, site } from "@/config/site";
+import { PickupHours } from "@/components/layout/PickupHours";
 import { CloseIcon, IdIcon } from "@/components/icons";
 import s from "./CartView.module.scss";
 
@@ -62,7 +63,7 @@ export function CartView() {
               <p>
                 Saņemšana tikai veikalā – <strong>{pickup.address}</strong>
               </p>
-              <p className={s.muted}>{pickup.hours.map((h) => `${h.days} ${h.time}`).join(" · ")}</p>
+              <PickupHours className={s.muted} />
             </div>
             <Link href="/katalogs" className={s.keepShopping}>
               Turpināt iepirkties

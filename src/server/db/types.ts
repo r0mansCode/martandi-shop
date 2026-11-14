@@ -45,9 +45,16 @@ export interface CounterRepo {
   rewind(key: string, expected: number, value: number): Promise<boolean>;
 }
 
+/** Small shop-wide settings documents by key (e.g. "shop-hours"). Callers validate the value. */
+export interface SettingsRepo {
+  get(key: string): Promise<unknown>;
+  put(key: string, value: unknown): Promise<void>;
+}
+
 export interface Db {
   categories: CategoryRepo;
   products: ProductRepo;
   orders: OrderRepo;
   counters: CounterRepo;
+  settings: SettingsRepo;
 }

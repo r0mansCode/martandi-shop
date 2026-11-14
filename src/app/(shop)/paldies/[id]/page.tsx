@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/server/db";
+import { getPickupInfo } from "@/server/shop-hours";
+import { hoursLine } from "@/lib/shop-hours";
 import { formatPrice } from "@/lib/money";
 import { formatDate } from "@/lib/format";
-import { pickup, site } from "@/config/site";
+import { site } from "@/config/site";
 import { seller } from "@/config/seller";
 import s from "./page.module.scss";
 
@@ -22,7 +24,7 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 export default async function ThankYouPage({ params }: PageProps<"/paldies/[id]">) {
   const { id } = await params;
   if (!UUID.test(id)) notFound();
-  const order = await db.orders.getById(id);
+  const [order, pickupInfo] = await Promise.all([db.orders.getById(id), getPickupInfo()]);
   if (!order) notFound();
 
   const payment: [string, string][] = [
@@ -76,7 +78,8 @@ export default async function ThankYouPage({ params }: PageProps<"/paldies/[id]"
             <li>Kad apmaksa būs saņemta, sagatavosim pasūtījumu un paziņosim pa e-pastu.</li>
             <li>
               Saņemiet pasūtījumu veikalā – {order.pickupLocation}
-              <span className={s.muted}> ({pickup.hours.map((h) => `${h.days} ${h.time}`).join(", ")})</span>.
+              <span className={s.muted}> ({hoursLine(pickupInfo.hours, ", ")})</span>.
+              {pickupInfo.closure && ` ${pickupInfo.closure}`}
               {order.ageConfirmedAt && " Paņemiet līdzi personu apliecinošu dokumentu."}
             </li>
           </ol>

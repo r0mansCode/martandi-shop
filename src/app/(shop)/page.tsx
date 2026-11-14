@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getCategories, getVisibleProducts } from "@/server/catalog";
+import { getPickupInfo } from "@/server/shop-hours";
+import { hoursLine } from "@/lib/shop-hours";
 import { toCardData } from "@/lib/product-card";
 import { ProductGrid } from "@/components/product/ProductCard";
 import { pickup, site } from "@/config/site";
@@ -11,7 +13,11 @@ import frogPhoto from "../../../public/images/home/varde-ar-pudelem.jpg";
 import s from "./page.module.scss";
 
 export default async function Home() {
-  const [categories, products] = await Promise.all([getCategories(), getVisibleProducts()]);
+  const [categories, products, pickupInfo] = await Promise.all([
+    getCategories(),
+    getVisibleProducts(),
+    getPickupInfo(),
+  ]);
 
   // Category tile image: prefer a popular product, otherwise the first one.
   const tiles = categories
@@ -130,7 +136,13 @@ export default async function Home() {
             <p className={s.promoText}>
               {pickup.address}
               <br />
-              {pickup.hours.map((h) => `${h.days} ${h.time}`).join(" · ")}
+              {hoursLine(pickupInfo.hours)}
+              {pickupInfo.closure && (
+                <>
+                  <br />
+                  <strong>{pickupInfo.closure}</strong>
+                </>
+              )}
             </p>
           </div>
           <ol className={s.steps}>

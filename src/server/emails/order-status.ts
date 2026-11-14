@@ -1,9 +1,11 @@
 import "server-only";
 import type { Order, OrderStatus } from "@/lib/types";
+import type { PickupInfo } from "@/lib/shop-hours";
 import { formatPrice } from "@/lib/money";
 import { site } from "@/config/site";
 import {
   ageNote,
+  closureLines,
   emailHtml,
   escape,
   firstName,
@@ -27,7 +29,7 @@ export const NOTIFIED_STATUSES: OrderStatus[] = ["paid", "ready_for_pickup", "co
 export const isNotifiedStatus = (status: OrderStatus): status is NotifiedStatus =>
   NOTIFIED_STATUSES.includes(status);
 
-export function orderStatusEmail(order: Order, status: NotifiedStatus): EmailContent {
+export function orderStatusEmail(order: Order, status: NotifiedStatus, pickup: PickupInfo): EmailContent {
   const name = firstName(order);
   const number = order.invoiceNumber;
   const age = ageNote(order);
@@ -65,7 +67,8 @@ export function orderStatusEmail(order: Order, status: NotifiedStatus): EmailCon
           `Jūsu pasūtījums Nr. ${number} ir sagatavots un gaida jūs veikalā.`,
           "",
           `Adrese: ${order.pickupLocation}`,
-          `Darba laiks: ${pickupHours()}`,
+          `Darba laiks: ${pickupHours(pickup)}`,
+          ...closureLines(pickup),
           `Saņemot, lūdzu, nosauciet pasūtījuma numuru ${number}.`,
           ...(age ? ["", age] : []),
           "",
@@ -75,7 +78,7 @@ export function orderStatusEmail(order: Order, status: NotifiedStatus): EmailCon
         html: emailHtml([
           p(`Labdien, ${escape(name)}!`) +
             p(`Jūsu pasūtījums Nr. <strong>${escape(number)}</strong> ir sagatavots un gaida jūs veikalā.`),
-          pickupBlock(order) +
+          pickupBlock(order, pickup) +
             p(`Saņemot, lūdzu, nosauciet pasūtījuma numuru <strong>${escape(number)}</strong>.`, "margin:12px 0 0") +
             (age ? note(age) : ""),
           itemsTable(order),
