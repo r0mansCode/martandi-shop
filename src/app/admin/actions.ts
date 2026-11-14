@@ -52,7 +52,7 @@ export async function saveProduct(_prev: ProductFormState, formData: FormData): 
   const existing = await db.products.getById(input.id);
   if (!existing) return fail("Produkts vairs neeksistē.");
 
-  if (!(await db.categories.getById(input.categoryId))) {
+  if (input.categoryId && !(await db.categories.getById(input.categoryId))) {
     return fail("Pārbaudiet iezīmētos laukus.", { categoryId: "Kategorija neeksistē" });
   }
   const sameSlug = await db.products.getBySlug(input.slug);
@@ -188,20 +188,28 @@ export async function reorderCategories(ids: string[]): Promise<{ ok: boolean; m
   return { ok: true, message: "Secība saglabāta." };
 }
 
-/** Deletes an empty category. Refused while products still use it (they'd lose their category). */
+/**
+ * Deletes a category. Its products become unsorted (categoryId ""), which hides them from the
+ * storefront until the admin gives them a new category.
+ */
 export async function deleteCategory(id: string) {
   await requireAdmin();
 
   const category = await db.categories.getById(id);
   if (!category) redirect("/admin/kategorijas");
 
-  const inUse = (await db.products.list()).filter((p) => p.categoryId === id).length;
-  if (inUse > 0) redirect(`/admin/kategorijas?zina=nav-tuksa&kategorija=${encodeURIComponent(category.name)}&skaits=${inUse}`);
+  // Products first: if this stops halfway, the category still exists and a retry finishes it.
+  const inCategory = (await db.products.list()).filter((p) => p.categoryId === id);
+  const now = new Date().toISOString();
+  await Promise.all(inCategory.map((p) => db.products.put({ ...p, categoryId: "", updatedAt: now })));
 
   await db.categories.delete(id);
   refreshStorefront();
   revalidatePath("/admin/kategorijas");
-  redirect(`/admin/kategorijas?zina=dzesta&kategorija=${encodeURIComponent(category.name)}`);
+  revalidatePath("/admin/produkti");
+  redirect(
+    `/admin/kategorijas?zina=dzesta&kategorija=${encodeURIComponent(category.name)}&skaits=${inCategory.length}`,
+  );
 }
 
 /** Step 1 of an upload: a short-lived URL the browser PUTs the file to. Saving the product attaches it. */

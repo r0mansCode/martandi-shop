@@ -4,10 +4,13 @@ import { db } from "./db";
 import { activeVariants } from "@/lib/money";
 import type { Product } from "@/lib/types";
 
-// Storefront reads. Only published products with at least one active variant are visible.
-// React `cache` dedupes calls within a single render.
+// Storefront reads. Only published products with a category and at least one active variant
+// are visible; unsorted ones (categoryId "") stay in the admin. React `cache` dedupes calls
+// within a single render.
 
-const isVisible = (p: Product) => p.status === "published" && activeVariants(p).length > 0;
+/** Shown in the shop and orderable at checkout. */
+export const isVisible = (p: Product) =>
+  p.status === "published" && p.categoryId !== "" && activeVariants(p).length > 0;
 
 export const getCategories = cache(() => db.categories.list());
 

@@ -5,6 +5,7 @@ import { useState, useTransition } from "react";
 import { deleteCategory, reorderCategories } from "../actions";
 import { ConfirmButton } from "../ConfirmButton";
 import { plural } from "@/lib/format";
+import { deleteCategoryConfirm } from "@/lib/catalog-input";
 import a from "../admin.module.scss";
 import s from "./categories.module.scss";
 
@@ -125,25 +126,11 @@ export function CategoryList({ categories }: { categories: CategoryRow[] }) {
                   {row.productCount} {plural(row.productCount, "produkts", "produkti")}
                 </td>
                 <td className={s.actions}>
-                  {row.productCount > 0 ? (
-                    <button
-                      type="button"
-                      className={`${s.delete} ${a.aboveRow}`}
-                      disabled
-                      title="Kategorijā ir produkti – vispirms pārvietojiet tos uz citu kategoriju"
-                    >
+                  <form action={deleteCategory.bind(null, row.id)} className={a.aboveRow}>
+                    <ConfirmButton confirm={deleteCategoryConfirm(row.name, row.productCount)} className={s.delete}>
                       Dzēst
-                    </button>
-                  ) : (
-                    <form action={deleteCategory.bind(null, row.id)} className={a.aboveRow}>
-                      <ConfirmButton
-                        confirm={`Dzēst kategoriju „${row.name}”? To nevarēs atjaunot.`}
-                        className={s.delete}
-                      >
-                        Dzēst
-                      </ConfirmButton>
-                    </form>
-                  )}
+                    </ConfirmButton>
+                  </form>
                 </td>
               </tr>
             ))}

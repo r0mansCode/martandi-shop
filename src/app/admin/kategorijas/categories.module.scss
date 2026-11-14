@@ -61,15 +61,9 @@
   font-size: 0.8125rem;
   white-space: nowrap;
 
-  &:hover:not(:disabled) {
+  &:hover {
     border-color: #b3261e;
     background: #fbeceb;
-  }
-
-  &:disabled {
-    color: var(--color-muted);
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 }
 
@@ -97,7 +91,8 @@
   background: #eef6ef;
 }
 
-.messageError {
-  border-left-color: #b3261e;
-  background: #fbeceb;
+.unsorted {
+  max-width: 48rem;
+  margin-top: 1rem;
+  font-size: 0.875rem;
 }

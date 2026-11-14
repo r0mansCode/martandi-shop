@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { isAllowedImageUrl, MAX_IMAGES } from "./product-images";
+import { plural } from "./format";
 
 // Admin form input for products and categories. Shared by the client forms (shape) and the
 // Server Actions (validation); the server is the only place the result is trusted.
@@ -69,7 +70,8 @@ export const productInput = z
     name: text("Nosaukums", 120),
     slug,
     description: text("Apraksts", 2000),
-    categoryId: z.string().min(1, "Izvēlieties kategoriju"),
+    /** "" = unsorted: allowed, the product is then hidden from the storefront. */
+    categoryId: z.string(),
     status: z.enum(["draft", "published"]),
     isAlcohol: z.boolean(),
     badge: z.enum(["", "Jaunums", "Populārs"]).transform((v) => v || undefined),
@@ -108,6 +110,22 @@ export const categoryInput = z.object({
 
 /** A new category: the server assigns the id and puts it last in the menu. */
 export const newCategoryInput = categoryInput.omit({ id: true });
+
+/** `?kategorija=` value of the admin product filter for unsorted products (categoryId ""). */
+export const UNSORTED_FILTER = "bez";
+
+/** Confirmation for deleting a category; its products become unsorted, so say so. */
+export function deleteCategoryConfirm(name: string, productCount: number): string {
+  const moved =
+    productCount === 0
+      ? ""
+      : ` Tās ${productCount} ${plural(
+          productCount,
+          "produkts tiks pārvietots uz „Bez kategorijas” un netiks rādīts",
+          "produkti tiks pārvietoti uz „Bez kategorijas” un netiks rādīti",
+        )} veikalā.`;
+  return `Dzēst kategoriju „${name}”?${moved} Kategoriju nevarēs atjaunot.`;
+}
 
 export type FormState<Values = never> = {
   ok: boolean;

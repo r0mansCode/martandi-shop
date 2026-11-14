@@ -1,5 +1,6 @@
 import "server-only";
 import { db } from "./db";
+import { isVisible } from "./catalog";
 import { activeVariants, orderTotals } from "@/lib/money";
 import { MAX_QTY } from "@/lib/cart-limits";
 import type { CheckoutInput, LinePrice } from "@/lib/checkout-input";
@@ -73,7 +74,7 @@ export async function createOrder(input: CheckoutInput, now = new Date()): Promi
 
   const available = new Map<string, { product: Product; variant: Variant }>();
   for (const product of await db.products.list()) {
-    if (product.status !== "published") continue;
+    if (!isVisible(product)) continue;
     for (const variant of activeVariants(product)) available.set(variant.id, { product, variant });
   }
 

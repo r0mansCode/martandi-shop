@@ -37,6 +37,7 @@ export type Product = {
   slug: string;
   name: string;
   description: string;
+  /** "" = unsorted („Bez kategorijas”), e.g. after its category was deleted. Hidden from the storefront. */
   categoryId: string;
   images: ProductImage[];
   status: ProductStatus;

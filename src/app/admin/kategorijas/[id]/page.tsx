@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { plural } from "@/lib/format";
+import { deleteCategoryConfirm } from "@/lib/catalog-input";
 import { CategoryForm } from "../CategoryForm";
 import { ConfirmButton } from "../../ConfirmButton";
 import { deleteCategory } from "../../actions";
@@ -43,20 +44,20 @@ export default async function AdminCategory({ params }: PageProps<"/admin/katego
       </section>
 
       <div className={s.dangerZone}>
-        {count > 0 ? (
-          <p className={a.muted}>
-            Kategoriju var dzēst tikai tad, kad tajā nav produktu. Pārvietojiet {count}{" "}
-            {plural(count, "produktu", "produktus")} uz citu kategoriju.
+        <form action={deleteCategory.bind(null, category.id)}>
+          <ConfirmButton
+            confirm={deleteCategoryConfirm(category.name, count)}
+            className={`${a.buttonSecondary} ${s.deleteButton}`}
+          >
+            Dzēst kategoriju
+          </ConfirmButton>
+        </form>
+        {count > 0 && (
+          <p className={a.hint}>
+            {count} {plural(count, "produkts tiks pārvietots", "produkti tiks pārvietoti")} uz „Bez kategorijas” un
+            veikalā netiks {plural(count, "rādīts", "rādīti")}, kamēr {plural(count, "tam", "tiem")} nepiešķirsiet citu
+            kategoriju.
           </p>
-        ) : (
-          <form action={deleteCategory.bind(null, category.id)}>
-            <ConfirmButton
-              confirm={`Dzēst kategoriju „${category.name}”? To nevarēs atjaunot.`}
-              className={`${a.buttonSecondary} ${s.deleteButton}`}
-            >
-              Dzēst kategoriju
-            </ConfirmButton>
-          </form>
         )}
       </div>
     </>

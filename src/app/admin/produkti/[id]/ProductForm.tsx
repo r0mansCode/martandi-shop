@@ -76,6 +76,7 @@ export function ProductForm({ initial, categories }: Props) {
           <label className={a.field}>
             <span>Kategorija</span>
             <select className={cls("categoryId")} value={values.categoryId} onChange={(e) => set("categoryId", e.target.value)}>
+              <option value="">Bez kategorijas</option>
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>
                   {c.name}
@@ -83,6 +84,7 @@ export function ProductForm({ initial, categories }: Props) {
               ))}
             </select>
             {err("categoryId") && <span className={a.error}>{err("categoryId")}</span>}
+            {!values.categoryId && <span className={a.hint}>Produkts bez kategorijas veikalā netiek rādīts.</span>}
           </label>
           <label className={a.field}>
             <span>Statuss</span>

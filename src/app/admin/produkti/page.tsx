@@ -5,6 +5,7 @@ import { requireAdmin } from "@/server/auth/session";
 import { formatPrice } from "@/lib/money";
 import { normalizeSearch } from "@/lib/format";
 import type { Product } from "@/lib/types";
+import { UNSORTED_FILTER } from "@/lib/catalog-input";
 import a from "../admin.module.scss";
 
 export const metadata: Metadata = { title: "Produkti" };
@@ -36,7 +37,7 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
   const needle = normalizeSearch(q.trim());
 
   const shown = products
-    .filter((p) => !category || p.categoryId === category)
+    .filter((p) => !category || p.categoryId === (category === UNSORTED_FILTER ? "" : category))
     .filter((p) => !status || p.status === status)
     .filter((p) => !needle || normalizeSearch(`${p.name} ${p.producer ?? ""} ${p.slug}`).includes(needle))
     .toSorted((x, y) => x.name.localeCompare(y.name, "lv"));
@@ -59,6 +60,7 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
               {c.name}
             </option>
           ))}
+          <option value={UNSORTED_FILTER}>Bez kategorijas</option>
         </select>
         <select name="statuss" defaultValue={status} aria-label="Statuss">
           <option value="">Visi statusi</option>
@@ -97,7 +99,9 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
                     {p.name}
                   </Link>
                 </td>
-                <td>{categoryName.get(p.categoryId) ?? "—"}</td>
+                <td>
+                  {p.categoryId ? (categoryName.get(p.categoryId) ?? "—") : <span className={a.muted}>Bez kategorijas</span>}
+                </td>
                 <td>
                   {priceRange(p)}
                   {depositNote(p) && <div className={a.muted}>{depositNote(p)}</div>}

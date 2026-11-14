@@ -3,6 +3,7 @@ import Link from "next/link";
 import { db } from "@/server/db";
 import { requireAdmin } from "@/server/auth/session";
 import { plural } from "@/lib/format";
+import { UNSORTED_FILTER } from "@/lib/catalog-input";
 import { CategoryList } from "./CategoryList";
 import a from "../admin.module.scss";
 import s from "./categories.module.scss";
@@ -18,22 +19,19 @@ export default async function AdminCategories({ searchParams }: PageProps<"/admi
     slug: c.slug,
     productCount: products.filter((p) => p.categoryId === c.id).length,
   }));
+  const unsorted = products.filter((p) => p.categoryId === "").length;
 
   // Feedback after creating or deleting (those actions redirect here with ?zina=…).
   const params = await searchParams;
   const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v) ?? "";
   const name = one(params.kategorija);
-  const count = Number(one(params.skaits)) || 0;
+  const moved = Number(one(params.skaits)) || 0;
   const message =
     one(params.zina) === "izveidota"
-      ? { text: `Kategorija „${name}” izveidota. Tā ir saraksta beigās – velciet to uz vajadzīgo vietu.`, error: false }
+      ? `Kategorija „${name}” izveidota. Tā ir saraksta beigās – velciet to uz vajadzīgo vietu.`
       : one(params.zina) === "dzesta"
-      ? { text: `Kategorija „${name}” dzēsta.`, error: false }
-      : one(params.zina) === "nav-tuksa"
-        ? {
-            text: `Kategoriju „${name}” nevar dzēst: tajā ir ${count} ${plural(count, "produkts", "produkti")}. Vispirms pārvietojiet tos uz citu kategoriju.`,
-            error: true,
-          }
+        ? `Kategorija „${name}” dzēsta.` +
+          (moved ? ` ${moved} ${plural(moved, "produkts pārvietots", "produkti pārvietoti")} uz „Bez kategorijas”.` : "")
         : null;
 
   return (
@@ -46,11 +44,19 @@ export default async function AdminCategories({ searchParams }: PageProps<"/admi
         </Link>
       </div>
       {message && (
-        <p className={message.error ? `${s.message} ${s.messageError}` : s.message} role="status">
-          {message.text}
+        <p className={s.message} role="status">
+          {message}
         </p>
       )}
       <CategoryList categories={rows} />
+      {unsorted > 0 && (
+        <p className={s.unsorted}>
+          <Link href={`/admin/produkti?kategorija=${UNSORTED_FILTER}`}>
+            {unsorted} {plural(unsorted, "produkts", "produkti")} bez kategorijas
+          </Link>{" "}
+          <span className={a.muted}>– veikalā netiek rādīti, kamēr tiem nepiešķir kategoriju.</span>
+        </p>
+      )}
     </>
   );
 }
