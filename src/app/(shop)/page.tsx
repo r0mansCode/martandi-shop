@@ -39,15 +39,17 @@ export default async function Home() {
   return (
     <>
       <section className={s.banner}>
-        <Image
-          src={pouringPhoto}
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          placeholder="blur"
-          className={s.bannerImg}
-        />
+        <div className={s.bannerMedia}>
+          <Image
+            src={pouringPhoto}
+            alt=""
+            fill
+            priority
+            sizes="(min-width: 80rem) 80rem, 100vw"
+            placeholder="blur"
+            className={s.bannerImg}
+          />
+        </div>
         <div className={s.bannerInner}>
           <h1 className={s.bannerTitle}>Tavi Dzērieni Tevi jau gaida</h1>
           <a href="#populari" className={s.bannerCta}>

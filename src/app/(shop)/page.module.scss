@@ -1,7 +1,10 @@
 @use "@/styles/mixins" as *;
 
-// Full-bleed photo banner at the top of the home page.
+// Photo banner at the top of the home page. The photo stops at --banner-max and, on wider
+// viewports, fades into the dark background on both sides instead of stretching further.
 .banner {
+  --banner-max: 80rem;
+  --banner-fade: 8rem;
   position: relative;
   display: flex;
   align-items: flex-end;
@@ -9,6 +12,18 @@
   overflow: hidden;
   background: #1a1612;
   color: #fff;
+
+  @include up(md) {
+    align-items: center;
+    min-height: 34rem;
+  }
+}
+
+.bannerMedia {
+  position: absolute;
+  inset: 0;
+  max-width: var(--banner-max);
+  margin-inline: auto;
 
   // Darkens the photo behind the text: from below on mobile, from the left on desktop.
   &::after {
@@ -22,9 +37,16 @@
     }
   }
 
-  @include up(md) {
-    align-items: center;
-    min-height: 34rem;
+  // Masked only once the viewport is wider than the photo (80rem = --banner-max; media
+  // queries can't read custom properties), so narrower screens keep hard edges.
+  @media (min-width: 80rem) {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--banner-fade),
+      #000 calc(100% - var(--banner-fade)),
+      transparent
+    );
   }
 }
 
