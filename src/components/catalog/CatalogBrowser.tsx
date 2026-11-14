@@ -159,28 +159,6 @@ export function CatalogBrowser({ title, description, products, categories, curre
         <UrlFilters onChange={setFilters} />
       </Suspense>
       <aside className={s.sidebar}>
-        <nav aria-label="Kataloga kategorijas" className={s.categoryNav}>
-          <h2 className={s.sideHeading}>Kategorijas</h2>
-          <ul className={s.categoryList}>
-            <li>
-              <Link href="/katalogs" className={currentCategory === null ? s.current : undefined}>
-                Visi produkti <span className={s.count}>{totalCount}</span>
-              </Link>
-            </li>
-            {categories.map((c) => (
-              <li key={c.slug}>
-                <Link
-                  href={`/katalogs/${c.slug}`}
-                  className={currentCategory === c.slug ? s.current : undefined}
-                  aria-current={currentCategory === c.slug ? "page" : undefined}
-                >
-                  {c.name} <span className={s.count}>{c.count}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
         <button
           type="button"
           className={s.filtersToggle}
@@ -190,59 +168,83 @@ export function CatalogBrowser({ title, description, products, categories, curre
           Filtri{activeCount > 0 && ` (${activeCount})`}
         </button>
 
-        <div className={filtersOpen ? `${s.filters} ${s.filtersOpen}` : s.filters}>
-          {usedBuckets.length > 1 && (
-            <fieldset className={s.group}>
-              <legend className={s.sideHeading}>Alkohols</legend>
-              {usedBuckets.map((b) => (
-                <label key={b.value} className={s.check}>
-                  <input
-                    type="checkbox"
-                    checked={filters.abv.includes(b.value)}
-                    onChange={() => toggle("abv", b.value)}
-                  />
-                  {b.label}
-                </label>
+        <div className={filtersOpen ? `${s.panel} ${s.panelOpen}` : s.panel}>
+          <nav aria-label="Kataloga kategorijas" className={s.categoryNav}>
+            <h2 className={s.sideHeading}>Kategorijas</h2>
+            <ul className={s.categoryList}>
+              <li>
+                <Link href="/katalogs" className={currentCategory === null ? s.current : undefined}>
+                  Visi produkti <span className={s.count}>{totalCount}</span>
+                </Link>
+              </li>
+              {categories.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    href={`/katalogs/${c.slug}`}
+                    className={currentCategory === c.slug ? s.current : undefined}
+                    aria-current={currentCategory === c.slug ? "page" : undefined}
+                  >
+                    {c.name} <span className={s.count}>{c.count}</span>
+                  </Link>
+                </li>
               ))}
-            </fieldset>
-          )}
-
-          {countries.length > 1 && (
-            <fieldset className={s.group}>
-              <legend className={s.sideHeading}>Valsts</legend>
-              {countries.map(([name, count]) => (
-                <label key={name} className={s.check}>
-                  <input
-                    type="checkbox"
-                    checked={filters.country.includes(name)}
-                    onChange={() => toggle("country", name)}
-                  />
-                  {name} <span className={s.count}>{count}</span>
-                </label>
-              ))}
-            </fieldset>
-          )}
-
-          {producers.length > 1 && (
-            <fieldset className={s.group}>
-              <legend className={s.sideHeading}>Ražotājs</legend>
-              {shownProducers.map(([name, count]) => (
-                <label key={name} className={s.check}>
-                  <input
-                    type="checkbox"
-                    checked={filters.producer.includes(name)}
-                    onChange={() => toggle("producer", name)}
-                  />
-                  {name} <span className={s.count}>{count}</span>
-                </label>
-              ))}
-              {producers.length > PRODUCERS_COLLAPSED && (
-                <button type="button" className={s.linkButton} onClick={() => setShowAllProducers((v) => !v)}>
-                  {showAllProducers ? "Rādīt mazāk" : `Rādīt visus (${producers.length})`}
-                </button>
-              )}
-            </fieldset>
-          )}
+            </ul>
+          </nav>
+  
+          <div className={s.filters}>
+            {usedBuckets.length > 1 && (
+              <fieldset className={s.group}>
+                <legend className={s.sideHeading}>Alkohols</legend>
+                {usedBuckets.map((b) => (
+                  <label key={b.value} className={s.check}>
+                    <input
+                      type="checkbox"
+                      checked={filters.abv.includes(b.value)}
+                      onChange={() => toggle("abv", b.value)}
+                    />
+                    {b.label}
+                  </label>
+                ))}
+              </fieldset>
+            )}
+  
+            {countries.length > 1 && (
+              <fieldset className={s.group}>
+                <legend className={s.sideHeading}>Valsts</legend>
+                {countries.map(([name, count]) => (
+                  <label key={name} className={s.check}>
+                    <input
+                      type="checkbox"
+                      checked={filters.country.includes(name)}
+                      onChange={() => toggle("country", name)}
+                    />
+                    {name} <span className={s.count}>{count}</span>
+                  </label>
+                ))}
+              </fieldset>
+            )}
+  
+            {producers.length > 1 && (
+              <fieldset className={s.group}>
+                <legend className={s.sideHeading}>Ražotājs</legend>
+                {shownProducers.map(([name, count]) => (
+                  <label key={name} className={s.check}>
+                    <input
+                      type="checkbox"
+                      checked={filters.producer.includes(name)}
+                      onChange={() => toggle("producer", name)}
+                    />
+                    {name} <span className={s.count}>{count}</span>
+                  </label>
+                ))}
+                {producers.length > PRODUCERS_COLLAPSED && (
+                  <button type="button" className={s.linkButton} onClick={() => setShowAllProducers((v) => !v)}>
+                    {showAllProducers ? "Rādīt mazāk" : `Rādīt visus (${producers.length})`}
+                  </button>
+                )}
+              </fieldset>
+            )}
+          </div>
         </div>
       </aside>
 

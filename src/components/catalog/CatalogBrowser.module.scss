@@ -19,12 +19,11 @@
   font-size: 0.9375rem;
 }
 
-// Mobile uses the header's category row instead.
 .categoryNav {
-  display: none;
+  margin-bottom: 1.75rem;
 
   @include up(md) {
-    display: block;
+    margin-bottom: 0;
   }
 }
 
@@ -67,20 +66,27 @@
   }
 }
 
-.filters {
+// Categories + filters: always visible on desktop, behind the "Filtri" toggle on mobile.
+.panel {
   display: none;
   margin-top: 1rem;
 
   @include up(md) {
     display: block;
+    margin-top: 0;
+  }
+}
+
+.panelOpen {
+  display: block;
+}
+
+.filters {
+  @include up(md) {
     margin-top: 2rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--color-line);
   }
-}
-
-.filtersOpen {
-  display: block;
 }
 
 .group {

@@ -32,6 +32,20 @@
   outline-offset: 1px;
 }
 
+.clear {
+  display: grid;
+  place-items: center;
+  margin-right: 0.25rem;
+  padding: 0.25rem;
+  border: 0;
+  background: none;
+  color: var(--color-muted);
+
+  &:hover {
+    color: var(--color-fg);
+  }
+}
+
 .submit {
   display: grid;
   place-items: center;
