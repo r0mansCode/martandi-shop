@@ -140,8 +140,11 @@
   white-space: nowrap;
 }
 
-.paidIcon {
+.statusIcon {
   flex: none;
+}
+
+.greenIcon {
   color: var(--color-success);
 }
 
@@ -164,6 +167,12 @@
   &:hover {
     background: #000;
   }
+}
+
+// Long labels (e.g. "Atzīmēt kā gatavu izsniegšanai"), set in page.tsx by text length.
+.longText {
+  font-size: 0.5625rem;
+  letter-spacing: 0.03em;
 }
 
 .rowActions {

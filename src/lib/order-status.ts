@@ -30,7 +30,7 @@ export const STATUS_ACTION_LABEL: Record<OrderStatus, string> = {
 export const STATUS_SHORT_ACTION: Record<OrderStatus, string> = {
   awaiting_payment: "",
   paid: "Atzīmēt kā apmaksātu",
-  ready_for_pickup: "Atzīmēt kā gatavu",
+  ready_for_pickup: "Atzīmēt kā gatavu izsniegšanai",
   collected: "Atzīmēt kā izsniegtu",
   cancelled: "Atcelt",
 };

@@ -71,6 +71,21 @@ export const HourglassIcon = (p: SVGProps<SVGSVGElement>) => (
   </Icon>
 );
 
+export const BanknoteIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <rect x="2.5" y="6" width="19" height="12" rx="1.5" />
+    <circle cx="12" cy="12" r="2.5" />
+    <path d="M6 9.5v5M18 9.5v5" />
+  </Icon>
+);
+
+export const PackageIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z" />
+    <path d="m3 7.5 9 4.5 9-4.5M12 12v9M7.5 5.25l9 4.5" />
+  </Icon>
+);
+
 /** Filled circle in the current colour with a white tick. */
 export const CheckCircleIcon = (p: SVGProps<SVGSVGElement>) => (
   <Icon {...p}>

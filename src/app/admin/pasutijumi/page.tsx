@@ -16,7 +16,7 @@ import { ORDER_MESSAGES } from "@/lib/order-messages";
 import type { Order, OrderStatus } from "@/lib/types";
 import { site } from "@/config/site";
 import { removeOrder, setOrderStatus } from "./actions";
-import { CheckCircleIcon, DownloadIcon, HourglassIcon } from "@/components/icons";
+import { BanknoteIcon, CheckCircleIcon, DownloadIcon, HourglassIcon, PackageIcon } from "@/components/icons";
 import { ConfirmButton } from "../ConfirmButton";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
@@ -24,6 +24,24 @@ import o from "./orders.module.scss";
 export const metadata: Metadata = { title: "Pasūtījumi" };
 
 const STATUSES = Object.keys(ORDER_STATUS_LABEL) as OrderStatus[];
+// Status buttons with more characters than this get a smaller font to keep the column narrow.
+const LONG_BUTTON_TEXT = 24;
+
+function StatusIcon({ status }: { status: OrderStatus }) {
+  const size = { width: 16, height: 16 };
+  switch (status) {
+    case "awaiting_payment":
+      return <HourglassIcon {...size} className={o.statusIcon} />;
+    case "paid":
+      return <BanknoteIcon {...size} className={`${o.statusIcon} ${o.greenIcon}`} />;
+    case "ready_for_pickup":
+      return <PackageIcon {...size} className={o.statusIcon} />;
+    case "collected":
+      return <CheckCircleIcon {...size} className={`${o.statusIcon} ${o.greenIcon}`} />;
+    default:
+      return null;
+  }
+}
 const DAY_MS = 24 * 60 * 60 * 1000;
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -188,8 +206,7 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                 <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
                 <td>
                   <span className={`${o.statusText} ${o[order.status]}`}>
-                    {order.status === "awaiting_payment" && <HourglassIcon width={16} height={16} />}
-                    {order.status === "paid" && <CheckCircleIcon width={16} height={16} className={o.paidIcon} />}
+                    <StatusIcon status={order.status} />
                     {ORDER_STATUS_LABEL[order.status]}
                   </span>
                   {isOverdue(order) && <span className={`${o.overdue} ${o.block}`}>nokavēts</span>}
@@ -197,7 +214,10 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                     .filter((next) => next !== "cancelled")
                     .map((next) => (
                       <form key={next} action={setOrderStatus.bind(null, order.id, next, returnTo)}>
-                        <button type="submit" className={o.statusButton}>
+                        <button
+                          type="submit"
+                          className={`${o.statusButton} ${STATUS_SHORT_ACTION[next].length > LONG_BUTTON_TEXT ? o.longText : ""}`}
+                        >
                           {STATUS_SHORT_ACTION[next]}
                         </button>
                       </form>
