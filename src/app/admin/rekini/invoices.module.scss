@@ -81,17 +81,27 @@
   }
 }
 
+// One box for all lines, split by dotted rules so each item stands apart.
 .lines {
   display: grid;
-  gap: 0.75rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
 }
 
 .line {
   display: grid;
   gap: 0.75rem;
   padding: 1rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius);
+
+  & + & {
+    border-top: 2px dotted var(--color-muted);
+  }
+}
+
+.picker {
+  @include up(md) {
+    max-width: 50%;
+  }
 }
 
 .lineHead {
@@ -149,8 +159,9 @@
 }
 
 .computedValue {
-  padding: 0.5rem 0.625rem;
-  border: 1px solid transparent;
+  // No inline padding, so the value's right edge lines up with its label.
+  padding: 0.5rem 0;
+  border-block: 1px solid transparent;
   font-weight: 600;
   white-space: nowrap;
 }

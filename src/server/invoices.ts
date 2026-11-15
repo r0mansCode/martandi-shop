@@ -52,8 +52,6 @@ export async function saveInvoice(input: InvoiceInput, now = new Date()): Promis
     qty: parseQty(l.qty),
     unitNetCents: euroToCents(l.price),
     ...(l.hasDeposit ? { depositCents: euroToCents(l.deposit) } : {}),
-    ...(input.extraBeforeOn && l.extraBefore ? { extraBefore: l.extraBefore } : {}),
-    ...(input.extraAfterOn && l.extraAfter ? { extraAfter: l.extraAfter } : {}),
   }));
 
   const stamp = now.toISOString();
@@ -72,8 +70,6 @@ export async function saveInvoice(input: InvoiceInput, now = new Date()): Promis
     lines,
     totals: invoiceTotals(lines, vatRate),
     includeSignatures: input.includeSignatures,
-    extraBeforeHeader: input.extraBeforeOn ? input.extraBeforeHeader || "—" : undefined,
-    extraAfterHeader: input.extraAfterOn ? input.extraAfterHeader || "—" : undefined,
     createdAt: existing?.createdAt ?? stamp,
     updatedAt: stamp,
   };

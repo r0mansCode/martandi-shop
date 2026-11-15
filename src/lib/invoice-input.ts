@@ -15,8 +15,6 @@ export const INVOICE_VAT_RATES = { "21": site.vatRate, "0": 0 } as const;
 export type InvoiceVatKey = keyof typeof INVOICE_VAT_RATES;
 
 export const DEFAULT_UNIT = "gb";
-export const DEFAULT_EXTRA_BEFORE = "Kods";
-export const DEFAULT_EXTRA_AFTER = "Piezīmes";
 
 /** "1,5" → 1.5 */
 export const parseQty = (value: string) => Number(value.trim().replace(",", "."));
@@ -100,8 +98,6 @@ export const invoiceLineInput = z
     price: z.string().trim().regex(EURO, "Cena formātā 12,99"),
     hasDeposit: z.boolean(),
     deposit: z.string().trim(),
-    extraBefore: optional(100),
-    extraAfter: optional(100),
   })
   .superRefine((v, ctx) => {
     if (!v.hasDeposit) return;
@@ -122,10 +118,6 @@ export const invoiceInput = z
     status: z.enum(["unpaid", "paid"]),
     vat: z.enum(Object.keys(INVOICE_VAT_RATES) as [InvoiceVatKey, ...InvoiceVatKey[]]),
     includeSignatures: z.boolean(),
-    extraBeforeOn: z.boolean(),
-    extraBeforeHeader: optional(40),
-    extraAfterOn: z.boolean(),
-    extraAfterHeader: optional(40),
     lines: z.array(invoiceLineInput).min(1, "Vajag vismaz vienu pozīciju").max(200, "Pārāk daudz pozīciju"),
   })
   .refine((v) => v.dueDate >= v.issueDate, {
@@ -153,8 +145,6 @@ export const emptyLine: InvoiceLineFormValues = {
   price: "",
   hasDeposit: false,
   deposit: centsToEuro(site.defaultDepositCents),
-  extraBefore: "",
-  extraAfter: "",
 };
 
 /** A blank invoice issued on `today` (a Riga day key), due after the usual number of days. */
@@ -169,10 +159,6 @@ export function emptyInvoice(today: string): InvoiceFormValues {
     status: "unpaid",
     vat: "21",
     includeSignatures: false,
-    extraBeforeOn: false,
-    extraBeforeHeader: DEFAULT_EXTRA_BEFORE,
-    extraAfterOn: false,
-    extraAfterHeader: DEFAULT_EXTRA_AFTER,
     lines: [emptyLine],
   };
 }
@@ -191,10 +177,6 @@ export function invoiceToForm(invoice: Invoice): InvoiceFormValues {
     status: invoice.status,
     vat: vatKey(invoice.vatRate),
     includeSignatures: invoice.includeSignatures,
-    extraBeforeOn: !!invoice.extraBeforeHeader,
-    extraBeforeHeader: invoice.extraBeforeHeader ?? DEFAULT_EXTRA_BEFORE,
-    extraAfterOn: !!invoice.extraAfterHeader,
-    extraAfterHeader: invoice.extraAfterHeader ?? DEFAULT_EXTRA_AFTER,
     lines: invoice.lines.map((l) => ({
       productId: l.productId ?? "",
       variantId: l.variantId ?? "",
@@ -204,8 +186,6 @@ export function invoiceToForm(invoice: Invoice): InvoiceFormValues {
       price: centsToEuro(l.unitNetCents),
       hasDeposit: !!l.depositCents,
       deposit: centsToEuro(l.depositCents ?? site.defaultDepositCents),
-      extraBefore: l.extraBefore ?? "",
-      extraAfter: l.extraAfter ?? "",
     })),
   };
 }

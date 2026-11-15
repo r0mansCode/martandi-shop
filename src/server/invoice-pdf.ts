@@ -168,13 +168,9 @@ export function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
           ...plain(c.phone),
         ];
 
-  const before = invoice.extraBeforeHeader;
-  const after = invoice.extraAfterHeader;
   const columns: Column[] = [
     { title: "Nr.", width: 24 },
-    ...(before ? [{ title: before, width: 70 }] : []),
     { title: "Prece" },
-    ...(after ? [{ title: after, width: 80 }] : []),
     { title: "Mērv.", width: 36, align: "center" as const },
     { title: "Daudz.", width: 46, align: "right" as const },
     { title: "Cena bez PVN", width: 72, align: "right" as const },
@@ -184,19 +180,17 @@ export function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
   // Deposits as their own VAT-free row under the product, as on order invoices.
   let n = 0;
   const rows = invoice.lines.flatMap((l) => {
-    const row = (name: string, unitCents: number, extras: boolean) => [
+    const row = (name: string, unitCents: number) => [
       String(++n),
-      ...(before ? [extras ? (l.extraBefore ?? "") : ""] : []),
       name,
-      ...(after ? [extras ? (l.extraAfter ?? "") : ""] : []),
       l.unit,
       formatQty(l.qty),
       formatPrice(unitCents),
       formatPrice(lineNetCents(unitCents, l.qty)),
     ];
     return [
-      row(l.name, l.unitNetCents, true),
-      ...(l.depositCents ? [row(depositName(l.name), l.depositCents, false)] : []),
+      row(l.name, l.unitNetCents),
+      ...(l.depositCents ? [row(depositName(l.name), l.depositCents)] : []),
     ];
   });
 

@@ -227,34 +227,6 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
           />
           Pievienot parakstu laukus („Preci izsniedza” / „Preci saņēma”)
         </label>
-        <label className={a.check}>
-          <input type="checkbox" checked={values.extraBeforeOn} onChange={(e) => set("extraBeforeOn", e.target.checked)} />
-          Papildu kolonna pirms nosaukuma
-        </label>
-        {values.extraBeforeOn && (
-          <label className={a.field}>
-            <span>Kolonnas virsraksts</span>
-            <input
-              className={cls("extraBeforeHeader")}
-              value={values.extraBeforeHeader}
-              onChange={(e) => set("extraBeforeHeader", e.target.value)}
-            />
-          </label>
-        )}
-        <label className={a.check}>
-          <input type="checkbox" checked={values.extraAfterOn} onChange={(e) => set("extraAfterOn", e.target.checked)} />
-          Papildu kolonna aiz nosaukuma
-        </label>
-        {values.extraAfterOn && (
-          <label className={a.field}>
-            <span>Kolonnas virsraksts</span>
-            <input
-              className={cls("extraAfterHeader")}
-              value={values.extraAfterHeader}
-              onChange={(e) => set("extraAfterHeader", e.target.value)}
-            />
-          </label>
-        )}
       </section>
 
       <section className={a.section}>
@@ -302,21 +274,15 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
                     )}
                   </div>
                 </div>
-                <div className={s.lineFields}>
-                  {values.extraBeforeOn && (
-                    <label className={a.field}>
-                      <span>{values.extraBeforeHeader || "Papildu kolonna"}</span>
-                      <input className={a.input} value={line.extraBefore} onChange={(e) => setLine(i, { extraBefore: e.target.value })} />
-                    </label>
-                  )}
+                <div className={s.picker}>
                   {textLines[i] ? (
-                    <label className={`${a.field} ${s.grow}`}>
+                    <label className={a.field}>
                       <span>Nosaukums</span>
                       <input className={cls(p("name"))} value={line.name} onChange={(e) => setLine(i, { name: e.target.value })} />
                       {err(p("name")) && <span className={a.error}>{err(p("name"))}</span>}
                     </label>
                   ) : (
-                    <label className={`${a.field} ${s.grow}`}>
+                    <label className={a.field}>
                       <span>Prece</span>
                       <select className={cls(p("name"))} value={line.variantId} onChange={(e) => pickVariant(i, e.target.value)}>
                         <option value="">Izvēlieties…</option>
@@ -330,12 +296,6 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
                         ))}
                       </select>
                       {err(p("name")) && <span className={a.error}>Izvēlieties preci</span>}
-                    </label>
-                  )}
-                  {values.extraAfterOn && (
-                    <label className={a.field}>
-                      <span>{values.extraAfterHeader || "Papildu kolonna"}</span>
-                      <input className={a.input} value={line.extraAfter} onChange={(e) => setLine(i, { extraAfter: e.target.value })} />
                     </label>
                   )}
                 </div>

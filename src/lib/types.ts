@@ -164,9 +164,6 @@ export type InvoiceLine = {
   unitNetCents: number;
   /** Packaging deposit per unit (0% VAT), a row of its own on the PDF. */
   depositCents?: number;
-  /** Values of the optional extra columns before / after the name. */
-  extraBefore?: string;
-  extraAfter?: string;
 };
 
 export type InvoiceStatus = "unpaid" | "paid";
@@ -190,9 +187,6 @@ export type Invoice = {
   totals: OrderTotals;
   /** Adds „Preci izsniedza” / „Preci saņēma” signature lines instead of „derīgs bez paraksta”. */
   includeSignatures: boolean;
-  /** Headers of the optional extra columns; unset = column off. */
-  extraBeforeHeader?: string;
-  extraAfterHeader?: string;
   createdAt: string;
   updatedAt: string;
 };
