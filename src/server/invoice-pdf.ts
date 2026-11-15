@@ -7,9 +7,11 @@ import { formatDate, formatQty } from "@/lib/format";
 import { site } from "@/config/site";
 import { hoursLine, type PickupInfo } from "@/lib/shop-hours";
 import { seller } from "@/config/seller";
+import { getInvoiceLogo } from "./invoice-logos";
+import { LEGACY_INVOICE_LOGO } from "@/lib/invoice-logos";
 
 // A4 invoices (rēķins): one layout for shop orders (VAT-inclusive prices, pickup notes) and
-// manual invoices (net prices, optional extra columns and signature lines). Each builds an
+// manual invoices (net prices, a choice of logo and signature lines). Each builds an
 // InvoiceDoc, and renderDoc draws it. Roboto is embedded because the built-in PDF fonts can't
 // render ā, č, ē, ģ, ī, ķ, ļ, ņ, š, ū, ž. The fonts live outside /public and are included in
 // the server bundle via next.config.ts.
@@ -17,9 +19,9 @@ import { seller } from "@/config/seller";
 const FONTS = path.join(process.cwd(), "assets", "fonts");
 const REGULAR = path.join(FONTS, "Roboto-Regular.ttf");
 const BOLD = path.join(FONTS, "Roboto-Bold.ttf");
-// Same file as the storefront logo; traced into the server bundle in next.config.ts.
-const LOGO = path.join(process.cwd(), "public", "logo.png");
+// The logo is scaled to fit this box, so replacements of any aspect ratio keep the layout.
 const LOGO_HEIGHT = 56;
+const LOGO_MAX_WIDTH = 180;
 
 const MARGIN = 50;
 const PAGE_WIDTH = 595.28; // A4
@@ -38,7 +40,8 @@ type InvoiceDoc = {
   /** ISO timestamp or YYYY-MM-DD. */
   date: string;
   dueDate?: string;
-  orderNumber?: string;
+  /** PNG or JPEG bytes. */
+  logo: Buffer;
   buyerLines: string[];
   columns: Column[];
   /** One cell per column. */
@@ -76,7 +79,7 @@ const paymentNote = (grossCents: number, invoiceNumber: string, dueDate?: string
 // ---- Shop orders ----
 
 /** `pickup` gives the current opening hours; a temporary closure is left off the permanent invoice. */
-export function renderInvoicePdf(order: Order, pickup: PickupInfo): Promise<Buffer> {
+export async function renderInvoicePdf(order: Order, pickup: PickupInfo): Promise<Buffer> {
   const { customer, company } = order;
   const buyerLines = company
     ? [
@@ -105,6 +108,8 @@ export function renderInvoicePdf(order: Order, pickup: PickupInfo): Promise<Buff
     invoiceNumber: order.invoiceNumber,
     date: order.createdAt,
     dueDate: order.dueDate,
+    // Shop orders always carry the shop's own logo.
+    logo: (await getInvoiceLogo("tavidzerieni")).bytes,
     buyerLines,
     columns: [
       { title: "Nr.", width: 24 },
@@ -140,7 +145,7 @@ export function renderInvoicePdf(order: Order, pickup: PickupInfo): Promise<Buff
 
 // ---- Manual invoices ----
 
-export function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
+export async function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
   const c = invoice.customer;
   const labelled = (label: string, value: string) => (value ? [`${label} ${value}`] : []);
   const plain = (value: string) => (value ? [value] : []);
@@ -199,7 +204,7 @@ export function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
     invoiceNumber: invoice.invoiceNumber,
     date: invoice.issueDate,
     dueDate,
-    orderNumber: invoice.orderNumber,
+    logo: (await getInvoiceLogo(invoice.logo ?? LEGACY_INVOICE_LOGO)).bytes,
     buyerLines,
     columns,
     rows,
@@ -259,7 +264,7 @@ function rule(doc: Doc, y: number, color = LINE) {
 
 function drawHeader(doc: Doc, inv: InvoiceDoc) {
   const top = MARGIN;
-  doc.image(LOGO, MARGIN, top, { height: LOGO_HEIGHT });
+  doc.image(inv.logo, MARGIN, top, { fit: [LOGO_MAX_WIDTH, LOGO_HEIGHT] });
 
   const right = { x: MARGIN + CONTENT_WIDTH / 2, width: CONTENT_WIDTH / 2, align: "right" as const };
   doc.font("bold").fontSize(18).fillColor(TEXT).text("RĒĶINS", right.x, top, right);
@@ -269,7 +274,6 @@ function drawHeader(doc: Doc, inv: InvoiceDoc) {
     .text(`Nr. ${inv.invoiceNumber}`, right.x, doc.y + 4, right)
     .text(`Datums: ${formatDate(inv.date)}`, right);
   if (inv.dueDate) doc.text(`Apmaksāt līdz: ${formatDate(inv.dueDate)}`, right);
-  if (inv.orderNumber) doc.text(`Pasūtījuma Nr.: ${inv.orderNumber}`, right);
 
   doc.y = Math.max(doc.y, top + LOGO_HEIGHT) + 16;
   rule(doc, doc.y);

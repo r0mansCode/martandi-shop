@@ -1,5 +1,7 @@
 // Domain types. The mock store and the DynamoDB store both persist exactly these shapes.
 
+import type { InvoiceLogo } from "./invoice-logos";
+
 export type Category = {
   id: string;
   slug: string;
@@ -176,7 +178,8 @@ export type Invoice = {
   dueDate: string;
   /** Leaves the due date off the PDF (e.g. already paid in cash). */
   hideDueDate: boolean;
-  orderNumber?: string;
+  /** Logo printed on the PDF; unset on invoices saved before the choice existed (TaviDzērieni). */
+  logo?: InvoiceLogo;
   status: InvoiceStatus;
   paidAt?: string;
   /** 0.21 or 0. */

@@ -17,8 +17,6 @@ export type SaveInvoiceResult =
   /** Field path → message, like FormState.errors. */
   | { kind: "invalid"; message: string; errors: Record<string, string> };
 
-const optional = (value: string) => value || undefined;
-
 /**
  * Creates (input.id "") or updates a manual invoice. The customer is copied into the invoice on
  * save: saving again picks up their latest details, while later customer edits alone don't
@@ -61,7 +59,7 @@ export async function saveInvoice(input: InvoiceInput, now = new Date()): Promis
     issueDate: input.issueDate,
     dueDate: input.dueDate,
     hideDueDate: input.hideDueDate,
-    orderNumber: optional(input.orderNumber),
+    logo: input.logo,
     status: input.status,
     paidAt: input.status === "paid" ? (existing?.paidAt ?? stamp) : undefined,
     vatRate,

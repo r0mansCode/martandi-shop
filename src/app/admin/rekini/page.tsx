@@ -44,7 +44,7 @@ export default async function AdminInvoices({ searchParams }: PageProps<"/admin/
       (!customerId || inv.customerId === customerId) &&
       (!from || inv.issueDate >= from) &&
       (!to || inv.issueDate <= to) &&
-      (!needle || normalizeSearch(`${inv.invoiceNumber} ${inv.customer.name} ${inv.orderNumber ?? ""}`).includes(needle)),
+      (!needle || normalizeSearch(`${inv.invoiceNumber} ${inv.customer.name}`).includes(needle)),
   );
   const shownTotal = shown.reduce((sum, inv) => sum + inv.totals.grossCents, 0);
 

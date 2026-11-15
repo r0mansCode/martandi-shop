@@ -8,6 +8,8 @@ import { deleteInvoice, saveInvoice as save, setInvoiceStatus } from "@/server/i
 import { errorState, type FormState } from "@/lib/catalog-input";
 import { customerInput, invoiceInput, type CustomerFormValues, type InvoiceFormValues } from "@/lib/invoice-input";
 import type { InvoiceCustomer, InvoiceStatus } from "@/lib/types";
+import { isInvoiceLogo, MAX_LOGO_BYTES } from "@/lib/invoice-logos";
+import { resetInvoiceLogo, saveInvoiceLogo, sniffLogoType } from "@/server/invoice-logos";
 
 // Manual invoices and their customer directory. Each action re-checks the admin session.
 // Nothing here touches the storefront, so only admin pages are revalidated.
@@ -114,4 +116,33 @@ export async function removeCustomer(id: string) {
   await db.invoiceCustomers.delete(id);
   revalidatePath("/admin", "layout");
   redirect(`${CUSTOMERS}?zina=klients-dzests`);
+}
+
+// ---- Logos ----
+
+const LOGOS = "/admin/rekini/logotipi";
+
+/** Replaces one invoice logo with an uploaded PNG/JPEG. `logo` comes from a bound form, so it is re-checked. */
+export async function uploadInvoiceLogo(logo: string, formData: FormData) {
+  await requireAdmin();
+  if (!isInvoiceLogo(logo)) redirect(LOGOS);
+
+  const file = formData.get("file");
+  if (!(file instanceof File) || file.size === 0) redirect(`${LOGOS}?zina=logo-nav-faila`);
+  if (file.size > MAX_LOGO_BYTES) redirect(`${LOGOS}?zina=logo-par-lielu`);
+  const bytes = Buffer.from(await file.arrayBuffer());
+  const type = sniffLogoType(bytes);
+  if (!type) redirect(`${LOGOS}?zina=logo-tips`);
+
+  await saveInvoiceLogo(logo, bytes, type);
+  revalidatePath(LOGOS);
+  redirect(`${LOGOS}?zina=logo-saglabats`);
+}
+
+export async function resetLogo(logo: string) {
+  await requireAdmin();
+  if (!isInvoiceLogo(logo)) redirect(LOGOS);
+  await resetInvoiceLogo(logo);
+  revalidatePath(LOGOS);
+  redirect(`${LOGOS}?zina=logo-atjaunots`);
 }
