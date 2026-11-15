@@ -14,7 +14,6 @@ import {
   type InvoiceLineFormValues,
 } from "@/lib/invoice-input";
 import { formatPrice, invoiceTotals, lineNetCents } from "@/lib/money";
-import { INVOICE_LOGOS, type InvoiceLogo } from "@/lib/invoice-logos";
 import type { BuyerType } from "@/lib/types";
 import { site } from "@/config/site";
 import a from "../admin.module.scss";
@@ -209,20 +208,13 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
             </select>
           </label>
         </div>
-        <div className={a.field}>
-          <span>Logotips</span>
-          <div className={s.segmented} role="radiogroup" aria-label="Logotips">
-            {(Object.keys(INVOICE_LOGOS) as InvoiceLogo[]).map((logo) => (
-              <label key={logo}>
-                <input type="radio" name="logo" checked={values.logo === logo} onChange={() => set("logo", logo)} />
-                {INVOICE_LOGOS[logo]}
-              </label>
-            ))}
-          </div>
-          <span className={a.hint}>
-            Attēlus var nomainīt sadaļā <Link href="/admin/rekini/logotipi">„Logotipi”</Link>.
+        <label className={a.field}>
+          <span>
+            Pasūtījuma Nr. <span className={a.muted}>(neobligāts)</span>
           </span>
-        </div>
+          <input className={cls("orderNumber")} value={values.orderNumber} onChange={(e) => set("orderNumber", e.target.value)} />
+          {err("orderNumber") && <span className={a.error}>{err("orderNumber")}</span>}
+        </label>
         <label className={a.check}>
           <input type="checkbox" checked={values.hideDueDate} onChange={(e) => set("hideDueDate", e.target.checked)} />
           Nerādīt apmaksas termiņu rēķinā

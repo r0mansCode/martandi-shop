@@ -23,7 +23,7 @@ Business rules that shape the code:
 - **Alcohol:** checkout requires an 18+ checkbox when the cart has alcohol (`isAlcohol`).
 - **Payment is always a bank transfer.** The customer gets a PDF invoice by email, due in 14 days. Invoice numbers are `MRT-YYYY-NNNNN`. The admin marks orders as paid by hand after checking the bank statement, and that is intended. Overdue invoices trigger nothing: no reminder, no auto-cancel.
 - **Deleted invoices are treated as never used.** The next invoice continues from the highest number still in use. The accountant is fine with this, so don't "fix" it with credit notes or by forbidding gaps.
-- **Manual invoices** („Rēķini”, `/admin/rekini`) are B2B invoices the admin writes by hand, ported from the ohmycrisp admin minus its inventory tracking. They have their own customer directory, catalog or free-text lines, **net** prices (VAT 21% or 0%, taken once from the net total), signature lines, a hideable due date and a choice of logo (Martandi by default, or TaviDzērieni). They share the `MRT-YYYY-NNNNN` sequence with shop orders (year = issue date's year, fixed once assigned). They are never emailed: the admin opens or downloads the PDF.
+- **Manual invoices** („Rēķini”, `/admin/rekini`) are B2B invoices the admin writes by hand, ported from the ohmycrisp admin minus its inventory tracking. They have their own customer directory, catalog or free-text lines, **net** prices (VAT 21% or 0%, taken once from the net total), signature lines and a hideable due date. They share the `MRT-YYYY-NNNNN` sequence with shop orders (year = issue date's year, fixed once assigned). They are never emailed: the admin opens or downloads the PDF.
 - **Buyers** can be private persons or companies. Companies give name, Reg. Nr., an optional PVN Nr. and a legal address.
 - **Order statuses:** awaiting payment → paid → ready for pickup → collected (or cancelled). Each of paid, ready and collected sends the customer an email automatically. Cancelling **deliberately** sends no email.
 - **Alcohol sale-hour rules** apply to pickup only, not to placing orders online. Don't block checkout by time of day.
@@ -64,7 +64,7 @@ src/
       kategorijas/          drag-reorder list (CategoryList), jauna/ create, [id] edit (shared CategoryForm)
       darba-laiks/          opening hours + closure notice (HoursForm)
       pasutijumi/           orders: table tab + sales-summary tab, [id] detail, [id]/rekins PDF route
-      rekini/               manual invoices: list, jauns/ (?sagatave=<id> copies one), [id] edit + [id]/pdf, klienti/ directory, logotipi/ logo upload
+      rekini/               manual invoices: list, jauns/ (?sagatave=<id> copies one), [id] edit + [id]/pdf, klienti/ directory
       actions.ts            catalog Server Actions; pasutijumi/actions.ts for orders
       ConfirmButton.tsx     window.confirm submit button for destructive actions
     api/auth/{login,callback,logout}   Cognito OAuth flow
@@ -101,7 +101,6 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 
 **Invoices and emails.**
 - `renderInvoicePdf(order)` and `renderManualInvoicePdf(invoice)` build the PDFs. Both map to one `InvoiceDoc` layout in `server/invoice-pdf.ts` (columns, rows, totals, notes), so the two can't drift apart.
-- Invoice logos (`server/invoice-logos.ts`): an uploaded PNG/JPEG (≤ 200 KB) is stored base64 in `db.settings` (`invoice-logo-<name>`), so there is no S3 or IAM change; without one, `assets/logos/martandi.png` / `public/logo.png` is used. Shop-order PDFs always use the TaviDzērieni logo. Manual invoices saved before the choice existed have no `logo` and print TaviDzērieni. PDFs render on demand, so a replaced logo also shows on older invoices.
 - Numbering lives in `server/invoice-numbers.ts`: `nextInvoiceNumber(year)` and `releaseInvoiceNumber`, which rewinds the counter past the highest number still used by **orders or manual invoices**. `deleteOrder` and `deleteInvoice` (`server/invoices.ts`) both call it.
 - Manual-invoice money: `invoiceTotals(lines, vatRate)` in `lib/money.ts` (line nets rounded, VAT from the net total, deposits VAT-free on top). Don't route them through `splitVat`.
 - `sendInvoice` / `sendStatusEmail` live in `server/customer-emails.ts`. They use Resend idempotency keys (e.g. `status-${id}-${status}`) and record `invoiceEmailedAt` / `statusEmailedAt[status]` on the order.

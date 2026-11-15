@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { centsToEuro, euroToCents } from "./catalog-input";
 import { site } from "@/config/site";
-import { DEFAULT_INVOICE_LOGO, INVOICE_LOGOS, LEGACY_INVOICE_LOGO, type InvoiceLogo } from "./invoice-logos";
 import type { Invoice, InvoiceCustomer, InvoiceCustomerSnapshot } from "./types";
 
 // Admin form input for manual invoices and their customer directory. Shared by the client
@@ -115,7 +114,7 @@ export const invoiceInput = z
     issueDate: day("Izrakstīšanas datums"),
     dueDate: day("Apmaksas termiņš"),
     hideDueDate: z.boolean(),
-    logo: z.enum(Object.keys(INVOICE_LOGOS) as [InvoiceLogo, ...InvoiceLogo[]]),
+    orderNumber: optional(60),
     status: z.enum(["unpaid", "paid"]),
     vat: z.enum(Object.keys(INVOICE_VAT_RATES) as [InvoiceVatKey, ...InvoiceVatKey[]]),
     includeSignatures: z.boolean(),
@@ -156,7 +155,7 @@ export function emptyInvoice(today: string): InvoiceFormValues {
     issueDate: today,
     dueDate: addDays(today, site.paymentDueDays),
     hideDueDate: false,
-    logo: DEFAULT_INVOICE_LOGO,
+    orderNumber: "",
     status: "unpaid",
     vat: "21",
     includeSignatures: false,
@@ -174,7 +173,7 @@ export function invoiceToForm(invoice: Invoice): InvoiceFormValues {
     issueDate: invoice.issueDate,
     dueDate: invoice.dueDate,
     hideDueDate: invoice.hideDueDate,
-    logo: invoice.logo ?? LEGACY_INVOICE_LOGO,
+    orderNumber: invoice.orderNumber ?? "",
     status: invoice.status,
     vat: vatKey(invoice.vatRate),
     includeSignatures: invoice.includeSignatures,
@@ -199,6 +198,7 @@ export function invoiceAsTemplate(invoice: Invoice, today: string): InvoiceFormV
     id: "",
     issueDate: blank.issueDate,
     dueDate: blank.dueDate,
+    orderNumber: "",
     status: "unpaid",
   };
 }
