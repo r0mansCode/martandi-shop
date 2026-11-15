@@ -175,6 +175,9 @@ function InvoiceRow({ invoice, returnTo }: { invoice: Invoice; returnTo: string 
           <a href={`${pdf}?lejupieladet=1`} className={a.smallButton} aria-label="Lejupielādēt PDF" title="Lejupielādēt PDF">
             <DownloadIcon width={16} height={16} />
           </a>
+          <Link href={`/admin/rekini/jauns?sagatave=${invoice.id}`} className={a.smallButton}>
+            Izmantot kā sagatavi
+          </Link>
         </div>
       </td>
     </tr>
