@@ -9,6 +9,9 @@ frontend:
         # Amplify console env vars exist only during the build; write the ones the
         # server needs at runtime into .env.production so Next bundles them for SSR.
         - env | grep -E '^(DATA_SOURCE|DYNAMODB_|COGNITO_|IMAGES_|RESEND_|NEXT_PUBLIC_)' >> .env.production || true
+        # Drop the Turbopack cache restored from earlier builds: it counts toward the 220 MB
+        # build-output limit (now disabled in next.config.ts, so nothing writes it again).
+        - rm -rf .next/cache/turbopack
         - npm run build
   artifacts:
     baseDirectory: .next
