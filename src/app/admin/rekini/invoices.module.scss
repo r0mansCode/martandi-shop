@@ -125,16 +125,34 @@
   flex: 0 1 5.5rem !important;
 }
 
-.lineTotal {
-  align-self: center;
-  margin-top: 1.25rem;
-  font-weight: 600;
-  text-align: right;
-  white-space: nowrap;
+.lineHeadGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
 }
 
-.checkControl {
-  margin-top: 1.875rem;
+.segmentedSmall {
+  padding: 0.125rem;
+  font-weight: 400;
+
+  label {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+}
+
+// Read-only amounts in the line row: right-aligned, and boxed like an input (same padding,
+// transparent border) so their text sits on the same line as the inputs beside them.
+.computed {
+  text-align: right;
+}
+
+.computedValue {
+  padding: 0.5rem 0.625rem;
+  border: 1px solid transparent;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .totals {

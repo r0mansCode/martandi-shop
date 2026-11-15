@@ -64,7 +64,7 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
   const variantById = new Map(variants.map((v) => [v.variantId, v]));
   const pickVariant = (i: number, variantId: string) => {
     const v = variantById.get(variantId);
-    if (!v) return setLine(i, { productId: "", variantId: "" });
+    if (!v) return setLine(i, { productId: "", variantId: "", name: "" });
     // Catalog prices include VAT at the standard rate; the invoice is priced net.
     setLine(i, {
       productId: v.productId,
@@ -74,6 +74,19 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
       hasDeposit: !!v.depositCents,
       deposit: centsToEuro(v.depositCents ?? site.defaultDepositCents),
     });
+  };
+
+  // Which lines are free text: UI-only, so kept beside the values (index-aligned with lines).
+  // Saved lines without a catalog variant open as free text.
+  const [textLines, setTextLines] = useState(() => initial.lines.map((l) => !l.variantId));
+  const setLineMode = (i: number, text: boolean) => {
+    setTextLines((t) => t.map((x, j) => (j === i ? text : x)));
+    // Free text keeps the catalog name as a starting point; switching to the catalog needs a fresh pick.
+    setLine(i, text ? { productId: "", variantId: "" } : { productId: "", variantId: "", name: "" });
+  };
+  const removeLine = (i: number) => {
+    setValues((v) => ({ ...v, lines: v.lines.filter((_, j) => j !== i) }));
+    setTextLines((t) => t.filter((_, j) => j !== i));
   };
 
   const amounts = formLinesToAmounts(values.lines);
@@ -257,31 +270,38 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
             return (
               <div key={i} className={s.line}>
                 <div className={s.lineHead}>
-                  <span>{i + 1}. pozīcija</span>
-                  {values.lines.length > 1 && (
-                    <button
-                      type="button"
-                      className={a.linkButton}
-                      onClick={() => setValues((v) => ({ ...v, lines: v.lines.filter((_, j) => j !== i) }))}
-                    >
-                      Noņemt
-                    </button>
-                  )}
-                </div>
-                <label className={a.field}>
-                  <span>Prece no kataloga</span>
-                  <select className={a.input} value={line.variantId} onChange={(e) => pickVariant(i, e.target.value)}>
-                    <option value="">— Brīvs teksts —</option>
-                    {line.variantId && !variantById.has(line.variantId) && (
-                      <option value={line.variantId}>{line.name} (vairs nav katalogā)</option>
+                  <div className={s.lineHeadGroup}>
+                    <span>{i + 1}. pozīcija</span>
+                    <div className={`${s.segmented} ${s.segmentedSmall}`} role="radiogroup" aria-label="Pozīcijas veids">
+                      {(["catalog", "text"] as const).map((mode) => (
+                        <label key={mode}>
+                          <input
+                            type="radio"
+                            name={`lineMode-${i}`}
+                            checked={(mode === "text") === textLines[i]}
+                            onChange={() => setLineMode(i, mode === "text")}
+                          />
+                          {mode === "catalog" ? "Prece no kataloga" : "Brīvs teksts"}
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <div className={s.lineHeadGroup}>
+                    <label className={a.check}>
+                      <input
+                        type="checkbox"
+                        checked={line.hasDeposit}
+                        onChange={(e) => setLine(i, { hasDeposit: e.target.checked })}
+                      />
+                      Depozīts
+                    </label>
+                    {values.lines.length > 1 && (
+                      <button type="button" className={a.linkButton} onClick={() => removeLine(i)}>
+                        Noņemt
+                      </button>
                     )}
-                    {variants.map((v) => (
-                      <option key={v.variantId} value={v.variantId}>
-                        {v.name} · {formatPrice(v.priceCents)}
-                      </option>
-                    ))}
-                  </select>
-                </label>
+                  </div>
+                </div>
                 <div className={s.lineFields}>
                   {values.extraBeforeOn && (
                     <label className={a.field}>
@@ -289,11 +309,29 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
                       <input className={a.input} value={line.extraBefore} onChange={(e) => setLine(i, { extraBefore: e.target.value })} />
                     </label>
                   )}
-                  <label className={`${a.field} ${s.grow}`}>
-                    <span>Nosaukums</span>
-                    <input className={cls(p("name"))} value={line.name} onChange={(e) => setLine(i, { name: e.target.value })} />
-                    {err(p("name")) && <span className={a.error}>{err(p("name"))}</span>}
-                  </label>
+                  {textLines[i] ? (
+                    <label className={`${a.field} ${s.grow}`}>
+                      <span>Nosaukums</span>
+                      <input className={cls(p("name"))} value={line.name} onChange={(e) => setLine(i, { name: e.target.value })} />
+                      {err(p("name")) && <span className={a.error}>{err(p("name"))}</span>}
+                    </label>
+                  ) : (
+                    <label className={`${a.field} ${s.grow}`}>
+                      <span>Prece</span>
+                      <select className={cls(p("name"))} value={line.variantId} onChange={(e) => pickVariant(i, e.target.value)}>
+                        <option value="">Izvēlieties…</option>
+                        {line.variantId && !variantById.has(line.variantId) && (
+                          <option value={line.variantId}>{line.name} (vairs nav katalogā)</option>
+                        )}
+                        {variants.map((v) => (
+                          <option key={v.variantId} value={v.variantId}>
+                            {v.name}
+                          </option>
+                        ))}
+                      </select>
+                      {err(p("name")) && <span className={a.error}>Izvēlieties preci</span>}
+                    </label>
+                  )}
                   {values.extraAfterOn && (
                     <label className={a.field}>
                       <span>{values.extraAfterHeader || "Papildu kolonna"}</span>
@@ -328,18 +366,6 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
                     />
                     {err(p("price")) && <span className={a.error}>{err(p("price"))}</span>}
                   </label>
-                  <div className={a.field}>
-                    <span>Cena ar PVN</span>
-                    <span className={s.lineTotal}>{formatPrice(Math.round(amounts[i].unitNetCents * grossFactor))}</span>
-                  </div>
-                  <label className={`${a.check} ${s.checkControl}`}>
-                    <input
-                      type="checkbox"
-                      checked={line.hasDeposit}
-                      onChange={(e) => setLine(i, { hasDeposit: e.target.checked })}
-                    />
-                    Depozīts
-                  </label>
                   {line.hasDeposit && (
                     <label className={`${a.field} ${s.narrow}`}>
                       <span>Depozīts, €</span>
@@ -352,9 +378,13 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
                       {err(p("deposit")) && <span className={a.error}>{err(p("deposit"))}</span>}
                     </label>
                   )}
-                  <div className={a.field}>
+                  <div className={`${a.field} ${s.computed}`}>
+                    <span>Cena ar PVN</span>
+                    <span className={s.computedValue}>{formatPrice(Math.round(amounts[i].unitNetCents * grossFactor))}</span>
+                  </div>
+                  <div className={`${a.field} ${s.computed}`}>
                     <span>Summa bez PVN</span>
-                    <span className={s.lineTotal}>{formatPrice(lineCents)}</span>
+                    <span className={s.computedValue}>{formatPrice(lineCents)}</span>
                   </div>
                 </div>
               </div>
@@ -363,7 +393,14 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
         </div>
         {err("lines") && <span className={a.error}>{err("lines")}</span>}
         <div>
-          <button type="button" className={a.buttonSecondary} onClick={() => set("lines", [...values.lines, emptyLine])}>
+          <button
+            type="button"
+            className={a.buttonSecondary}
+            onClick={() => {
+              set("lines", [...values.lines, emptyLine]);
+              setTextLines((t) => [...t, false]);
+            }}
+          >
             + Pievienot pozīciju
           </button>
         </div>
