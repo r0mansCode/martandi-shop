@@ -5,22 +5,36 @@
   gap: 0.5rem;
 }
 
-// One row per weekday: name, closed checkbox, open – close.
+// One row per weekday: name, closed checkbox, open – close (name on its own line on phones).
 .day {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto minmax(0, 1fr);
+  grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: 0.5rem 0.75rem;
+  gap: 0.5rem 1rem;
   margin: 0;
   padding: 0;
   border: 0;
 
   @include up(md) {
-    grid-template-columns: 9rem 6rem 8rem auto 8rem;
+    grid-template-columns: 9rem 6rem minmax(0, 1fr);
   }
+}
 
-  input[type="time"]:disabled {
+// Start and end time side by side.
+.range {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.time {
+  width: 6rem;
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+
+  &:disabled {
     opacity: 0.4;
+    cursor: default;
   }
 }
 
