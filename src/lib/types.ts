@@ -122,3 +122,77 @@ export type Order = {
   collectedAt?: string;
   cancelledAt?: string;
 };
+
+// Manual invoices (rēķini): issued by the admin outside the shop checkout, e.g. to companies.
+// They share the MRT-YYYY-NNNNN number sequence with order invoices.
+
+/** A customer in the manual-invoice directory. Empty string = not given. */
+export type InvoiceCustomer = {
+  id: string;
+  type: BuyerType;
+  name: string;
+  /** Private persons only. */
+  personalCode: string;
+  /** Companies only. */
+  regNo: string;
+  vatNo: string;
+  address: string;
+  bank: string;
+  swift: string;
+  iban: string;
+  email: string;
+  phone: string;
+  /** Companies only. */
+  contactPerson: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+/** The customer as printed on an invoice; later edits to the customer don't change it. */
+export type InvoiceCustomerSnapshot = Omit<InvoiceCustomer, "createdAt" | "updatedAt">;
+
+export type InvoiceLine = {
+  /** Set when the line was picked from the catalog; free-text lines have neither. */
+  productId?: string;
+  variantId?: string;
+  name: string;
+  /** Unit of measure, e.g. "gb". */
+  unit: string;
+  /** Up to 3 decimals. */
+  qty: number;
+  /** Price per unit without VAT: manual invoices are net-priced (B2B). */
+  unitNetCents: number;
+  /** Packaging deposit per unit (0% VAT), a row of its own on the PDF. */
+  depositCents?: number;
+  /** Values of the optional extra columns before / after the name. */
+  extraBefore?: string;
+  extraAfter?: string;
+};
+
+export type InvoiceStatus = "unpaid" | "paid";
+
+export type Invoice = {
+  id: string;
+  invoiceNumber: string;
+  /** Calendar days, YYYY-MM-DD. */
+  issueDate: string;
+  dueDate: string;
+  /** Leaves the due date off the PDF (e.g. already paid in cash). */
+  hideDueDate: boolean;
+  orderNumber?: string;
+  status: InvoiceStatus;
+  paidAt?: string;
+  /** 0.21 or 0. */
+  vatRate: number;
+  customerId: string;
+  customer: InvoiceCustomerSnapshot;
+  lines: InvoiceLine[];
+  totals: OrderTotals;
+  /** Adds „Preci izsniedza” / „Preci saņēma” signature lines instead of „derīgs bez paraksta”. */
+  includeSignatures: boolean;
+  /** Headers of the optional extra columns; unset = column off. */
+  extraBeforeHeader?: string;
+  extraAfterHeader?: string;
+  createdAt: string;
+  updatedAt: string;
+};

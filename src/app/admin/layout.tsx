@@ -23,6 +23,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
         </Link>
         <nav className={s.nav}>
           <Link href="/admin/pasutijumi">Pasūtījumi</Link>
+          <Link href="/admin/rekini">Rēķini</Link>
           <Link href="/admin/produkti">Produkti</Link>
           <Link href="/admin/kategorijas">Kategorijas</Link>
           <Link href="/admin/darba-laiks">Darba laiks</Link>

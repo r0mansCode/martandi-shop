@@ -53,3 +53,10 @@ export function plural(n: number, one: string, many: string): string {
 export function normalizeSearch(s: string): string {
   return s.toLocaleLowerCase(site.locale).normalize("NFD").replace(/[̀-ͯ]/g, "");
 }
+
+const qtyFormat = new Intl.NumberFormat(site.locale, { maximumFractionDigits: 3 });
+
+/** 1.5 → "1,5" */
+export function formatQty(qty: number): string {
+  return qtyFormat.format(qty);
+}

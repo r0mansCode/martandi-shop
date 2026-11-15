@@ -7,14 +7,16 @@ import s from "./page.module.scss";
 
 export default async function AdminHome() {
   await requireAdmin();
-  const [products, categories, orders, pickupInfo] = await Promise.all([
+  const [products, categories, orders, invoices, pickupInfo] = await Promise.all([
     db.products.list(),
     db.categories.list(),
     db.orders.list(),
+    db.invoices.list(),
     getPickupInfo(),
   ]);
   const published = products.filter((p) => p.status === "published").length;
   const awaitingPayment = orders.filter((o) => o.status === "awaiting_payment").length;
+  const unpaidInvoices = invoices.filter((i) => i.status === "unpaid").length;
 
   return (
     <>
@@ -39,6 +41,14 @@ export default async function AdminHome() {
             <span className={s.label}>Pasūtījumi</span>
             <span className={s.value}>
               {orders.length} <small>({awaitingPayment} gaida apmaksu)</small>
+            </span>
+          </Link>
+        </li>
+        <li>
+          <Link href="/admin/rekini" className={s.card}>
+            <span className={s.label}>Rēķini</span>
+            <span className={s.value}>
+              {invoices.length} <small>({unpaidInvoices} neapmaksāti)</small>
             </span>
           </Link>
         </li>

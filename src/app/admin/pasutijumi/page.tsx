@@ -78,20 +78,20 @@ export default async function AdminOrders({ searchParams }: PageProps<"/admin/pa
         <h1 className={a.title}>Pasūtījumi</h1>
       </div>
 
-      <nav className={o.tabs} aria-label="Skats">
-        <Link href="/admin/pasutijumi" className={view === "orders" ? o.tabActive : undefined}>
+      <nav className={a.tabs} aria-label="Skats">
+        <Link href="/admin/pasutijumi" className={view === "orders" ? a.tabActive : undefined}>
           Pasūtījumu tabula
         </Link>
         <Link
           href="/admin/pasutijumi?skats=kopsavilkums"
-          className={view === "summary" ? o.tabActive : undefined}
+          className={view === "summary" ? a.tabActive : undefined}
         >
           Pārdošanas kopsavilkums
         </Link>
       </nav>
 
       {message && (
-        <p className={message.error ? `${o.message} ${o.messageError}` : o.message} role="status">
+        <p className={message.error ? `${a.message} ${a.messageError}` : a.message} role="status">
           {message.text}
         </p>
       )}
@@ -137,7 +137,7 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
         <button type="submit" className={a.buttonSecondary}>
           Filtrēt
         </button>
-        <span className={`${a.muted} ${o.count}`}>
+        <span className={`${a.muted} ${a.count}`}>
           {shown.length} no {orders.length}
         </span>
       </form>
@@ -151,7 +151,7 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
               <th>Pircējs</th>
               <th>Pircēja kontakti</th>
               <th>Preces</th>
-              <th className={o.right}>Summa</th>
+              <th className={a.right}>Summa</th>
               <th>Statuss</th>
               <th>Darbības</th>
             </tr>
@@ -203,7 +203,7 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                     )}
                   </ul>
                 </td>
-                <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
+                <td className={a.right}>{formatPrice(order.totals.grossCents)}</td>
                 <td>
                   <span className={`${o.statusText} ${o[order.status]}`}>
                     <StatusIcon status={order.status} />
@@ -230,14 +230,14 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                         <form action={setOrderStatus.bind(null, order.id, "cancelled", returnTo)}>
                           <ConfirmButton
                             confirm={`Atcelt pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.`}
-                            className={`${o.smallButton} ${o.danger}`}
+                            className={`${a.smallButton} ${a.danger}`}
                           >
                             {STATUS_SHORT_ACTION.cancelled}
                           </ConfirmButton>
                         </form>
                       )}
                       <form action={removeOrder.bind(null, order.id, returnTo)}>
-                        <ConfirmButton confirm={deleteConfirmText(order)} className={`${o.smallButton} ${o.danger}`}>
+                        <ConfirmButton confirm={deleteConfirmText(order)} className={`${a.smallButton} ${a.danger}`}>
                           Dzēst
                         </ConfirmButton>
                       </form>
@@ -247,14 +247,14 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
                         href={`/admin/pasutijumi/${order.id}/rekins`}
                         target="_blank"
                         rel="noopener"
-                        className={o.smallButton}
+                        className={a.smallButton}
                       >
                         Skatīt PDF
                       </a>
                       <a
                         href={`/admin/pasutijumi/${order.id}/rekins?lejupieladet=1`}
                         download
-                        className={`${o.smallButton} ${o.iconButton}`}
+                        className={`${a.smallButton} ${o.iconButton}`}
                         title={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
                         aria-label={`Lejupielādēt rēķinu ${order.invoiceNumber}`}
                       >
@@ -267,7 +267,7 @@ function OrdersTable({ orders, params }: { orders: Order[]; params: Params }) {
             ))}
             {shown.length === 0 && (
               <tr>
-                <td colSpan={8} className={o.empty}>
+                <td colSpan={8} className={a.empty}>
                   {orders.length ? "Neviens pasūtījums neatbilst filtriem." : "Pasūtījumu vēl nav."}
                 </td>
               </tr>
@@ -371,7 +371,7 @@ function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
                     <th>Apmaksāts</th>
                     <th>Rēķina Nr.</th>
                     <th>Pircējs</th>
-                    <th className={o.right}>Summa</th>
+                    <th className={a.right}>Summa</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -384,7 +384,7 @@ function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
                         </Link>
                       </td>
                       <td>{order.company?.name ?? order.customer.name}</td>
-                      <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
+                      <td className={a.right}>{formatPrice(order.totals.grossCents)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -399,16 +399,16 @@ function SalesSummary({ orders, params }: { orders: Order[]; params: Params }) {
                 <thead>
                   <tr>
                     <th>Prece</th>
-                    <th className={o.right}>Daudz.</th>
-                    <th className={o.right}>Summa</th>
+                    <th className={a.right}>Daudz.</th>
+                    <th className={a.right}>Summa</th>
                   </tr>
                 </thead>
                 <tbody>
                   {topProducts.map((p) => (
                     <tr key={p.name}>
                       <td>{p.name}</td>
-                      <td className={o.right}>{p.qty}</td>
-                      <td className={o.right}>{formatPrice(p.grossCents)}</td>
+                      <td className={a.right}>{p.qty}</td>
+                      <td className={a.right}>{formatPrice(p.grossCents)}</td>
                     </tr>
                   ))}
                 </tbody>

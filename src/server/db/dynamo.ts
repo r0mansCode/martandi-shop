@@ -8,18 +8,20 @@ import {
   QueryCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
-import type { Category, Order, Product } from "@/lib/types";
+import type { Category, Invoice, InvoiceCustomer, Order, Product } from "@/lib/types";
 import {
   GSI1,
   META,
   categoryItem,
   fromItem,
+  invoiceCustomerItem,
+  invoiceItem,
   orderItem,
   pk,
   productItem,
   type EntityType,
 } from "./dynamo-items";
-import { byCategoryOrder, type Db } from "./types";
+import { byCategoryOrder, byCustomerName, byInvoiceNewest, type Db } from "./types";
 
 // Production store: one DynamoDB table, layout in ./dynamo-items.
 // Credentials come from the default AWS chain: the Amplify compute role in production,
@@ -108,6 +110,19 @@ export function createDynamoDb(): Db {
       getById: (id) => get("ORDER", id),
       put: (order) => put(orderItem(order)),
       delete: (id) => remove("ORDER", id),
+    },
+    invoices: {
+      // GSI1SK already sorts this way; the sort keeps both stores identical.
+      list: async () => (await queryAll<Invoice>("INVOICE", true)).toSorted(byInvoiceNewest),
+      getById: (id) => get("INVOICE", id),
+      put: (invoice) => put(invoiceItem(invoice)),
+      delete: (id) => remove("INVOICE", id),
+    },
+    invoiceCustomers: {
+      list: async () => (await queryAll<InvoiceCustomer>("INVOICE_CUSTOMER")).toSorted(byCustomerName),
+      getById: (id) => get("INVOICE_CUSTOMER", id),
+      put: (customer) => put(invoiceCustomerItem(customer)),
+      delete: (id) => remove("INVOICE_CUSTOMER", id),
     },
     counters: {
       next: async (key) => {

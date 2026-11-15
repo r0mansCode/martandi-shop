@@ -40,14 +40,14 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
       <Link href="/admin/pasutijumi" className={a.back}>
         ← Visi pasūtījumi
       </Link>
-      <div className={o.head}>
+      <div className={a.head}>
         <h1 className={a.title}>{order.invoiceNumber}</h1>
-        <span className={`${o.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>
+        <span className={`${a.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>
         {isOverdue(order) && <span className={o.overdue}>Apmaksas termiņš nokavēts</span>}
       </div>
 
       {message && (
-        <p className={message.error ? `${o.message} ${o.messageError}` : o.message} role="status">
+        <p className={message.error ? `${a.message} ${a.messageError}` : a.message} role="status">
           {message.text}
         </p>
       )}
@@ -143,9 +143,9 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
             <tr>
               <th>Prece</th>
               <th>Tilpums</th>
-              <th className={o.right}>Cena</th>
-              <th className={o.right}>Daudz.</th>
-              <th className={o.right}>Summa</th>
+              <th className={a.right}>Cena</th>
+              <th className={a.right}>Daudz.</th>
+              <th className={a.right}>Summa</th>
             </tr>
           </thead>
           <tbody>
@@ -155,51 +155,51 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
                   <Link href={`/admin/produkti/${item.productId}`}>{item.name}</Link>
                 </td>
                 <td>{item.variantLabel}</td>
-                <td className={o.right}>
+                <td className={a.right}>
                   {formatPrice(item.unitPriceCents)}
                   {item.depositCents ? ` + ${formatPrice(item.depositCents)} dep.` : ""}
                 </td>
-                <td className={o.right}>{item.qty}</td>
-                <td className={o.right}>{formatPrice(item.unitPriceCents * item.qty)}</td>
+                <td className={a.right}>{item.qty}</td>
+                <td className={a.right}>{formatPrice(item.unitPriceCents * item.qty)}</td>
               </tr>
             ))}
             <tr>
-              <td colSpan={4} className={o.right}>
+              <td colSpan={4} className={a.right}>
                 Summa bez PVN
               </td>
-              <td className={o.right}>{formatPrice(order.totals.netCents)}</td>
+              <td className={a.right}>{formatPrice(order.totals.netCents)}</td>
             </tr>
             <tr>
-              <td colSpan={4} className={o.right}>
+              <td colSpan={4} className={a.right}>
                 PVN {Math.round(site.vatRate * 100)}%
               </td>
-              <td className={o.right}>{formatPrice(order.totals.vatCents)}</td>
+              <td className={a.right}>{formatPrice(order.totals.vatCents)}</td>
             </tr>
             {order.totals.depositCents && (
               <tr>
-                <td colSpan={4} className={o.right}>
+                <td colSpan={4} className={a.right}>
                   Depozīts (PVN 0%)
                 </td>
-                <td className={o.right}>{formatPrice(order.totals.depositCents)}</td>
+                <td className={a.right}>{formatPrice(order.totals.depositCents)}</td>
               </tr>
             )}
             <tr className={o.totals}>
-              <td colSpan={4} className={o.right}>
+              <td colSpan={4} className={a.right}>
                 Kopā
               </td>
-              <td className={o.right}>{formatPrice(order.totals.grossCents)}</td>
+              <td className={a.right}>{formatPrice(order.totals.grossCents)}</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div className={o.actions}>
+      <div className={a.buttonRow}>
         {NEXT_STATUSES[order.status].map((next) => (
           <form key={next} action={setOrderStatus.bind(null, order.id, next, here)}>
             {next === "cancelled" ? (
               <ConfirmButton
                 confirm={`Atcelt pasūtījumu ${order.invoiceNumber}? To nevarēs atjaunot.`}
-                className={`${a.buttonSecondary} ${o.danger}`}
+                className={`${a.buttonSecondary} ${a.danger}`}
               >
                 {STATUS_ACTION_LABEL[next]}
               </ConfirmButton>
@@ -218,8 +218,8 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
             Nosūtīt rēķinu atkārtoti
           </button>
         </form>
-        <form action={removeOrder.bind(null, order.id, here)} className={o.pushRight}>
-          <ConfirmButton confirm={deleteConfirmText(order)} className={`${a.buttonSecondary} ${o.danger}`}>
+        <form action={removeOrder.bind(null, order.id, here)} className={a.pushRight}>
+          <ConfirmButton confirm={deleteConfirmText(order)} className={`${a.buttonSecondary} ${a.danger}`}>
             Dzēst pasūtījumu
           </ConfirmButton>
         </form>

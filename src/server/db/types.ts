@@ -1,4 +1,4 @@
-import type { Category, Order, Product } from "@/lib/types";
+import type { Category, Invoice, InvoiceCustomer, Order, Product } from "@/lib/types";
 
 // Storage interfaces. Implementations: ./mock (local JSON file) and ./dynamo (phase 7).
 // They only persist; validation and business rules live in the callers.
@@ -35,6 +35,30 @@ export interface OrderRepo {
   delete(id: string): Promise<void>;
 }
 
+/** Manual invoices: newest issue date first, then highest number. */
+export const byInvoiceNewest = (a: Invoice, b: Invoice) =>
+  b.issueDate.localeCompare(a.issueDate) || b.invoiceNumber.localeCompare(a.invoiceNumber);
+
+/** Customer directory order: by name, Latvian collation. */
+export const byCustomerName = (a: InvoiceCustomer, b: InvoiceCustomer) =>
+  a.name.localeCompare(b.name, "lv") || a.id.localeCompare(b.id);
+
+export interface InvoiceRepo {
+  /** See byInvoiceNewest. */
+  list(): Promise<Invoice[]>;
+  getById(id: string): Promise<Invoice | null>;
+  put(invoice: Invoice): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
+export interface InvoiceCustomerRepo {
+  /** See byCustomerName. */
+  list(): Promise<InvoiceCustomer[]>;
+  getById(id: string): Promise<InvoiceCustomer | null>;
+  put(customer: InvoiceCustomer): Promise<void>;
+  delete(id: string): Promise<void>;
+}
+
 export interface CounterRepo {
   /** Atomically increments the counter and returns the new value (first call returns 1). */
   next(key: string): Promise<number>;
@@ -55,6 +79,8 @@ export interface Db {
   categories: CategoryRepo;
   products: ProductRepo;
   orders: OrderRepo;
+  invoices: InvoiceRepo;
+  invoiceCustomers: InvoiceCustomerRepo;
   counters: CounterRepo;
   settings: SettingsRepo;
 }

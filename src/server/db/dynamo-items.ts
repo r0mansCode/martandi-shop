@@ -1,4 +1,4 @@
-import type { Category, Order, Product } from "@/lib/types";
+import type { Category, Invoice, InvoiceCustomer, Order, Product } from "@/lib/types";
 
 // Single-table layout shared by the Dynamo store and scripts/seed-dynamo.ts.
 // No "server-only" here so the seed script can import it outside Next.
@@ -7,15 +7,17 @@ import type { Category, Order, Product } from "@/lib/types";
 //   Category  CATEGORY#<id>      META    CATEGORY    <slug>
 //   Product   PRODUCT#<id>       META    PRODUCT     <slug>
 //   Order     ORDER#<id>         META    ORDER       <createdAt>#<id>
+//   Invoice   INVOICE#<id>       META    INVOICE     <issueDate>#<invoiceNumber>
+//   Customer  INVOICE_CUSTOMER#<id>  META  INVOICE_CUSTOMER  <lowercase name>#<id>
 //   Counter   COUNTER#<key>      META    -           -
 //   Setting   SETTING#<key>      META    -           -       (document in `value`)
 //
-// GSI1 (projection ALL) serves list() and getBySlug(); orders sort newest first on GSI1SK.
+// GSI1 (projection ALL) serves list() and getBySlug(); orders and invoices sort newest first on GSI1SK.
 
 export const GSI1 = "GSI1";
 export const META = "META";
 
-export type EntityType = "CATEGORY" | "PRODUCT" | "ORDER";
+export type EntityType = "CATEGORY" | "PRODUCT" | "ORDER" | "INVOICE" | "INVOICE_CUSTOMER";
 
 const KEY_ATTRS = ["PK", "SK", "GSI1PK", "GSI1SK"] as const;
 
@@ -43,6 +45,22 @@ export const orderItem = (o: Order) => ({
   SK: META,
   GSI1PK: "ORDER",
   GSI1SK: `${o.createdAt}#${o.id}`,
+});
+
+export const invoiceItem = (i: Invoice) => ({
+  ...i,
+  PK: pk("INVOICE", i.id),
+  SK: META,
+  GSI1PK: "INVOICE",
+  GSI1SK: `${i.issueDate}#${i.invoiceNumber}`,
+});
+
+export const invoiceCustomerItem = (c: InvoiceCustomer) => ({
+  ...c,
+  PK: pk("INVOICE_CUSTOMER", c.id),
+  SK: META,
+  GSI1PK: "INVOICE_CUSTOMER",
+  GSI1SK: `${c.name.toLowerCase()}#${c.id}`,
 });
 
 /** Strips the key attributes, leaving the domain object. */

@@ -99,6 +99,7 @@ Selected via `DATA_SOURCE=mock|dynamo`. **Mock mode is local-only**: Amplify has
 | `/admin` | Orders list (filter by status) |
 | `/admin/pasutijumi/[id]` | Order detail, status changes, download/resend invoice |
 | `/admin/produkti`, `/admin/produkti/[id]`, `/admin/kategorijas` | CRUD |
+| `/admin/rekini`, `/admin/rekini/klienti` | Manual (B2B) invoices and their customer directory; PDF per invoice, shared MRT numbering |
 | `sitemap.xml`, `robots.txt` | Generated; robots disallows `/admin`, `/noformet`, `/paldies`, `/api` |
 
 ## 6. Order & invoice flow
@@ -180,7 +181,7 @@ Reference screens:
 | 2 | Storefront | Layout/header/footer, home, category with filters, product page with variant picker, search |
 | 3 | Cart + checkout | localStorage cart, popover, cart page, checkout Server Action, honeypot + rate limit |
 | 4 | Invoice + email | `renderInvoicePdf` (Roboto), React Email templates, Resend domain DNS records in Route 53 |
-| 5 | Admin | Cognito + MFA, `requireAdmin`, product/variant/category CRUD with image upload, order management, revalidation |
+| 5 | Admin | Cognito + MFA, `requireAdmin`, product/variant/category CRUD with image upload, order management, manual invoices, revalidation |
 | 6 | SEO + legal | sitemap, robots, metadata, JSON-LD, terms/pickup pages (privacy page + notice banner done) |
 | 7 | DynamoDB + launch | Dynamo repos, IAM, env vars, production smoke test, Lighthouse pass |
 

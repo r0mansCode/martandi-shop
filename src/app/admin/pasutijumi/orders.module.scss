@@ -7,14 +7,6 @@
   white-space: nowrap;
 }
 
-.badge {
-  display: inline-block;
-  padding: 0.125rem 0.5rem;
-  border-radius: 999px;
-  font-size: 0.8125rem;
-  white-space: nowrap;
-}
-
 .awaiting_payment {
   background: #fdf1d8;
   color: #7a5200;
@@ -43,40 +35,6 @@
 .overdue {
   color: #b3261e;
   font-weight: 500;
-}
-
-// Tabs (list page)
-
-.tabs {
-  display: flex;
-  gap: 0.25rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--color-line);
-
-  a {
-    margin-bottom: -1px;
-    padding: 0.625rem 1rem;
-    border: 1px solid transparent;
-    border-radius: var(--radius) var(--radius) 0 0;
-    color: var(--color-muted);
-
-    &:hover {
-      color: var(--color-fg);
-    }
-  }
-
-  .tabActive {
-    border-color: var(--color-line);
-    border-bottom-color: var(--color-bg);
-    background: var(--color-bg);
-    color: var(--color-fg);
-    font-weight: 600;
-  }
-}
-
-.count {
-  align-self: center;
-  margin-left: auto;
 }
 
 // Orders table
@@ -188,33 +146,9 @@
   gap: 0.375rem;
 }
 
-.smallButton {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.3125rem 0.625rem;
-  border: 1px solid var(--color-line);
-  border-radius: var(--radius);
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font: inherit;
-  font-size: 0.8125rem;
-  white-space: nowrap;
-  cursor: pointer;
-
-  &:hover {
-    border-color: var(--color-fg);
-  }
-}
-
 // Icon-only: little side padding so the icon fills the button.
 .iconButton {
   padding: 0 0.25rem;
-}
-
-.empty {
-  padding: 1.5rem !important;
-  color: var(--color-muted);
-  text-align: center !important;
 }
 
 // Sales summary
@@ -274,26 +208,6 @@
 
 // Detail page
 
-.head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.message {
-  margin-bottom: 1.5rem;
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--color-success);
-  background: #eef6ef;
-}
-
-.messageError {
-  border-left-color: #b3261e;
-  background: #fbeceb;
-}
-
 .grid {
   display: grid;
   gap: 1.25rem;
@@ -348,36 +262,9 @@
   }
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-}
-
-// Separates the destructive action from the others.
-.pushRight {
-  margin-left: auto;
-}
-
-.danger {
-  border-color: #b3261e;
-  color: #b3261e;
-  background: var(--color-bg);
-
-  &:hover {
-    background: #b3261e;
-    color: #fff;
-  }
-}
-
 .totals {
   td {
     font-weight: 600;
   }
 }
 
-.right {
-  text-align: right !important;
-  white-space: nowrap;
-}

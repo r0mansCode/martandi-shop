@@ -1,6 +1,7 @@
 import "server-only";
 import { db } from "./db";
 import { isVisible } from "./catalog";
+import { nextInvoiceNumber, releaseInvoiceNumber, shopYear } from "./invoice-numbers";
 import { activeVariants, orderTotals } from "@/lib/money";
 import { MAX_QTY } from "@/lib/cart-limits";
 import type { CheckoutInput, LinePrice } from "@/lib/checkout-input";
@@ -15,48 +16,13 @@ export type CreateOrderResult =
 
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-/** Year in shop time, so an order at 00:30 on 1 January Riga time counts towards the new year. */
-function shopYear(date: Date): string {
-  return new Intl.DateTimeFormat("en", { year: "numeric", timeZone: site.timeZone }).format(date);
-}
-
-const counterKey = (year: string) => `invoice-${year}`;
-
-/** Next number in the gapless yearly sequence, e.g. MRT-2026-00001. */
-async function nextInvoiceNumber(date: Date): Promise<string> {
-  const year = shopYear(date);
-  const n = await db.counters.next(counterKey(year));
-  return `${site.invoicePrefix}-${year}-${String(n).padStart(5, "0")}`;
-}
-
-/** "MRT-2026-00042" → { year: "2026", seq: 42 }; null for anything else. */
-function parseInvoiceNumber(invoiceNumber: string) {
-  const match = /^[A-Z]+-(\d{4})-(\d+)$/.exec(invoiceNumber);
-  return match ? { year: match[1], seq: Number(match[2]) } : null;
-}
-
 /**
- * Deletes an order. When it held the newest invoice number of its year, the counter is moved
- * back to the highest number still in use, so the next order reuses the freed number(s) as if
- * the deleted invoices never existed. An older number can't be reused (later invoices already
- * follow it), so it stays unused. Returns whether the number was freed.
+ * Deletes an order and frees its invoice number when it was the newest of its year
+ * (see releaseInvoiceNumber). Returns whether the number was freed.
  */
 export async function deleteOrder(order: Order): Promise<{ numberFreed: boolean }> {
   await db.orders.delete(order.id);
-
-  const parsed = parseInvoiceNumber(order.invoiceNumber);
-  if (!parsed) return { numberFreed: false };
-
-  const remaining = (await db.orders.list())
-    .map((o) => parseInvoiceNumber(o.invoiceNumber))
-    .filter((p) => p?.year === parsed.year)
-    .map((p) => p!.seq);
-  const highest = Math.max(0, ...remaining);
-  if (highest > parsed.seq) return { numberFreed: false };
-
-  // Only if no order took a newer number in the meantime.
-  const numberFreed = await db.counters.rewind(counterKey(parsed.year), parsed.seq, highest);
-  return { numberFreed };
+  return { numberFreed: await releaseInvoiceNumber(order.invoiceNumber) };
 }
 
 /**
@@ -111,7 +77,7 @@ export async function createOrder(input: CheckoutInput, now = new Date()): Promi
 
   const order: Order = {
     id: crypto.randomUUID(),
-    invoiceNumber: await nextInvoiceNumber(now),
+    invoiceNumber: await nextInvoiceNumber(shopYear(now)),
     createdAt,
     dueDate: new Date(now.getTime() + site.paymentDueDays * DAY_MS).toISOString(),
     status: "awaiting_payment",

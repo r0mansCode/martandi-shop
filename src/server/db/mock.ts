@@ -3,8 +3,8 @@ import { constants } from "node:fs";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import type { Category, Order, Product } from "@/lib/types";
-import { byCategoryOrder, type Db } from "./types";
+import type { Category, Invoice, InvoiceCustomer, Order, Product } from "@/lib/types";
+import { byCategoryOrder, byCustomerName, byInvoiceNewest, type Db } from "./types";
 
 // Local development store: one JSON file, created from data/seed on first use.
 // Not for production: Amplify compute has no persistent disk.
@@ -14,6 +14,9 @@ type MockData = {
   products: Product[];
   orders: Order[];
   counters: Record<string, number>;
+  /** Missing in db.json files created before manual invoices existed. */
+  invoices?: Invoice[];
+  invoiceCustomers?: InvoiceCustomer[];
   /** Missing in db.json files created before settings existed. */
   settings?: Record<string, unknown>;
 };
@@ -123,6 +126,24 @@ export const mockDb: Db = {
     delete: (id) =>
       mutate((d) => {
         d.orders = d.orders.filter((o) => o.id !== id);
+      }),
+  },
+  invoices: {
+    list: async () => ((await load()).invoices ?? []).toSorted(byInvoiceNewest),
+    getById: async (id) => (await load()).invoices?.find((i) => i.id === id) ?? null,
+    put: (invoice) => mutate((d) => upsert((d.invoices ??= []), invoice)),
+    delete: (id) =>
+      mutate((d) => {
+        d.invoices = (d.invoices ?? []).filter((i) => i.id !== id);
+      }),
+  },
+  invoiceCustomers: {
+    list: async () => ((await load()).invoiceCustomers ?? []).toSorted(byCustomerName),
+    getById: async (id) => (await load()).invoiceCustomers?.find((c) => c.id === id) ?? null,
+    put: (customer) => mutate((d) => upsert((d.invoiceCustomers ??= []), customer)),
+    delete: (id) =>
+      mutate((d) => {
+        d.invoiceCustomers = (d.invoiceCustomers ?? []).filter((c) => c.id !== id);
       }),
   },
   counters: {

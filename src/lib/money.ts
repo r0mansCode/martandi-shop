@@ -39,3 +39,23 @@ export function fromPriceCents(product: Product): number | null {
   const prices = activeVariants(product).map((v) => v.priceCents);
   return prices.length ? Math.min(...prices) : null;
 }
+
+/** Net amount of a manual-invoice line; qty may have decimals. */
+export function lineNetCents(unitNetCents: number, qty: number): number {
+  return Math.round(unitNetCents * qty);
+}
+
+/**
+ * Manual-invoice totals. These are net-priced: line nets are rounded and summed, then VAT is
+ * taken once from the net total (integer percent, so no float rate error). Deposits stay VAT-free.
+ */
+export function invoiceTotals(
+  lines: { unitNetCents: number; qty: number; depositCents?: number }[],
+  vatRate: number,
+): OrderTotals {
+  const netCents = lines.reduce((sum, l) => sum + lineNetCents(l.unitNetCents, l.qty), 0);
+  const vatCents = Math.round((netCents * Math.round(vatRate * 100)) / 100);
+  const depositCents = lines.reduce((sum, l) => sum + lineNetCents(l.depositCents ?? 0, l.qty), 0);
+  const grossCents = netCents + vatCents + depositCents;
+  return depositCents > 0 ? { netCents, vatCents, depositCents, grossCents } : { netCents, vatCents, grossCents };
+}
