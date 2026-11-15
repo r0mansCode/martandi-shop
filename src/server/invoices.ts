@@ -61,6 +61,7 @@ export async function saveInvoice(input: InvoiceInput, now = new Date()): Promis
     issueDate: input.issueDate,
     dueDate: input.dueDate,
     hideDueDate: input.hideDueDate,
+    logo: input.logo,
     orderNumber: optional(input.orderNumber),
     status: input.status,
     paidAt: input.status === "paid" ? (existing?.paidAt ?? stamp) : undefined,

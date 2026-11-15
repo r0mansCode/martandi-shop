@@ -9,6 +9,7 @@ import {
   CUSTOMER_TYPE_LABEL,
   emptyLine,
   formLinesToAmounts,
+  INVOICE_LOGOS,
   INVOICE_VAT_RATES,
   type InvoiceFormValues,
   type InvoiceLineFormValues,
@@ -107,6 +108,18 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
       }}
     >
       <input type="hidden" name="invoice" value={JSON.stringify(values)} />
+
+      <section className={a.section}>
+        <h2>Logotips</h2>
+        <div className={s.segmented} role="radiogroup" aria-label="Logotips rēķinā">
+          {(Object.keys(INVOICE_LOGOS) as InvoiceFormValues["logo"][]).map((logo) => (
+            <label key={logo}>
+              <input type="radio" name="logo" checked={values.logo === logo} onChange={() => set("logo", logo)} />
+              {INVOICE_LOGOS[logo]}
+            </label>
+          ))}
+        </div>
+      </section>
 
       <section className={a.section}>
         <h2>Klients</h2>

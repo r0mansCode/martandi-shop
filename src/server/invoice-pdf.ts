@@ -1,7 +1,7 @@
 import "server-only";
 import path from "node:path";
 import PDFDocument from "pdfkit";
-import type { Invoice, Order, OrderTotals } from "@/lib/types";
+import type { Invoice, InvoiceLogo, Order, OrderTotals } from "@/lib/types";
 import { formatPrice, lineNetCents } from "@/lib/money";
 import { formatDate, formatQty } from "@/lib/format";
 import { site } from "@/config/site";
@@ -17,8 +17,11 @@ import { seller } from "@/config/seller";
 const FONTS = path.join(process.cwd(), "assets", "fonts");
 const REGULAR = path.join(FONTS, "Roboto-Regular.ttf");
 const BOLD = path.join(FONTS, "Roboto-Bold.ttf");
-// Same file as the storefront logo; traced into the server bundle in next.config.ts.
-const LOGO = path.join(process.cwd(), "public", "logo.png");
+// The shop logo is the storefront's own file; all are traced into the server bundle in next.config.ts.
+const LOGOS: Record<InvoiceLogo, string> = {
+  tavidzerieni: path.join(process.cwd(), "public", "logo.png"),
+  martandi: path.join(process.cwd(), "assets", "logos", "martandi.png"),
+};
 const LOGO_HEIGHT = 56;
 
 const MARGIN = 50;
@@ -39,6 +42,8 @@ type InvoiceDoc = {
   date: string;
   dueDate?: string;
   orderNumber?: string;
+  /** Shop orders always carry the shop logo. */
+  logo?: InvoiceLogo;
   buyerLines: string[];
   columns: Column[];
   /** One cell per column. */
@@ -200,6 +205,7 @@ export function renderManualInvoicePdf(invoice: Invoice): Promise<Buffer> {
     date: invoice.issueDate,
     dueDate,
     orderNumber: invoice.orderNumber,
+    logo: invoice.logo,
     buyerLines,
     columns,
     rows,
@@ -259,7 +265,7 @@ function rule(doc: Doc, y: number, color = LINE) {
 
 function drawHeader(doc: Doc, inv: InvoiceDoc) {
   const top = MARGIN;
-  doc.image(LOGO, MARGIN, top, { height: LOGO_HEIGHT });
+  doc.image(LOGOS[inv.logo ?? "tavidzerieni"], MARGIN, top, { height: LOGO_HEIGHT });
 
   const right = { x: MARGIN + CONTENT_WIDTH / 2, width: CONTENT_WIDTH / 2, align: "right" as const };
   doc.font("bold").fontSize(18).fillColor(TEXT).text("RĒĶINS", right.x, top, right);

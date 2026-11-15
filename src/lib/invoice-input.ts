@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { centsToEuro, euroToCents } from "./catalog-input";
 import { site } from "@/config/site";
-import type { Invoice, InvoiceCustomer, InvoiceCustomerSnapshot } from "./types";
+import type { Invoice, InvoiceCustomer, InvoiceCustomerSnapshot, InvoiceLogo } from "./types";
 
 // Admin form input for manual invoices and their customer directory. Shared by the client
 // forms (shape) and the Server Actions (validation); the server is the only place it's trusted.
@@ -15,6 +15,13 @@ export const INVOICE_VAT_RATES = { "21": site.vatRate, "0": 0 } as const;
 export type InvoiceVatKey = keyof typeof INVOICE_VAT_RATES;
 
 export const DEFAULT_UNIT = "gb";
+
+/** Logo choices for the PDF, in switcher order; the first is the default. */
+export const INVOICE_LOGOS: Record<InvoiceLogo, string> = {
+  tavidzerieni: "TaviDzērieni.lv",
+  martandi: "Martandi",
+};
+const LOGO_KEYS = Object.keys(INVOICE_LOGOS) as [InvoiceLogo, ...InvoiceLogo[]];
 
 /** "1,5" → 1.5 */
 export const parseQty = (value: string) => Number(value.trim().replace(",", "."));
@@ -114,6 +121,7 @@ export const invoiceInput = z
     issueDate: day("Izrakstīšanas datums"),
     dueDate: day("Apmaksas termiņš"),
     hideDueDate: z.boolean(),
+    logo: z.enum(LOGO_KEYS),
     orderNumber: optional(60),
     status: z.enum(["unpaid", "paid"]),
     vat: z.enum(Object.keys(INVOICE_VAT_RATES) as [InvoiceVatKey, ...InvoiceVatKey[]]),
@@ -155,6 +163,7 @@ export function emptyInvoice(today: string): InvoiceFormValues {
     issueDate: today,
     dueDate: addDays(today, site.paymentDueDays),
     hideDueDate: false,
+    logo: LOGO_KEYS[0],
     orderNumber: "",
     status: "unpaid",
     vat: "21",
@@ -173,6 +182,7 @@ export function invoiceToForm(invoice: Invoice): InvoiceFormValues {
     issueDate: invoice.issueDate,
     dueDate: invoice.dueDate,
     hideDueDate: invoice.hideDueDate,
+    logo: invoice.logo ?? "tavidzerieni",
     orderNumber: invoice.orderNumber ?? "",
     status: invoice.status,
     vat: vatKey(invoice.vatRate),

@@ -168,6 +168,9 @@ export type InvoiceLine = {
 
 export type InvoiceStatus = "unpaid" | "paid";
 
+/** Which brand heads the PDF: the shop or the company behind it. */
+export type InvoiceLogo = "tavidzerieni" | "martandi";
+
 export type Invoice = {
   id: string;
   invoiceNumber: string;
@@ -176,6 +179,8 @@ export type Invoice = {
   dueDate: string;
   /** Leaves the due date off the PDF (e.g. already paid in cash). */
   hideDueDate: boolean;
+  /** Absent on invoices saved before the choice existed; those used the shop logo. */
+  logo?: InvoiceLogo;
   orderNumber?: string;
   status: InvoiceStatus;
   paidAt?: string;
