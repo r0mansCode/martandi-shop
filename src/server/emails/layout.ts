@@ -90,7 +90,9 @@ export function emailHtml(sections: string[]): string {
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f5f0ea">
     <tr><td align="center" style="padding:24px 12px">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.5;color:#333333">
-        <tr><td style="padding:28px 28px 4px;font-family:Georgia,serif;font-size:22px">${escape(site.name)}</td></tr>
+        <tr><td style="padding:28px 28px 4px;font-family:Georgia,serif;font-size:22px">
+          <a href="${site.url}" style="color:#333333;text-decoration:none"><img src="${site.url}/logo.png" width="92" height="60" alt="${escape(site.name)}" style="display:block;border:0;height:auto"></a>
+        </td></tr>
         ${rows}
         <tr><td style="padding:16px 28px 28px;color:#757575;font-size:13px">
           Ja ir jautājumi, vienkārši atbildiet uz šo e-pastu.<br>${escape(seller.name)} · Reģ. Nr. ${seller.regNo}

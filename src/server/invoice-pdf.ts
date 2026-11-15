@@ -15,6 +15,9 @@ import { seller } from "@/config/seller";
 const FONTS = path.join(process.cwd(), "assets", "fonts");
 const REGULAR = path.join(FONTS, "Roboto-Regular.ttf");
 const BOLD = path.join(FONTS, "Roboto-Bold.ttf");
+// Same file as the storefront logo; traced into the server bundle in next.config.ts.
+const LOGO = path.join(process.cwd(), "public", "logo.png");
+const LOGO_HEIGHT = 56;
 
 const MARGIN = 50;
 const PAGE_WIDTH = 595.28; // A4
@@ -71,10 +74,10 @@ function rule(doc: Doc, y: number, color = LINE) {
 
 function drawHeader(doc: Doc, order: Order) {
   const top = MARGIN;
-  doc.font("bold").fontSize(18).fillColor(TEXT).text(site.name, MARGIN, top);
+  doc.image(LOGO, MARGIN, top, { height: LOGO_HEIGHT });
 
   const right = { x: MARGIN + CONTENT_WIDTH / 2, width: CONTENT_WIDTH / 2, align: "right" as const };
-  doc.font("bold").fontSize(18).text("RĒĶINS", right.x, top, right);
+  doc.font("bold").fontSize(18).fillColor(TEXT).text("RĒĶINS", right.x, top, right);
   doc
     .font("regular")
     .fontSize(10)
@@ -82,7 +85,7 @@ function drawHeader(doc: Doc, order: Order) {
     .text(`Datums: ${formatDate(order.createdAt)}`, right)
     .text(`Apmaksāt līdz: ${formatDate(order.dueDate)}`, right);
 
-  doc.y += 16;
+  doc.y = Math.max(doc.y, top + LOGO_HEIGHT) + 16;
   rule(doc, doc.y);
   doc.y += 18;
 }

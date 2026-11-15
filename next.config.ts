@@ -8,9 +8,9 @@ const imagesUrl = process.env.NEXT_PUBLIC_IMAGES_URL;
 const nextConfig: NextConfig = {
   serverExternalPackages: ["pdfkit"],
   // Files read at runtime via computed paths, which tracing can miss: the mock store's seed
-  // and the invoice PDF fonts.
+  // and the invoice PDF fonts and logo.
   outputFileTracingIncludes: {
-    "/**": ["./data/seed/**/*", "./assets/fonts/**/*"],
+    "/**": ["./data/seed/**/*", "./assets/fonts/**/*", "./public/logo.png"],
   },
   images: {
     // Only our own uploads folder; SVG stays disabled (the default).
