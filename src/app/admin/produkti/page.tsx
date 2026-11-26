@@ -6,6 +6,7 @@ import { formatPrice } from "@/lib/money";
 import { normalizeSearch } from "@/lib/format";
 import type { Product } from "@/lib/types";
 import { UNSORTED_FILTER } from "@/lib/catalog-input";
+import { Breadcrumbs } from "../Breadcrumbs";
 import a from "../admin.module.scss";
 
 export const metadata: Metadata = { title: "Produkti" };
@@ -44,6 +45,9 @@ export default async function AdminProducts({ searchParams }: PageProps<"/admin/
 
   return (
     <>
+      <Breadcrumbs
+        items={[{ label: "Produkti" }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>Produkti</h1>
         <span className={a.muted}>

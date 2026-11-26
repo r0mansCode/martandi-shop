@@ -12,6 +12,7 @@ import { DownloadIcon } from "@/components/icons";
 import { markInvoice } from "./actions";
 import { InvoiceTabs } from "./Tabs";
 import { INVOICE_STATUS_LABEL, isInvoiceOverdue, StatusBadge } from "./status";
+import { Breadcrumbs } from "../Breadcrumbs";
 import a from "../admin.module.scss";
 import s from "./invoices.module.scss";
 
@@ -58,6 +59,9 @@ export default async function AdminInvoices({ searchParams }: PageProps<"/admin/
 
   return (
     <>
+      <Breadcrumbs
+        items={[{ label: "Rēķini" }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>Rēķini</h1>
         <Link href="/admin/rekini/jauns" className={a.button}>

@@ -181,6 +181,7 @@ export type Invoice = {
   hideDueDate: boolean;
   /** Absent on invoices saved before the choice existed; those used the shop logo. */
   logo?: InvoiceLogo;
+  /** Only on older invoices: the form no longer has this field. */
   orderNumber?: string;
   status: InvoiceStatus;
   paidAt?: string;

@@ -16,6 +16,7 @@ import { ORDER_MESSAGES } from "@/lib/order-messages";
 import { site } from "@/config/site";
 import { removeOrder, resendInvoice, setOrderStatus } from "../actions";
 import { ConfirmButton } from "../../ConfirmButton";
+import { Breadcrumbs } from "../../Breadcrumbs";
 import a from "../../admin.module.scss";
 import o from "../orders.module.scss";
 
@@ -37,9 +38,9 @@ export default async function AdminOrder({ params, searchParams }: PageProps<"/a
 
   return (
     <>
-      <Link href="/admin/pasutijumi" className={a.back}>
-        ← Visi pasūtījumi
-      </Link>
+      <Breadcrumbs
+        items={[{ label: "Pasūtījumi", href: "/admin/pasutijumi" }, { label: order.invoiceNumber }]}
+      />
       <div className={a.head}>
         <h1 className={a.title}>{order.invoiceNumber}</h1>
         <span className={`${a.badge} ${o[order.status]}`}>{ORDER_STATUS_LABEL[order.status]}</span>

@@ -125,3 +125,19 @@ export const MinusIcon = (p: SVGProps<SVGSVGElement>) => (
     <path d="M5 12h14" />
   </Icon>
 );
+
+export const HomeIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <path d="M3 10.5 12 3.5l9 7" />
+    <path d="M6.5 9.5V20h11V9.5" />
+    <path d="M10 20v-5h4v5" />
+  </Icon>
+);
+
+export const InfoIcon = (p: SVGProps<SVGSVGElement>) => (
+  <Icon {...p}>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 11v5" />
+    <path d="M12 7.5h.01" />
+  </Icon>
+);

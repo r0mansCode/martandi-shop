@@ -8,32 +8,32 @@
 }
 
 .awaiting_payment {
-  background: #fdf1d8;
-  color: #7a5200;
+  background: #fef3c7;
+  color: #92400e;
 }
 
 .paid {
-  background: #e3effa;
-  color: #1d4f80;
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
 }
 
 .ready_for_pickup {
-  background: #e4f3e6;
+  background: #d1fae5;
   color: var(--color-success);
 }
 
 .collected {
   background: var(--color-tile);
-  color: var(--color-fg);
+  color: #475569;
 }
 
 .cancelled {
-  background: #f6e3e0;
-  color: #8a2c1d;
+  background: #ffe4e6;
+  color: #9f1239;
 }
 
 .overdue {
-  color: #b3261e;
+  color: var(--admin-danger);
   font-weight: 500;
 }
 
@@ -110,20 +110,21 @@
 .statusButton {
   margin-top: 0.5rem;
   padding: 0.375rem 0.625rem;
-  border: 1px solid var(--color-fg);
+  border: 1px solid var(--admin-accent);
   border-radius: var(--radius);
-  background: var(--color-fg);
+  background: var(--admin-accent);
   color: #fff;
   font: inherit;
   font-size: 0.6875rem;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   white-space: nowrap;
   cursor: pointer;
 
   &:hover {
-    background: #000;
+    border-color: var(--admin-accent-hover);
+    background: var(--admin-accent-hover);
   }
 }
 
@@ -172,16 +173,21 @@
   > div {
     padding: 1.25rem;
     border: 1px solid var(--color-line);
-    border-radius: var(--radius);
+    border-radius: var(--admin-radius-lg);
+    background: var(--admin-surface);
+    box-shadow: var(--admin-shadow);
   }
 
   dt {
     color: var(--color-muted);
-    font-size: 0.875rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   dd {
-    margin: 0.25rem 0 0.125rem;
+    margin: 0.375rem 0 0.125rem;
     font-size: 1.75rem;
     font-weight: 600;
   }
@@ -221,11 +227,17 @@
 .card {
   padding: 1.25rem;
   border: 1px solid var(--color-line);
-  border-radius: var(--radius);
+  border-radius: var(--admin-radius-lg);
+  background: var(--admin-surface);
+  box-shadow: var(--admin-shadow);
 
   h2 {
     margin-bottom: 0.75rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
     font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
   p {

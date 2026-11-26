@@ -57,13 +57,13 @@
   border: 1px solid transparent;
   border-radius: var(--radius);
   background: none;
-  color: #b3261e;
+  color: var(--admin-danger);
   font-size: 0.8125rem;
   white-space: nowrap;
 
   &:hover {
-    border-color: #b3261e;
-    background: #fbeceb;
+    border-color: var(--admin-danger-line);
+    background: var(--admin-danger-soft);
   }
 }
 
@@ -75,20 +75,25 @@
 }
 
 .deleteButton {
-  border-color: #b3261e;
-  color: #b3261e;
+  border-color: var(--admin-danger-line);
+  background: var(--admin-danger-soft);
+  color: var(--admin-danger);
 
-  &:hover {
-    background: #b3261e;
-    color: #fff;
+  &:hover:not(:disabled) {
+    border-color: #fca5a5;
+    background: #fee2e2;
+    color: var(--admin-danger);
   }
 }
 
 .message {
   margin-bottom: 1rem;
   padding: 0.75rem 1rem;
-  border-left: 3px solid var(--color-success);
-  background: #eef6ef;
+  border: 1px solid #a7f3d0;
+  border-radius: var(--admin-radius-lg);
+  background: #ecfdf5;
+  color: #047857;
+  font-size: 0.875rem;
 }
 
 .unsorted {

@@ -11,6 +11,7 @@ import { InvoiceForm } from "../InvoiceForm";
 import { invoiceFormData } from "../form-data";
 import { invoiceDeleteConfirm, isInvoiceOverdue, StatusBadge } from "../status";
 import { ConfirmButton } from "../../ConfirmButton";
+import { Breadcrumbs } from "../../Breadcrumbs";
 import a from "../../admin.module.scss";
 import s from "../invoices.module.scss";
 
@@ -31,9 +32,9 @@ export default async function EditInvoice({ params, searchParams }: PageProps<"/
 
   return (
     <>
-      <Link href="/admin/rekini" className={a.back}>
-        ← Visi rēķini
-      </Link>
+      <Breadcrumbs
+        items={[{ label: "Rēķini", href: "/admin/rekini" }, { label: invoice.invoiceNumber }]}
+      />
       <div className={a.head}>
         <h1 className={a.title}>{invoice.invoiceNumber}</h1>
         <StatusBadge status={invoice.status} />
@@ -47,7 +48,7 @@ export default async function EditInvoice({ params, searchParams }: PageProps<"/
         </p>
       )}
 
-      <div className={`${a.buttonRow} ${s.wide}`}>
+      <div className={`${a.buttonRow} ${s.wide} ${s.actionsBar}`}>
         <form action={markInvoice.bind(null, invoice.id, nextStatus, here)}>
           <button type="submit" className={a.button}>
             {nextStatus === "paid" ? "Atzīmēt kā apmaksātu" : "Atzīmēt kā neapmaksātu"}
@@ -69,11 +70,14 @@ export default async function EditInvoice({ params, searchParams }: PageProps<"/
         </form>
       </div>
 
-      <h2 className={s.formTitle}>
-        Labot rēķinu · saglabātās izmaiņas redzamas PDF uzreiz
-      </h2>
       {/* Keyed by status: after the buttons above change it, the form must not save the old one back. */}
-      <InvoiceForm key={invoice.status} initial={invoiceToForm(invoice)} customers={data.customers} variants={data.variants} />
+      <InvoiceForm
+        key={invoice.status}
+        heading={<h2 className={s.formTitle}>Labot rēķinu · saglabātās izmaiņas redzamas PDF uzreiz</h2>}
+        initial={invoiceToForm(invoice)}
+        customers={data.customers}
+        variants={data.variants}
+      />
     </>
   );
 }

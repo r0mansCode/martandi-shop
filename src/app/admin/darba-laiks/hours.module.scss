@@ -56,8 +56,10 @@
 }
 
 .preview {
-  padding: 0.625rem 0.75rem;
-  border-left: 3px solid var(--color-accent);
-  background: var(--color-panel);
+  padding: 0.75rem 1rem;
+  border: 1px solid #c7d4e8;
+  border-radius: var(--radius);
+  background: var(--admin-accent-soft);
+  color: var(--admin-accent);
   font-size: 0.875rem;
 }

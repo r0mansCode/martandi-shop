@@ -5,6 +5,7 @@ import { requireAdmin } from "@/server/auth/session";
 import { plural } from "@/lib/format";
 import { UNSORTED_FILTER } from "@/lib/catalog-input";
 import { CategoryList } from "./CategoryList";
+import { Breadcrumbs } from "../Breadcrumbs";
 import a from "../admin.module.scss";
 import s from "./categories.module.scss";
 
@@ -36,6 +37,9 @@ export default async function AdminCategories({ searchParams }: PageProps<"/admi
 
   return (
     <>
+      <Breadcrumbs
+        items={[{ label: "Kategorijas" }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>Kategorijas</h1>
         <span className={a.muted}>Velciet rindas, lai mainītu secību veikala izvēlnē.</span>

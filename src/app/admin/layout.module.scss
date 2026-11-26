@@ -1,52 +1,154 @@
 @use "@/styles/mixins" as *;
 
-.header {
+// Admin palette (after the ohmycrisp admin): slate neutrals, white cards on a pale page,
+// rounder corners than the storefront, and the shop's navy as the single accent.
+// The storefront tokens are overridden here, so shared admin modules need no own colours.
+.shell {
+  --admin-accent: #10356d;
+  --admin-accent-hover: #0b2752;
+  --admin-accent-soft: #e8eef7;
+  --admin-bg: #f8fafc;
+  --admin-surface: #ffffff;
+  --admin-line-strong: #cbd5e1;
+  --admin-danger: #b91c1c;
+  --admin-danger-soft: #fef2f2;
+  --admin-danger-line: #fecaca;
+  --admin-radius-lg: 0.75rem;
+  --admin-radius-xl: 1.5rem;
+  --admin-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+
+  --color-fg: #0f172a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-tile: #f1f5f9;
+  --color-panel: var(--admin-accent-soft);
+  --color-accent: var(--admin-danger);
+  --color-success: #047857;
+  --radius: 0.375rem;
+  --container: 88rem;
+  --gutter: 1rem;
+
+  @include up(md) {
+    --gutter: 1.5rem;
+  }
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--admin-bg);
+  color: var(--color-fg);
+}
+
+// Sticky only once it fits on one row; on phones the wrapped nav would cover too much.
+.topbar {
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.92);
+  border-bottom: 1px solid var(--color-line);
+  backdrop-filter: blur(8px);
+
+  @include up(lg) {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.topbarInner {
   @include container;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding-block: 1rem;
-  border-bottom: 1px solid var(--color-line);
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.75rem;
 }
 
 .brand {
-  font-family: var(--font-serif);
-  font-size: 1.25rem;
-  color: inherit;
-  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-weight: 600;
+  line-height: 1.2;
+
+  small {
+    display: block;
+    color: var(--admin-accent);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+}
+
+.brandMark {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--admin-radius-lg);
+  background: var(--admin-accent);
+  color: #fff;
+  font-weight: 700;
 }
 
 .nav {
   display: flex;
-  gap: 1.25rem;
-  margin-left: auto;
-  margin-right: 1.25rem;
-  font-size: 0.9375rem;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 0.875rem;
 
   a {
-    color: inherit;
+    padding: 0.375rem 0.75rem;
+    border-radius: var(--radius);
+    color: var(--color-muted);
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+
+    &:hover,
+    &:focus-visible {
+      background: var(--color-tile);
+      color: var(--color-fg);
+    }
   }
 }
 
-.passkey {
+.tools {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
   font-size: 0.875rem;
+}
+
+.toolLink {
   color: var(--color-muted);
+
+  &:hover {
+    color: var(--color-fg);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 }
 
 .logout {
-  padding: 0.5rem 1rem;
-  border: 1px solid var(--color-fg);
-  border-radius: var(--radius);
-  background: var(--color-bg);
-  color: var(--color-fg);
-  font: inherit;
-  cursor: pointer;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--admin-danger);
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 }
 
 .main {
   @include container;
   flex: 1;
-  padding-block: 2rem 4rem;
+  padding-block: 1.5rem 4rem;
+
+  @include up(md) {
+    padding-block: 2rem 4rem;
+  }
 }

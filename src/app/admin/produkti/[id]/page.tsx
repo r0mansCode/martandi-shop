@@ -6,6 +6,7 @@ import { requireAdmin } from "@/server/auth/session";
 import { centsToEuro, type ProductFormValues } from "@/lib/catalog-input";
 import { site } from "@/config/site";
 import { ProductForm } from "./ProductForm";
+import { Breadcrumbs } from "../../Breadcrumbs";
 import a from "../../admin.module.scss";
 
 export async function generateMetadata({ params }: PageProps<"/admin/produkti/[id]">): Promise<Metadata> {
@@ -46,9 +47,9 @@ export default async function EditProduct({ params }: PageProps<"/admin/produkti
 
   return (
     <>
-      <Link href="/admin/produkti" className={a.back}>
-        ← Produkti
-      </Link>
+      <Breadcrumbs
+        items={[{ label: "Produkti", href: "/admin/produkti" }, { label: product.name }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>{product.name}</h1>
         <span className={a.muted}>

@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { startTransition, useActionState, useState } from "react";
+import { startTransition, useActionState, useId, useState, type ReactNode } from "react";
+import { InfoIcon } from "@/components/icons";
 import { saveInvoice } from "./actions";
 import { centsToEuro, initialFormState } from "@/lib/catalog-input";
 import {
@@ -38,6 +39,8 @@ export type VariantOption = {
 };
 
 type Props = {
+  /** Page or form title, shown on the left of the logo switch. */
+  heading: ReactNode;
   initial: InvoiceFormValues;
   customers: CustomerOption[];
   variants: VariantOption[];
@@ -45,8 +48,9 @@ type Props = {
 
 const vatPercent = (key: InvoiceFormValues["vat"]) => Math.round(INVOICE_VAT_RATES[key] * 100);
 
-export function InvoiceForm({ initial, customers, variants }: Props) {
+export function InvoiceForm({ heading, initial, customers, variants }: Props) {
   const isNew = !initial.id;
+  const logoInfoId = useId();
   const [values, setValues] = useState(initial);
   const [state, formAction, pending] = useActionState(saveInvoice, initialFormState);
   const initialType = customers.find((c) => c.id === initial.customerId)?.type ?? "company";
@@ -109,17 +113,29 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
     >
       <input type="hidden" name="invoice" value={JSON.stringify(values)} />
 
-      <section className={a.section}>
-        <h2>Logotips</h2>
-        <div className={s.segmented} role="radiogroup" aria-label="Logotips rēķinā">
-          {(Object.keys(INVOICE_LOGOS) as InvoiceFormValues["logo"][]).map((logo) => (
-            <label key={logo}>
-              <input type="radio" name="logo" checked={values.logo === logo} onChange={() => set("logo", logo)} />
-              {INVOICE_LOGOS[logo]}
-            </label>
-          ))}
+      {/* The logo switch sits beside the page or form title: it's one choice, not a section. */}
+      <div className={s.formHead}>
+        <div className={s.formHeading}>{heading}</div>
+        <div className={s.logoPick}>
+          <div className={s.segmented} role="radiogroup" aria-label="Logotips rēķinā">
+            {(Object.keys(INVOICE_LOGOS) as InvoiceFormValues["logo"][]).map((logo) => (
+              <label key={logo}>
+                <input type="radio" name="logo" checked={values.logo === logo} onChange={() => set("logo", logo)} />
+                {INVOICE_LOGOS[logo]}
+              </label>
+            ))}
+          </div>
+          <span className={s.info}>
+            <button type="button" className={s.infoButton} aria-label="Par logotipu" aria-describedby={logoInfoId}>
+              <InfoIcon width={18} height={18} />
+            </button>
+            <span role="tooltip" id={logoInfoId} className={s.tooltip}>
+              Nosaka, kurš logotips būs rēķina PDF galvenē: TaviDzērieni.lv vai Martandi. Pārējais rēķins
+              nemainās.
+            </span>
+          </span>
         </div>
-      </section>
+      </div>
 
       <section className={a.section}>
         <h2>Klients</h2>
@@ -221,13 +237,6 @@ export function InvoiceForm({ initial, customers, variants }: Props) {
             </select>
           </label>
         </div>
-        <label className={a.field}>
-          <span>
-            Pasūtījuma Nr. <span className={a.muted}>(neobligāts)</span>
-          </span>
-          <input className={cls("orderNumber")} value={values.orderNumber} onChange={(e) => set("orderNumber", e.target.value)} />
-          {err("orderNumber") && <span className={a.error}>{err("orderNumber")}</span>}
-        </label>
         <label className={a.check}>
           <input type="checkbox" checked={values.hideDueDate} onChange={(e) => set("hideDueDate", e.target.checked)} />
           Nerādīt apmaksas termiņu rēķinā

@@ -18,8 +18,9 @@ export const DEFAULT_UNIT = "gb";
 
 /** Logo choices for the PDF, in switcher order; the first is the default. */
 export const INVOICE_LOGOS: Record<InvoiceLogo, string> = {
-  tavidzerieni: "TaviDzērieni.lv",
+  // Key order is the switch order in the invoice form.
   martandi: "Martandi",
+  tavidzerieni: "TaviDzērieni.lv",
 };
 const LOGO_KEYS = Object.keys(INVOICE_LOGOS) as [InvoiceLogo, ...InvoiceLogo[]];
 
@@ -122,7 +123,6 @@ export const invoiceInput = z
     dueDate: day("Apmaksas termiņš"),
     hideDueDate: z.boolean(),
     logo: z.enum(LOGO_KEYS),
-    orderNumber: optional(60),
     status: z.enum(["unpaid", "paid"]),
     vat: z.enum(Object.keys(INVOICE_VAT_RATES) as [InvoiceVatKey, ...InvoiceVatKey[]]),
     includeSignatures: z.boolean(),
@@ -163,8 +163,8 @@ export function emptyInvoice(today: string): InvoiceFormValues {
     issueDate: today,
     dueDate: addDays(today, site.paymentDueDays),
     hideDueDate: false,
-    logo: LOGO_KEYS[0],
-    orderNumber: "",
+    // New invoices default to Martandi; old ones without a stored logo keep TaviDzērieni (invoiceToForm, PDF).
+    logo: "martandi",
     status: "unpaid",
     vat: "21",
     includeSignatures: false,
@@ -183,7 +183,6 @@ export function invoiceToForm(invoice: Invoice): InvoiceFormValues {
     dueDate: invoice.dueDate,
     hideDueDate: invoice.hideDueDate,
     logo: invoice.logo ?? "tavidzerieni",
-    orderNumber: invoice.orderNumber ?? "",
     status: invoice.status,
     vat: vatKey(invoice.vatRate),
     includeSignatures: invoice.includeSignatures,
@@ -208,7 +207,6 @@ export function invoiceAsTemplate(invoice: Invoice, today: string): InvoiceFormV
     id: "",
     issueDate: blank.issueDate,
     dueDate: blank.dueDate,
-    orderNumber: "",
     status: "unpaid",
   };
 }

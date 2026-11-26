@@ -7,6 +7,7 @@ import { customerToForm } from "@/lib/invoice-input";
 import { removeCustomer } from "../../actions";
 import { CustomerForm } from "../CustomerForm";
 import { ConfirmButton } from "../../../ConfirmButton";
+import { Breadcrumbs } from "../../../Breadcrumbs";
 import a from "../../../admin.module.scss";
 
 export const metadata: Metadata = { title: "Klients" };
@@ -20,9 +21,13 @@ export default async function EditInvoiceCustomer({ params }: PageProps<"/admin/
 
   return (
     <>
-      <Link href="/admin/rekini/klienti" className={a.back}>
-        ← Visi klienti
-      </Link>
+      <Breadcrumbs
+        items={[
+          { label: "Rēķini", href: "/admin/rekini" },
+          { label: "Klienti", href: "/admin/rekini/klienti" },
+          { label: customer.name },
+        ]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>{customer.name}</h1>
         {count > 0 && (

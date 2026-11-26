@@ -8,6 +8,7 @@ import { deleteCategoryConfirm } from "@/lib/catalog-input";
 import { CategoryForm } from "../CategoryForm";
 import { ConfirmButton } from "../../ConfirmButton";
 import { deleteCategory } from "../../actions";
+import { Breadcrumbs } from "../../Breadcrumbs";
 import a from "../../admin.module.scss";
 import s from "../categories.module.scss";
 
@@ -28,9 +29,9 @@ export default async function AdminCategory({ params }: PageProps<"/admin/katego
 
   return (
     <>
-      <Link href="/admin/kategorijas" className={a.back}>
-        ← Visas kategorijas
-      </Link>
+      <Breadcrumbs
+        items={[{ label: "Kategorijas", href: "/admin/kategorijas" }, { label: category.name }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>{category.name}</h1>
         <Link href={`/admin/produkti?kategorija=${category.id}`} className={a.muted}>

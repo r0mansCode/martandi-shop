@@ -18,6 +18,7 @@ import { site } from "@/config/site";
 import { removeOrder, setOrderStatus } from "./actions";
 import { BanknoteIcon, CheckCircleIcon, DownloadIcon, HourglassIcon, PackageIcon } from "@/components/icons";
 import { ConfirmButton } from "../ConfirmButton";
+import { Breadcrumbs } from "../Breadcrumbs";
 import a from "../admin.module.scss";
 import o from "./orders.module.scss";
 
@@ -74,6 +75,12 @@ export default async function AdminOrders({ searchParams }: PageProps<"/admin/pa
 
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { label: "Pasūtījumi", href: "/admin/pasutijumi" },
+          { label: view === "orders" ? "Pasūtījumu tabula" : "Pārdošanas kopsavilkums" },
+        ]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>Pasūtījumi</h1>
       </div>

@@ -5,6 +5,7 @@ import { requireAdmin } from "@/server/auth/session";
 import { CUSTOMER_TYPE_LABEL } from "@/lib/invoice-input";
 import { INVOICE_MESSAGES } from "@/lib/invoice-messages";
 import { InvoiceTabs } from "../Tabs";
+import { Breadcrumbs } from "../../Breadcrumbs";
 import a from "../../admin.module.scss";
 
 export const metadata: Metadata = { title: "Rēķinu klienti" };
@@ -20,6 +21,9 @@ export default async function InvoiceCustomers({ searchParams }: PageProps<"/adm
 
   return (
     <>
+      <Breadcrumbs
+        items={[{ label: "Rēķini", href: "/admin/rekini" }, { label: "Klienti" }]}
+      />
       <div className={a.pageHead}>
         <h1 className={a.title}>Rēķini</h1>
         <Link href="/admin/rekini/klienti/jauns" className={a.button}>

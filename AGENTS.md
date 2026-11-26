@@ -23,7 +23,7 @@ Business rules that shape the code:
 - **Alcohol:** checkout requires an 18+ checkbox when the cart has alcohol (`isAlcohol`).
 - **Payment is always a bank transfer.** The customer gets a PDF invoice by email, due in 14 days. Invoice numbers are `MRT-YYYY-NNNNN`. The admin marks orders as paid by hand after checking the bank statement, and that is intended. Overdue invoices trigger nothing: no reminder, no auto-cancel.
 - **Deleted invoices are treated as never used.** The next invoice continues from the highest number still in use. The accountant is fine with this, so don't "fix" it with credit notes or by forbidding gaps.
-- **Manual invoices** („Rēķini”, `/admin/rekini`) are B2B invoices the admin writes by hand, ported from the ohmycrisp admin minus its inventory tracking. They have their own customer directory, catalog or free-text lines, **net** prices (VAT 21% or 0%, taken once from the net total), signature lines, a hideable due date and a logo switch (TaviDzērieni or Martandi, `assets/logos/`; old invoices default to TaviDzērieni). They share the `MRT-YYYY-NNNNN` sequence with shop orders (year = issue date's year, fixed once assigned). They are never emailed: the admin opens or downloads the PDF.
+- **Manual invoices** („Rēķini”, `/admin/rekini`) are B2B invoices the admin writes by hand, ported from the ohmycrisp admin minus its inventory tracking. They have their own customer directory, catalog or free-text lines, **net** prices (VAT 21% or 0%, taken once from the net total), signature lines, a hideable due date and a logo switch (TaviDzērieni or Martandi, `assets/logos/`; new invoices default to Martandi, old ones without a stored logo to TaviDzērieni). They share the `MRT-YYYY-NNNNN` sequence with shop orders (year = issue date's year, fixed once assigned). They are never emailed: the admin opens or downloads the PDF.
 - **Buyers** can be private persons or companies. Companies give name, Reg. Nr., an optional PVN Nr. and a legal address.
 - **Order statuses:** awaiting payment → paid → ready for pickup → collected (or cancelled). Each of paid, ready and collected sends the customer an email automatically. Cancelling **deliberately** sends no email.
 - **Alcohol sale-hour rules** apply to pickup only, not to placing orders online. Don't block checkout by time of day.
@@ -130,6 +130,7 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
   - Use `minmax(0, 1fr)` grid columns to avoid mobile overflow.
 - **Design:** the look will change over time, so keep styling in tokens and modules where it's easy to restyle. The current look is quiet and Faire-like. Product photos sit on light tiles with `mix-blend-mode: multiply`. Buttons are sharp, 2px radius.
 - **Admin UI:**
+  - The admin has its own look, after the ohmycrisp admin: slate neutrals, white rounded cards, navy accent `#10356D`. `.shell` in `admin/layout.module.scss` overrides the storefront tokens (and adds `--admin-*` ones), so admin modules use tokens, not new hex values. The overview is a hub of section cards; every other page starts with `<Breadcrumbs>` (`admin/Breadcrumbs.tsx`).
   - Tables use whole-row click through a stretched link: add `a.clickable` to the table and `a.rowLink` to the link, and put interactive cells above the link with `a.aboveRow`.
   - Destructive actions use `ConfirmButton`.
   - Show feedback through `?zina=` query messages (see `lib/order-messages.ts`).
@@ -142,8 +143,7 @@ amplify.yml                 build spec; copies runtime env vars into .env.produc
 
 ```bash
 npm run dev            # http://localhost:3000, DATA_SOURCE=mock by default
-npm run typecheck      # next typegen && tsc --noEmit — run after every change
-npm run lint
+npm run typecheck      # next typegen && tsc --noEmitnpm run lint
 npm run build          # if it fails on fonts or odd cache errors: delete .next and retry
 npm run db:reset       # wipe .data/ so the mock store re-seeds from data/seed
 npm run email:test     # send a test email via Resend (needs RESEND_API_KEY in .env.local)
@@ -151,7 +151,7 @@ npm run db:seed:dynamo # seed DynamoDB from data/seed (needs AWS_PROFILE + DYNAM
 npm run images:migrate # copy seed images to S3
 ```
 
-The preview server config is in `.claude/launch.json` (name `dev`). Verify with typecheck, lint and the browser preview.
+The preview server config is in `.claude/launch.json` (name `dev`). Verify UI changes with the browser preview.
 
 **Tests:** there is no test runner yet. Write tests **only for critical code**:
 - money: `lib/money.ts`, `splitVat`, cents conversion, order totals
@@ -164,7 +164,6 @@ Don't write tests for UI components or styling. When a test runner is added, lis
 ## AI instructions
 
 1. **Verify before you finish.**
-   - Run `npm run typecheck` and `npx eslint <changed paths>`.
    - For UI changes, use the `dev` preview: check behaviour with `javascript_tool`/`read_page`, take a screenshot as proof, then restore state (e.g. clear `martandi-cart`).
    - Admin pages need the user's Cognito login, so you can only confirm that signed-out visitors are redirected. Say so instead of claiming you verified them.
 2. **Never commit or push until the user explicitly says so**, even after finishing a task. `main` deploys straight to production through Amplify. Only the user and agents commit, directly on `main` with no branches or PRs, and agents do it only on the user's command. Start commit messages with an imperative summary and end them with the Co-Authored-By trailer. After pushing, you can watch the Amplify job with `aws amplify list-jobs --app-id d38a541mf8rmxo --branch-name main`.
